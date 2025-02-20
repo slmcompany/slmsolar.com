@@ -1,0 +1,101 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Mobile from "../components/Mobile.astro";
+import VideoSolarmax from "../components/video.solarmax.tsx";
+import Hoidap from "../components/hoidap.astro";
+import Image from "astro/components/Image.astro";
+
+import { AstroSeo } from "@astrolib/seo";
+import Ongrid from "../components/Ongrid.astro";
+import Offgrid from "../components/Offgrid.astro";
+import Whychoise from "../components/whychoise.astro";
+import Combongrid from "../components/home/ComboOngrid.astro";
+import Combohybrid from "../components/home/ComboHybrid.astro";
+import  Whychoisesolarmax  from "../components/home/whychoisesolarmax.tsx";
+import Slider from "../components/home/slider.tsx";
+import Combogiadinhintro from "../components/home/combogiadinhintro.tsx";
+import Combocongnghiepintro from "../components/home/combocongnghiepintro.tsx";
+import QA from "../components/home/qa.tsx";
+import Customer from "../components/home/custommer.tsx";
+import Message from "../components/home/message.astro";
+import DoiTac from "../components/home/doitac.tsx";
+import CTA from "../components/home/cta.astro";
+---
+
+<AstroSeo
+  title="Điện xanh mái nhà Việt"
+  description="Đến năm 2030, Solarmax hoàn thành lắp đặt 1 triệu m2 tấm pin năng lượng mặt trời cho mái nhà Việt."
+/>
+
+<Layout title="Bật để tiết kiệm điện">
+  <VideoSolarmax client:load />
+
+  <Slider client:load />
+
+  <Whychoise />
+
+  <Whychoisesolarmax client:load />
+
+  
+ 
+ <whychoiseSolarmax client:load />
+
+  <Combogiadinhintro client:load />
+  <Combocongnghiepintro client:load />
+
+
+  <!-- <Combongrid /> -->
+  <!-- <Combohybrid /> -->
+  <Mobile />
+
+  <!-- <Ongrid zalo="0964920242" /> -->
+
+  <!-- <div class="bg-green-100 block sm:block lg:hidden">
+    <div class="bg-left lg:bg-center sm:bg-right">
+      <div
+        class="mx-auto max-w-7xl px-0 py-0 sm:py-0 lg:flex lg:items-center lg:justify-between lg:px-0"
+      >
+        <img src="/images/FBads_Uudait11.png" alt="" class="w-full" />
+      </div>
+    </div>
+  </div>
+  <div class="bg-green-100">
+        <div
+            class="bg-[url('/images/cta-bg.png')] bg-no-repeat bg-cover bg-left lg:bg-center sm:bg-right"
+        >
+            <div
+                class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:justify-between lg:px-8 hidden sm:hidden"   
+            >
+                <h1 class="text-3xl text-white">
+                    Trọn gói 100% <br />Cam kết không phát sinh<br
+                        class="hidden lg:block sm:hidden"
+                    />&nbsp;với mái tôn và mái ngói.
+                </h1>
+                <div
+                    class="mt-10 flex items-center gap-x-6 lg:mt-0 lg:flex-shrink-0"
+                >
+                    <a
+                        href="tel:84964920242"
+                        class="rounded-md bg-red-600 px-3.5 py-2.5 text-lg font-semibold text-white shadow-sm"
+                        >Tư vấn ngay</a
+                    >
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+  <!-- <Offgrid zalo="0964920242" /> -->
+
+  <Message />
+  <QA />
+
+
+
+  <Customer />
+
+  
+
+  <DoiTac client:load />
+
+  <CTA />
+</Layout>

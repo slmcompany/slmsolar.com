@@ -1,0 +1,129 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import fetchApi from "../../lib/strapi.ts";
+import type Projects from "../../interfaces/projects.ts";
+import Image from "astro/components/Image.astro";
+
+const articles = await fetchApi<Projects[]>({
+    endpoint: "projects?populate=image", // the content type to fetch
+    wrappedByKey: "data", // the key to unwrap the response
+});
+
+// Lấy danh sách tỉnh độc nhất
+const provinces = [...new Set(articles.map(article => article.attributes.vi_tri))].sort();
+---
+
+<Layout title="Dự án">
+    <div class="bg-white py-24 sm:py-12">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                    Dự án tiêu biểu
+                </h2>
+                <p class="mt-2 text-lg leading-8 text-gray-600">
+                    Khám phá các dự án điện mặt trời đã thực hiện bởi Solarmax
+                </p>
+            </div>
+
+            <!-- Bộ lọc tỉnh -->
+            <div class="mt-8 flex items-center gap-4">
+                <select
+                    id="province-filter"
+                    class="block w-full max-w-xs rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-green-600 sm:text-sm sm:leading-6"
+                >
+                    <option value="">Tất cả tỉnh thành</option>
+                    {provinces.map(province => (
+                        <option value={province}>{province}</option>
+                    ))}
+                </select>
+
+                <button
+                    id="reset-filter"
+                    type="button"
+                    class="rounded-md bg-green-600 px-3.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                >
+                    Xem tất cả dự án
+                </button>
+            </div>
+
+            <div id="projects-grid" class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                {articles.map((article) => (
+                    <article 
+                        class="group relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-80 sm:pt-48 lg:pt-80"
+                        data-province={article.attributes.vi_tri}
+                    >
+                        <Image
+                            src={`https://app.slmsolar.com${article.attributes.image.data.attributes.formats.medium.url}`}
+                            alt={article.attributes.title}
+                            class="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            inferSize
+                        />
+                        <div class="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"></div>
+                        <div class="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+
+                        <div class="flex flex-wrap items-center gap-y-1 overflow-hidden text-sm leading-6 text-gray-300">
+                            <div class="flex items-center gap-x-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
+                                    <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd"/>
+                                </svg>
+                                {article.attributes.vi_tri}
+                            </div>
+                        </div>
+
+                        <h3 class="mt-3 text-lg font-semibold leading-6 text-white">
+                            <a href={`/du-an/${article.attributes.slug}/`}>
+                                <span class="absolute inset-0"></span>
+                                {article.attributes.title}
+                            </a>
+                        </h3>
+
+                        {article.attributes.youtube_id && (
+                            <div class="mt-3">
+                                <a
+                                    href={`https://www.youtube.com/watch?v=${article.attributes.youtube_id}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="inline-flex items-center gap-x-1.5 text-sm text-white hover:text-gray-300"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                                        <path fill-rule="evenodd" d="M2 10a8 8 0 1 1 16 0 8 8 0 0 1-16 0Zm6.39-2.908a.75.75 0 0 1 .766.027l3.5 2.25a.75.75 0 0 1 0 1.262l-3.5 2.25A.75.75 0 0 1 8 12.25v-4.5a.75.75 0 0 1 .39-.658Z" clip-rule="evenodd"/>
+                                    </svg>
+                                    Xem video
+                                </a>
+                            </div>
+                        )}
+                    </article>
+                ))}
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<script>
+    const provinceFilter = document.getElementById('province-filter') as HTMLSelectElement;
+    const resetButton = document.getElementById('reset-filter');
+    const projectsGrid = document.getElementById('projects-grid');
+    const allProjects = projectsGrid?.querySelectorAll('article');
+
+    provinceFilter?.addEventListener('change', (e) => {
+        const selectedProvince = (e.target as HTMLSelectElement).value;
+        
+        allProjects?.forEach(project => {
+            if (!selectedProvince || project.getAttribute('data-province') === selectedProvince) {
+                project.classList.remove('hidden');
+            } else {
+                project.classList.add('hidden');
+            }
+        });
+    });
+
+    // Reset filter
+    resetButton?.addEventListener('click', () => {
+        if (provinceFilter) {
+            provinceFilter.value = '';
+        }
+        allProjects?.forEach(project => {
+            project.classList.remove('hidden');
+        });
+    });
+</script>

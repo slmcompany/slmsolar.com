@@ -1,0 +1,80 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Productcat from "../../../components/productcat.astro";
+import { DetailCombo } from "../../../components/combo/detailcombo";
+import Cta from "../../../components/combo/cta.astro";
+const aqitems = [
+    {
+        imgSrc: "/images/13_ongridvsoffgrid-Cover.jpg",
+        imgAlt: "DA377: Quốc Oai - Hà Nội",
+        heading: "DA377: Quốc Oai - Hà Nội",
+        buttonLink: "https://youtu.be/JXQ3A8eFYmc?si=VyPKSXhA0KrHZoCK",
+        savingsPerMonth: "2.5tr/tháng",
+        area: "45m²"
+    },
+    {
+        imgSrc: "/images/16_cocheHD-Cover.jpg",
+        imgAlt: "DA393: Thái Bình",
+        heading: "DA393: Thái Bình",
+        buttonLink: "https://youtu.be/-eBkEvXXRaw?si=Mhp38M-qpUUfrhIV",
+        savingsPerMonth: "2.8tr/tháng",
+        area: "50m²"
+    },
+    {
+        imgSrc: "/images/7_Sosanh2he-Cover.jpg",
+        imgAlt: "DA208: Ứng Hoà - Hà Nội",
+        heading: "DA208: Ứng Hoà - Hà Nội",
+        buttonLink: "https://youtu.be/iIu3RhKuI_8?si=Ac7Y54OIvjeXlZ8i",
+        savingsPerMonth: "2.2tr/tháng",
+        area: "40m²"
+    },
+];
+
+const combopage = [
+    {
+        title: "Combo On-Grid 5.2 kWp - 1 Pha",
+        subtitle: "Sản lượng trung bình: 400 - 600 số/tháng",
+        price: "48.900.000",
+        image: "/images/on-grid-1p-ja-55-invt-5-1.png",
+    },
+];
+
+const products = [
+    {
+        title: "Tấm pin mặt trời 1 mặt kính",
+        soluong: "9",
+        dvt: "tấm",
+        logo: "/images/brand-ja-solar-logo.svg",
+        image: "/images/solar-jasolar.png",
+    },
+    {
+        title: "Inverter on-grid 5kW",
+        soluong: "01",
+        dvt: "bộ",
+        logo: "/images/brand-invt-logo.png",
+        image: "/images/inverter-invt.png",
+    },
+    {
+        title: "Hệ khung giá đỡ nhôm cao cấp",
+        soluong: "01",
+        dvt: "bộ",
+        logo: "/images/logo-solarmax.png",
+        image: "https://image.made-in-china.com/202f0j00QqncubeGhToZ/Wholesaler-Aluminium-Frame-PV-Panel-Stand-Adjustable-Front-Rear-Leg-Mount-Flat-Roof-Solar-Panel-System-Mounting-Bracket.webp",
+    },
+    {
+        title: "Bộ tủ điện năng lượng mặt trời",
+        soluong: "01",
+        dvt: "bộ",
+        logo: "/images/logo-solarmax.png",
+        image: "/images/bo-tu-dien-solarmax.png",
+    },
+];
+---
+
+<Layout title={combopage[0].title}>
+    <div class="bg-slate-800 z-50 relative w-full">
+        <DetailCombo client:load {combopage} {products} {aqitems} />
+        <Productcat />
+        <Cta />
+    </div>
+</Layout>
