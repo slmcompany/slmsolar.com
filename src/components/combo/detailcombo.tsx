@@ -17,6 +17,12 @@ interface ComboPage {
     subtitle: string;
     price: string;
     image: string;
+    equipments: Equipment[];
+    aqitems: AQItem[];
+    galleryImages: GalleryImage[];
+    reviews: Reviews;
+    specs: Spec[];
+    highlights: string[];
 }
 
 interface AQItem {
@@ -48,10 +54,23 @@ interface GalleryImage {
     alt: string;
 }
 
+interface Equipment {
+    id: number;
+    title: string;
+    logo: string;
+    logoAlt: string;
+    quantity: string;
+    image: string;
+    featured?: boolean;
+}
+
+interface Spec {
+    value: string;
+    label: string;
+}
+
 interface DetailComboProps {
     combopage: ComboPage[];
-    products: Product[];
-    aqitems: AQItem[];
 }
 
 const timeline = [
@@ -92,83 +111,14 @@ const timeline = [
     },
 ];
 
-// Add gallery images data
-const galleryImages: GalleryImage[] = [
-    {
-        src: 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=1000',
-        alt: 'Hệ thống điện mặt trời mái nhà 5kWp'
-    },
-    {
-        src: 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=1000',
-        alt: 'Tấm pin năng lượng mặt trời hiệu suất cao'
-    },
-    {
-        src: 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=1000',
-        alt: 'Lắp đặt điện mặt trời áp mái'
-    },
-    {
-        src: 'https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?q=80&w=1000',
-        alt: 'Hệ thống pin mặt trời công nghiệp'
-    },
-    {
-        src: 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=1000',
-        alt: 'Dự án điện mặt trời quy mô lớn'
-    },
-    {
-        src: 'https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=1000',
-        alt: 'Lắp đặt và bảo trì hệ thống'
-    },
-    {
-        src: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1000',
-        alt: 'Giải pháp năng lượng sạch cho gia đình'
-    },
-    {
-        src: 'https://images.unsplash.com/photo-1583922606661-0822ed0bd916?q=80&w=1000',
-        alt: 'Thi công điện mặt trời chuyên nghiệp'
-    }
-];
-
 function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ');
 }
 
-export const DetailCombo: FC<DetailComboProps> = ({ combopage, products, aqitems }) => {
+export const DetailCombo: FC<DetailComboProps> = ({ combopage }) => {
     const [currentImage, setCurrentImage] = useState(combopage[0].image);
-
-    const reviews: Reviews = {
-        average: 4,
-        totalCount: 1624,
-        counts: [
-            { rating: 5, count: 1019 },
-            { rating: 4, count: 162 },
-            { rating: 3, count: 97 },
-            { rating: 2, count: 199 },
-            { rating: 1, count: 147 },
-        ],
-        featured: [
-            {
-                id: 1,
-                rating: 5,
-                content: `<p>Hệ thống hoạt động rất hiệu quả, đội ngũ lắp đặt chuyên nghiệp. Sau khi lắp đặt, hóa đơn tiền điện giảm đáng kể. Rất hài lòng với dịch vụ.</p>`,
-                author: 'Nguyễn Văn Anh',
-                avatarSrc: '',
-            },
-            {
-                id: 2,
-                rating: 4,
-                content: `<p>Tư vấn nhiệt tình, giải thích rõ ràng về các thông số kỹ thuật. Chất lượng sản phẩm tốt, giá cả hợp lý. Tuy nhiên thời gian lắp đặt hơi lâu.</p>`,
-                author: 'Trần Minh Hoàng',
-                avatarSrc: '',
-            },
-            {
-                id: 3,
-                rating: 5,
-                content: `<p>Đã sử dụng hệ thống được 6 tháng, hiệu quả vượt mong đợi. Tiết kiệm được khoảng 40% tiền điện hàng tháng. Dịch vụ hậu mãi tốt, kỹ thuật viên hỗ trợ nhanh chóng khi cần.</p>`,
-                author: 'Lê Thị Bình',
-                avatarSrc: '',
-            },
-        ],
-    };
+    const equipments = combopage[0].equipments;
+    const reviews = combopage[0].reviews;
 
     const handleProductClick = (productImage: string) => {
         setCurrentImage(productImage);
@@ -176,7 +126,7 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage, products, aqitems
 
     return (
         <div className="bg-white">
-            <div className="mx-auto max-w-2xl px-4 pt-16 pb-24 sm:px-6 sm:pt-24 sm:pb-32 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+            <div className="mx-auto max-w-2xl px-4 pt-4 pb-4 sm:px-6 sm:pt-24 sm:pb-32 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                 {/* Product details */}
                 <div className="lg:max-w-lg lg:self-end">
                     <div className="mt-4">
@@ -222,19 +172,12 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage, products, aqitems
                         </div>
 
                         <div className="mt-6 space-y-3">
-                           
-                            <div className="flex items-center">
-                                <CheckIcon className="size-5 shrink-0 text-green-500" />
-                                <p className="ml-2 text-sm text-gray-500">Hoàn vốn trong vòng 4-5 năm</p>
-                            </div>
-                            <div className="flex items-center">
-                                <CheckIcon className="size-5 shrink-0 text-green-500" />
-                                <p className="ml-2 text-sm text-gray-500">Hỗ trợ kỹ thuật 24/7</p>
-                            </div>
-                            <div className="flex items-center">
-                                <CheckIcon className="size-5 shrink-0 text-green-500" />
-                                <p className="ml-2 text-sm text-gray-500">Lắp đặt chuyên nghiệp trong 2-3 ngày</p>
-                            </div>
+                            {combopage[0].highlights.map((highlight, index) => (
+                                <div key={index} className="flex items-center">
+                                    <CheckIcon className="size-5 shrink-0 text-green-500" />
+                                    <p className="ml-2 text-sm text-gray-500">{highlight}</p>
+                                </div>
+                            ))}
                         </div>
                     </section>
                 </div>
@@ -245,28 +188,19 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage, products, aqitems
                         <img
                             src={currentImage}
                             alt={combopage[0].title}
-                            className="aspect-square w-full rounded-lg object-cover"
+                            className="w-full rounded-lg object-contain"
+                            style={{ aspectRatio: '1600/1209' }}
                         />
                     </div>
                     
                     {/* Quick specs under image */}
-                    <div className="mt-6 grid grid-cols-4 gap-4 text-center">
-                        <div className="rounded-lg border border-gray-200 bg-white p-4">
-                            <span className="block text-lg font-semibold text-gray-900">5.5 kWp</span>
-                            <span className="text-sm text-gray-500">Công suất</span>
-                        </div>
-                        <div className="rounded-lg border border-gray-200 bg-white p-4">
-                            <span className="block text-lg font-semibold text-gray-900">35-40m²</span>
-                            <span className="text-sm text-gray-500">Diện tích mái</span>
-                        </div>
-                        <div className="rounded-lg border border-gray-200 bg-white p-4">
-                            <span className="block text-lg font-semibold text-gray-900">22-25 kWh</span>
-                            <span className="text-sm text-gray-500">Sản lượng/ngày</span>
-                        </div>
-                        <div className="rounded-lg border border-gray-200 bg-white p-4">
-                            <span className="block text-lg font-semibold text-gray-900">4-5 năm</span>
-                            <span className="text-sm text-gray-500">Hoàn vốn</span>
-                        </div>
+                    <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                        {combopage[0].specs.map((spec, index) => (
+                            <div key={index} className="rounded-lg border border-gray-200 bg-white p-4">
+                                <span className="block text-lg font-semibold text-gray-900">{spec.value}</span>
+                                <span className="text-sm text-gray-500">{spec.label}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
 
@@ -276,44 +210,84 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage, products, aqitems
                         <h2 id="options-heading" className="sr-only">Product options</h2>
 
                         <div className="mt-4">
-                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                {products.map((product) => (
-                                    <div 
-                                        key={product.title} 
-                                        className="relative flex flex-col rounded-lg border border-gray-200 bg-white p-4 hover:shadow-lg transition-shadow duration-200 cursor-pointer"
-                                        onMouseEnter={() => handleProductClick(product.image)}
-                                        onMouseLeave={() => handleProductClick(combopage[0].image)}
-                                    >
-                                        <div className="flex gap-4">
-                                            {/* Left column - Image and logo */}
-                                            <div className="flex flex-col items-center gap-2 w-24">
-                                                <img
-                                                    className="w-20 h-20 object-contain"
-                                                    src={product.image}
-                                                    alt={product.title}
-                                                />
-                                                <img
-                                                    className="max-h-6 max-w-[80px] w-auto h-auto object-contain"
-                                                    src={product.logo}
-                                                    alt={product.title}
-                                                />
-                                            </div>
+                            <div className="grid grid-cols-1 gap-4">
+                                {/* Trên mobile (< sm) hiển thị tất cả */}
+                                <div className="block sm:hidden">
+                                    {equipments.map((equipment) => (
+                                        <div 
+                                            key={equipment.title} 
+                                            className="relative flex flex-col rounded-lg border border-gray-200 bg-white p-4 hover:shadow-lg transition-shadow duration-200 cursor-pointer mb-4"
+                                            onMouseEnter={() => handleProductClick(equipment.image)}
+                                            onMouseLeave={() => handleProductClick(combopage[0].image)}
+                                        >
+                                            <div className="flex gap-4">
+                                                {/* Left column - Image and logo */}
+                                                <div className="flex flex-col items-center gap-2 w-24">
+                                                    <img
+                                                        className="w-20 h-20 object-contain"
+                                                        src={equipment.image}
+                                                        alt={equipment.title}
+                                                    />
+                                                    <img
+                                                        className="max-h-6 max-w-[80px] w-auto h-auto object-contain"
+                                                        src={equipment.logo}
+                                                        alt={equipment.logoAlt}
+                                                    />
+                                                </div>
 
-                                            {/* Right column - Content */}
-                                            <div className="flex-1">
-                                                <h3 className="text-sm font-medium text-gray-900 mb-2">
-                                                    {product.title}
-                                                </h3>
-                                                <div className="rounded-md bg-red-100 px-2 py-1 text-center w-fit">
-                                                    <span className="font-semibold text-lg text-red-600">
-                                                        {product.soluong}
-                                                    </span>
-                                                    <span className="text-sm text-red-600 ml-1">{product.dvt}</span>
+                                                {/* Right column - Content */}
+                                                <div className="flex-1">
+                                                    <h3 className="text-sm font-medium text-gray-900 mb-2">
+                                                        {equipment.title}
+                                                    </h3>
+                                                    <div className="rounded-md bg-red-100 px-2 py-1 text-center w-fit">
+                                                        <span className="text-sm text-red-600">{equipment.quantity}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    ))}
+                                </div>
+
+                                {/* Trên PC (sm+) hiển thị 2 cột featured items */}
+                                <div className="hidden sm:grid grid-cols-2 gap-4">
+                                    {equipments
+                                        .filter(equipment => equipment.featured)
+                                        .map((equipment) => (
+                                            <div 
+                                                key={equipment.title} 
+                                                className="relative flex flex-col rounded-lg border border-gray-200 bg-white p-4 hover:shadow-lg transition-shadow duration-200 cursor-pointer"
+                                                onMouseEnter={() => handleProductClick(equipment.image)}
+                                                onMouseLeave={() => handleProductClick(combopage[0].image)}
+                                            >
+                                                <div className="flex gap-4">
+                                                    {/* Left column - Image and logo */}
+                                                    <div className="flex flex-col items-center gap-2 w-24">
+                                                        <img
+                                                            className="w-20 h-20 object-contain"
+                                                            src={equipment.image}
+                                                            alt={equipment.title}
+                                                        />
+                                                        <img
+                                                            className="max-h-6 max-w-[80px] w-auto h-auto object-contain"
+                                                            src={equipment.logo}
+                                                            alt={equipment.logoAlt}
+                                                        />
+                                                    </div>
+
+                                                    {/* Right column - Content */}
+                                                    <div className="flex-1">
+                                                        <h3 className="text-sm font-medium text-gray-900 mb-2">
+                                                            {equipment.title}
+                                                        </h3>
+                                                        <div className="rounded-md bg-red-100 px-2 py-1 text-center w-fit">
+                                                            <span className="text-sm text-red-600">{equipment.quantity}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                </div>
                             </div>
                         </div>
 
@@ -342,64 +316,26 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage, products, aqitems
             {/* Reviews and Specifications section */}
             <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
                 <div className="lg:grid lg:grid-cols-12 lg:gap-x-8">
-                    {/* Danh mục thiết bị - Left column */}
-                    <div className="lg:col-span-7">
+                    {/* Danh mục thiết bị - Left column - Ẩn trên mobile */}
+                    <div className="hidden sm:block lg:col-span-7">
                         <h3 className="text-2xl font-bold tracking-tight text-gray-900">Danh mục thiết bị</h3>
                         
                         <dl className="mt-4 divide-y divide-gray-100 border border-gray-200 rounded-lg bg-white p-6 shadow-sm">
-                            <div className="px-2 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-0 first:pt-0 last:pb-0">
-                                <dt className="text-sm font-medium text-gray-900 sm:col-span-1">1</dt>
-                                <dt className="text-sm font-medium text-gray-900 sm:col-span-7">Tấm quang năng - N-Type</dt>
-                                <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0 flex items-center gap-2">
-                                    <img src="https://www.jasolar.com/themes/custom/jasolar/logo.svg" alt="JA Solar" className="h-5 w-auto" />
-                                </dd>
-                                <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0">19 tấm</dd>
-                            </div>
-                            <div className="px-2 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-0">
-                                <dt className="text-sm font-medium text-gray-900 sm:col-span-1">2</dt>
-                                <dt className="text-sm font-medium text-gray-900 sm:col-span-7">Biến tần Off-Grid 10 kW - 3 pha</dt>
-                                <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0 flex items-center gap-2">
-                                    <img src="https://www.solisinverters.com/assets/images/logo.png" alt="Solis" className="h-5 w-auto" />
-                                </dd>
-                                <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0">01 bộ</dd>
-                            </div>
-                            <div className="px-2 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-0">
-                                <dt className="text-sm font-medium text-gray-900 sm:col-span-1">3</dt>
-                                <dt className="text-sm font-medium text-gray-900 sm:col-span-7">Bộ điều khiển pin áp cao</dt>
-                                <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0 flex items-center gap-2">
-                                    <img src="https://www.easyway-solar.com/uploads/logo.png" alt="Easyway" className="h-5 w-auto" />
-                                </dd>
-                                <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0">01 bộ</dd>
-                            </div>
-                            <div className="px-2 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-0">
-                                <dt className="text-sm font-medium text-gray-900 sm:col-span-1">4</dt>
-                                <dt className="text-sm font-medium text-gray-900 sm:col-span-7">Pin Lithium 5,2 kWh - Bản xếp tầng</dt>
-                                <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0 flex items-center gap-2">
-                                    <img src="https://www.easyway-solar.com/uploads/logo.png" alt="Easyway" className="h-5 w-auto" />
-                                </dd>
-                                <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0">02 bộ</dd>
-                            </div>
-                            <div className="px-2 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-0">
-                                <dt className="text-sm font-medium text-gray-900 sm:col-span-1">5</dt>
-                                <dt className="text-sm font-medium text-gray-900 sm:col-span-7">Hệ ray nhôm đỡ tấm quang năng</dt>
-                                <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0 flex items-center gap-2">
-                                    <img src="https://www.solarmaxtech.com/images/logo.png" alt="Solar Max" className="h-5 w-auto" />
-                                </dd>
-                                <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0">01 bộ</dd>
-                            </div>
-                            <div className="px-2 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-0 last:pb-0">
-                                <dt className="text-sm font-medium text-gray-900 sm:col-span-1">6</dt>
-                                <dt className="text-sm font-medium text-gray-900 sm:col-span-7">Bộ tủ điện Năng lượng mặt trời</dt>
-                                <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0 flex items-center gap-2">
-                                    <img src="https://www.solarmaxtech.com/images/logo.png" alt="Solar Max" className="h-5 w-auto" />
-                                </dd>
-                                <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0">01 bộ</dd>
-                            </div>
+                            {equipments.map((equipment, index) => (
+                                <div key={equipment.id} className="px-2 py-5 sm:grid sm:grid-cols-12 sm:gap-4 sm:px-0 first:pt-0 last:pb-0">
+                                    <dt className="text-sm font-medium text-gray-900 sm:col-span-1">{index + 1}</dt>
+                                    <dt className="text-sm font-medium text-gray-900 sm:col-span-7">{equipment.title}</dt>
+                                    <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0 flex items-center gap-2">
+                                        <img src={equipment.logo} alt={equipment.logoAlt} className="h-5 w-auto" />
+                                    </dd>
+                                    <dd className="mt-1 text-sm text-gray-700 sm:col-span-2 sm:mt-0">{equipment.quantity}</dd>
+                                </div>
+                            ))}
                         </dl>
                     </div>
 
                     {/* Quy trình triển khai - Right column */}
-                    <div className="mt-16 lg:mt-0 lg:col-span-5">
+                    <div className="mt-2 sm:mt-16 lg:mt-0 lg:col-span-5">
                         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
                             Quy trình triển khai
                         </h2>
@@ -447,7 +383,7 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage, products, aqitems
                     Hình ảnh thực tế
                 </h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    {galleryImages.map((image, index) => (
+                    {combopage[0].galleryImages.map((image, index) => (
                         <div key={index} className="relative aspect-[4/3] group overflow-hidden rounded-xl border border-gray-200">
                             <img
                                 src={image.src}
@@ -466,7 +402,7 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage, products, aqitems
                     Dự án đã triển khai
                 </h2>
                 <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-                    {aqitems.map((item) => (
+                    {combopage[0].aqitems.map((item) => (
                         <div key={item.heading} className="group relative">
                             <div className="aspect-video w-full overflow-hidden rounded-lg bg-gray-200">
                                 <img
