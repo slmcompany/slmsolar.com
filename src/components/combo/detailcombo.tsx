@@ -151,7 +151,7 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage }) => {
                             </div>
 
                             <div className="ml-4 border-l border-gray-300 pl-4">
-                                <div className="flex items-center">
+                                <div className="flex flex-col sm:flex-row sm:items-center">
                                     <div className="flex items-center">
                                         {[0, 1, 2, 3, 4].map((rating) => (
                                             <StarIcon
@@ -162,7 +162,7 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage }) => {
                                             />
                                         ))}
                                     </div>
-                                    <p className="ml-2 text-sm text-gray-500">{reviews.totalCount} đánh giá</p>
+                                    <p className="mt-1 sm:mt-0 sm:ml-2 text-sm text-gray-500">{reviews.totalCount} đánh giá</p>
                                 </div>
                             </div>
                         </div>
