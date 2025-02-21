@@ -83,7 +83,7 @@ const giaiphap = [
 const gioithieu = [
   { 
     name: 'Giới thiệu về SoLarMax', 
-    description: 'Xứ mệnh - Tầm nhìn - Giá trị cốt lõi', 
+    description: 'Sứ mệnh - Tầm nhìn - Giá trị cốt lõi', 
     href: '/gioi-thieu', 
     icon: ChartPieIcon ,
     icon_img:"icon-gioi-thieu.svg"

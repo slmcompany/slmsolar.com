@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import { useState } from 'react';
 import { CheckIcon, PaperClipIcon, StarIcon, HandThumbUpIcon, UserIcon, WrenchScrewdriverIcon, ClipboardDocumentCheckIcon, Square2StackIcon, BanknotesIcon, RectangleGroupIcon } from '@heroicons/react/20/solid';
+import { Image } from 'antd';
 
 interface Product {
     title: string;
@@ -393,12 +394,23 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage }) => {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {combopage[0].galleryImages.map((image, index) => (
                         <div key={index} className="relative aspect-[4/3] group overflow-hidden rounded-xl border border-gray-200">
-                            <img
+                            <Image
                                 src={image.src}
                                 alt={image.alt}
-                                className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                                className="object-cover w-full h-full"
+                                style={{ 
+                                    aspectRatio: '4/3',
+                                    objectFit: 'cover',
+                                    objectPosition: 'center'
+                                }}
+                                preview={{
+                                    mask: (
+                                        <div className="absolute inset-0 bg-black bg-opacity-0 transition duration-300 group-hover:bg-opacity-10 flex items-center justify-center">
+                                            <span className="text-white">Xem</span>
+                                        </div>
+                                    ),
+                                }}
                             />
-                            <div className="absolute inset-0 bg-black bg-opacity-0 transition duration-300 group-hover:bg-opacity-10" />
                         </div>
                     ))}
                 </div>
