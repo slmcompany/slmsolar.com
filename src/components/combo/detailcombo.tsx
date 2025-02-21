@@ -126,7 +126,7 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage }) => {
 
     return (
         <div className="bg-white">
-            <div className="mx-auto max-w-2xl px-4 pt-4 pb-4 sm:px-6 sm:pt-24 sm:pb-32 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+            <div className="mx-auto max-w-2xl bg-gray-100 px-4 pt-4 pb-4 sm:px-6 sm:pt-8 sm:pb-6 sm:rounded-lg sm:shadow-md lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
                 {/* Product details */}
                 <div className="lg:max-w-lg lg:self-end">
                     <div className="mt-4">
@@ -292,20 +292,28 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage }) => {
                         </div>
 
                         <div className="mt-10 grid grid-cols-2 gap-4">
-                            <a href="https://zalo.me/0964920242" target="_blank">
-                                <button
-                                    type="button"
-                                    className="flex w-full items-center justify-center rounded-md border-2 border-red-600 bg-white px-8 py-3 text-lg font-medium text-red-600 hover:bg-red-50 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50"
-                                >
+                            <button
+                                type="button"
+                                className="flex w-full items-center justify-center rounded-md border-2 border-red-600 bg-white px-8 py-3 text-lg font-medium text-red-600 hover:bg-red-50 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                            >
+                                <span className="sm:hidden">
+                                    Liên hệ<br />tư vấn
+                                </span>
+                                <span className="hidden sm:inline">
                                     Liên hệ tư vấn
-                                </button>
-                            </a>
+                                </span>
+                            </button>
                             <a href="https://zalo.me/0964920242" target="_blank">
                                 <button
                                     type="button"
                                     className="flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 px-8 py-3 text-lg font-medium text-white hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                                 >
+                                    <span className="sm:hidden">
+                                    Nhận<br />báo giá
+                                </span>
+                                <span className="hidden sm:inline">
                                     Nhận báo giá
+                                </span>
                                 </button>
                             </a>
                         </div>
