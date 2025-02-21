@@ -46,13 +46,13 @@ const Slider: React.FC = () => {
           autoplaySpeed={3000}
           pauseOnHover
           dots={{ className: 'custom-dots' }}
-          className="h-[700px]"
+          className="h-[800px]"
         >
           {slideContents.map((slide, index) => (
             <div key={index}>
               <div className="relative">
                 <img
-                  className="w-full h-[700px] object-cover"
+                  className="w-full h-[800px] object-cover"
                   src={slide.image}
                   alt=""
                 />

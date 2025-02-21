@@ -1,3 +1,5 @@
+
+
 import defaultTheme from "tailwindcss/defaultTheme";
 import fluid, { extract } from "fluid-tailwind";
 
@@ -15,7 +17,6 @@ export default {
       animation: {
         'slide': 'slide 30s linear infinite',
         'slide-reverse': 'slide-reverse 30s linear infinite',
-        'spin-slow': 'spin 8s linear infinite',
       },
       keyframes: {
         slide: {
