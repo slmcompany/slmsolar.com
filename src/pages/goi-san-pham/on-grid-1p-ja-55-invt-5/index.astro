@@ -1,6 +1,5 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import Productcat from "../../../components/productcat.astro";
 import { DetailCombo } from "../../../components/combo/detailcombo";
 import Cta from "../../../components/combo/cta.astro";
 const aqitems = [
@@ -74,7 +73,6 @@ const products = [
 <Layout title={combopage[0].title}>
     <div class="bg-slate-800 z-50 relative w-full">
         <DetailCombo client:load {combopage} {products} {aqitems} />
-        <Productcat />
         <Cta />
     </div>
 </Layout>

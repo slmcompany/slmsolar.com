@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import { 
   BoltIcon,
@@ -193,7 +192,7 @@ export default function Example() {
     <div className="bg-white py-2 sm:py-4">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="text-center mb-4">
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Điện Mặt Trời Gia Đình
           </h1>
           <p className="mt-2 text-base sm:text-lg text-gray-600">
