@@ -1,7 +1,7 @@
 import type { FC } from 'react';
-import { useState } from 'react';
-import { CheckIcon, PaperClipIcon, StarIcon, HandThumbUpIcon, UserIcon, WrenchScrewdriverIcon, ClipboardDocumentCheckIcon, Square2StackIcon, BanknotesIcon, RectangleGroupIcon } from '@heroicons/react/20/solid';
-import { Image } from 'antd';
+import { useState, useEffect } from 'react';
+import { CheckIcon, PaperClipIcon, StarIcon, HandThumbUpIcon, UserIcon, WrenchScrewdriverIcon, ClipboardDocumentCheckIcon, Square2StackIcon, BanknotesIcon, RectangleGroupIcon, PhoneIcon, ChatBubbleLeftRightIcon, TagIcon } from '@heroicons/react/20/solid';
+import { Image, Modal, Carousel } from 'antd';
 
 interface Product {
     title: string;
@@ -62,6 +62,7 @@ interface Equipment {
     logoAlt: string;
     quantity: string;
     image: string;
+    mainimage: string;
     featured?: boolean;
 }
 
@@ -70,8 +71,16 @@ interface Spec {
     label: string;
 }
 
+interface CustomerReviews {
+    rating: number;
+    totalReviews: number;
+    testimonial: string;
+    avatars: string[];
+}
+
 interface DetailComboProps {
     combopage: ComboPage[];
+    customerReviews: CustomerReviews;
 }
 
 const timeline = [
@@ -116,18 +125,58 @@ function classNames(...classes: string[]) {
     return classes.filter(Boolean).join(' ');
 }
 
-export const DetailCombo: FC<DetailComboProps> = ({ combopage }) => {
+export const DetailCombo: FC<DetailComboProps> = ({ combopage, customerReviews }) => {
     const [currentImage, setCurrentImage] = useState(combopage[0].image);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalImage, setModalImage] = useState('');
     const equipments = combopage[0].equipments;
     const reviews = combopage[0].reviews;
+    const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+
+    useEffect(() => {
+        // Only run on client side
+        if (typeof window === 'undefined') return;
+
+        // Set initial width
+        setWindowWidth(window.innerWidth);
+
+        // Update width on resize
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const handleProductClick = (productImage: string) => {
         setCurrentImage(productImage);
     };
 
+    const handleImageClick = (image: string) => {
+        // Chỉ mở modal nếu màn hình nhỏ hơn 640px (sm breakpoint)
+        if (windowWidth < 640) {
+            setModalImage(image);
+            setIsModalOpen(true);
+        }
+    };
+
     return (
         <div className="bg-white">
-            <div className="mx-auto max-w-2xl bg-gray-100 px-4 pt-4 pb-4 sm:px-6 sm:pt-8 sm:pb-6 sm:rounded-lg sm:shadow-md lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
+            <Modal
+                open={isModalOpen}
+                footer={null}
+                onCancel={() => setIsModalOpen(false)}
+                width="max-content"
+                centered
+            >
+                <img
+                    src={modalImage}
+                    alt="Preview"
+                    style={{ maxWidth: '100%', maxHeight: '80vh' }}
+                />
+            </Modal>
+            <div className="mx-auto max-w-2xl bg-gray-100 px-4 pt-4 pb-4 sm:px-6 sm:pt-8 sm:pb-6 sm:rounded-lg sm:shadow-md lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:mt-40">
                 {/* Product details */}
                 <div className="lg:max-w-lg lg:self-end">
                     <div className="mt-4">
@@ -140,32 +189,28 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage }) => {
                         <div className="flex items-center">
                             {/* Giá sản phẩm */}
                             <div className="flex flex-col">
-                                <p className="text-3xl font-bold text-red-600">
-                                    {combopage[0].price}
-                                    <span className="text-xl font-semibold">đ</span>
-                                </p>
+                                <div className="flex items-center gap-2">
+                                    <p className="text-3xl font-extrabold text-red-600">
+                                        {parseFloat(combopage[0].price).toLocaleString('vi-VN')}
+                                        <span className="text-xl">₫</span>
+                                    </p>
+                                    <p className="text-xl line-through text-gray-500">
+                                        {(Math.ceil((parseFloat(combopage[0].price) * 1.1) / 100000) * 100000).toLocaleString('vi-VN')}
+                                        <span>₫</span>
+                                    </p>
+                                    <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                                        <TagIcon className="h-3 w-3 mr-1" />
+                                        Giảm {Math.round(((Math.ceil((parseFloat(combopage[0].price) * 1.1) / 100000) * 100000) - parseFloat(combopage[0].price)) / (Math.ceil((parseFloat(combopage[0].price) * 1.1) / 100000) * 100000) * 100)}%
+                                    </span>
+                                </div>
                                 <p className="text-sm text-green-600 font-medium">
-                                    Tiết kiệm 
+                                    Tiết kiệm điện
                                     <span className="text-lg font-bold ml-1">2-3 triệu</span>
                                     <span className="ml-1">đồng/tháng</span>
                                 </p>
                             </div>
 
-                            <div className="ml-4 border-l border-gray-300 pl-4">
-                                <div className="flex flex-col sm:flex-row sm:items-center">
-                                    <div className="flex items-center">
-                                        {[0, 1, 2, 3, 4].map((rating) => (
-                                            <StarIcon
-                                                key={rating}
-                                                className={`size-5 shrink-0 ${
-                                                    reviews.average > rating ? 'text-yellow-400' : 'text-gray-300'
-                                                }`}
-                                            />
-                                        ))}
-                                    </div>
-                                    <p className="mt-1 sm:mt-0 sm:ml-2 text-sm text-gray-500">{reviews.totalCount} đánh giá</p>
-                                </div>
-                            </div>
+                          
                         </div>
 
                         <div className="mt-4 space-y-6">
@@ -190,7 +235,7 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage }) => {
                             src={currentImage}
                             alt={combopage[0].title}
                             className="w-full rounded-lg object-contain"
-                            style={{ aspectRatio: '1600/1209' }}
+                            style={{ aspectRatio: '1/1' }}
                         />
                     </div>
                     
@@ -218,8 +263,9 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage }) => {
                                         <div 
                                             key={equipment.title} 
                                             className="relative flex flex-col rounded-lg border border-gray-200 bg-white p-4 hover:shadow-lg transition-shadow duration-200 cursor-pointer mb-4"
-                                            onMouseEnter={() => handleProductClick(equipment.image)}
+                                            onMouseEnter={() => handleProductClick(equipment.mainimage)}
                                             onMouseLeave={() => handleProductClick(combopage[0].image)}
+                                            onClick={() => handleImageClick(equipment.mainimage)}
                                         >
                                             <div className="flex gap-4">
                                                 {/* Left column - Image and logo */}
@@ -258,8 +304,9 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage }) => {
                                             <div 
                                                 key={equipment.title} 
                                                 className="relative flex flex-col rounded-lg border border-gray-200 bg-white p-4 hover:shadow-lg transition-shadow duration-200 cursor-pointer"
-                                                onMouseEnter={() => handleProductClick(equipment.image)}
+                                                onMouseEnter={() => handleProductClick(equipment.mainimage)}
                                                 onMouseLeave={() => handleProductClick(combopage[0].image)}
+                                                onClick={() => handleImageClick(equipment.mainimage)}
                                             >
                                                 <div className="flex gap-4">
                                                     {/* Left column - Image and logo */}
@@ -293,34 +340,88 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage }) => {
                         </div>
 
                         <div className="mt-10 grid grid-cols-2 gap-4">
-                            <button
-                                type="button"
-                                className="flex w-full items-center justify-center rounded-md border-2 border-red-600 bg-white px-8 py-3 text-lg font-medium text-red-600 hover:bg-red-50 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50"
-                            >
-                                <span className="sm:hidden">
-                                    Liên hệ<br />tư vấn
-                                </span>
-                                <span className="hidden sm:inline">
-                                    Liên hệ tư vấn
-                                </span>
-                            </button>
+                            <a href="tel:0964920242">
+                                <button
+                                    type="button"
+                                    className="flex w-full items-center justify-center rounded-md border-2 border-red-600 bg-white px-8 py-3 text-lg font-medium text-red-600 hover:bg-red-50 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                                >
+                                    <span className="sm:hidden">
+                                        Liên hệ<br />tư vấn
+                                    </span>
+                                    <span className="hidden sm:flex items-center gap-2">
+                                        <PhoneIcon className="h-5 w-5" />
+                                        Liên hệ tư vấn
+                                    </span>
+                                </button>
+                            </a>
                             <a href="https://zalo.me/0964920242" target="_blank">
                                 <button
                                     type="button"
                                     className="flex w-full items-center justify-center rounded-md border border-transparent bg-red-600 px-8 py-3 text-lg font-medium text-white hover:bg-red-700 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                                 >
                                     <span className="sm:hidden">
-                                    Nhận<br />báo giá
-                                </span>
-                                <span className="hidden sm:inline">
-                                    Nhận báo giá
-                                </span>
+                                        Nhận<br />báo giá
+                                    </span>
+                                    <span className="hidden sm:flex items-center gap-2">
+                                        <ChatBubbleLeftRightIcon className="h-5 w-5" />
+                                        Nhận báo giá
+                                    </span>
                                 </button>
                             </a>
                         </div>
+
+                          {/* Customer reviews section */}
+            <div className="hidden sm:block mt-6 pt-6 border-t border-gray-200">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-x-4">
+                    <div className="flex -space-x-2">
+                        {reviews.featured.slice(0, 4).map((review, index) => (
+                            <div 
+                                key={index}
+                                className="w-8 h-8 rounded-full border-2 border-white bg-red-100 flex items-center justify-center"
+                            >
+                                <span className="text-xs font-medium text-red-600">
+                                    {review.author.split(' ').map(word => word[0]).slice(-2).join('')}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="flex flex-row items-center gap-x-2">
+                        <div className="flex items-center">
+                            {[...Array(5)].map((_, i) => (
+                                <StarIcon 
+                                    key={i} 
+                                    className={`w-4 h-4 ${i < reviews.average ? 'text-yellow-400' : 'text-gray-300'}`}
+                                />
+                            ))}
+                        </div>
+                        <div className="text-sm text-gray-600">
+                            <span className="font-semibold">{reviews.average}/5</span> 
+                            từ hơn 
+                            <span className="font-semibold"> {reviews.totalCount}+</span> 
+                            khách hàng
+                        </div>
+                    </div>
+                </div>
+
+                <Carousel
+                    autoplay
+                    dots={false}
+                    className="mt-3"
+                    autoplaySpeed={5000}
+                >
+                    {reviews.featured.map((review, index) => (
+                       <p key={index} className="text-sm text-gray-600 italic px-4">
+                            "{review.content}"
+                        </p>
+                    ))}
+                </Carousel>
+            </div>
                     </section>
                 </div>
             </div>
+
+          
 
             {/* Reviews and Specifications section */}
             <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -421,7 +522,7 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage }) => {
                 <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl mb-8">
                     Dự án đã triển khai
                 </h2>
-                <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+                <div className="grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
                     {combopage[0].aqitems.map((item) => (
                         <div key={item.heading} className="group relative">
                             <div className="aspect-video w-full overflow-hidden rounded-lg bg-gray-200">
@@ -432,23 +533,23 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage }) => {
                                 />
                             </div>
                             <div className="mt-4 space-y-2">
-                                <h3 className="text-sm text-gray-700">
+                                <h3 className="text-sm text-gray-700 line-clamp-2">
                                     <a href={item.buttonLink} target="_blank">
                                         <span aria-hidden="true" className="absolute inset-0" />
                                         {item.heading}
                                     </a>
                                 </h3>
                                 {/* Thêm thông tin chi phí và diện tích */}
-                                <div className="flex items-center gap-4 text-sm">
+                                <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm">
                                     <div className="flex items-center gap-1">
                                         <BanknotesIcon className="h-4 w-4 text-green-600" />
-                                        <span className="text-gray-600">Tiết kiệm: </span>
-                                        <span className="font-medium text-green-600">{item.savingsPerMonth}</span>
+                                        <span className="text-gray-600 text-xs sm:text-sm">Tiết kiệm: </span>
+                                        <span className="font-medium text-green-600 text-xs sm:text-sm">{item.savingsPerMonth}</span>
                                     </div>
                                     <div className="flex items-center gap-1">
                                         <RectangleGroupIcon className="h-4 w-4 text-blue-600" />
-                                        <span className="text-gray-600">Diện tích: </span>
-                                        <span className="font-medium text-blue-600">{item.area}</span>
+                                        <span className="text-gray-600 text-xs sm:text-sm">Diện tích: </span>
+                                        <span className="font-medium text-blue-600 text-xs sm:text-sm">{item.area}</span>
                                     </div>
                                 </div>
                             </div>

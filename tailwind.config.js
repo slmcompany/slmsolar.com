@@ -1,5 +1,3 @@
-
-
 import defaultTheme from "tailwindcss/defaultTheme";
 import fluid, { extract } from "fluid-tailwind";
 
@@ -30,5 +28,8 @@ export default {
       },
     },
   },
-  plugins: [fluid],
+  plugins: [
+    fluid,
+    require('tailwind-scrollbar-hide')
+  ],
 };

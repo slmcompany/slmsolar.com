@@ -151,21 +151,26 @@ export default function Header() {
   }, [])
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
-      isScrolled ? 'bg-white shadow-md' : 'bg-transparent'
+    <header className={`md:fixed relative top-0 left-0 right-0 z-50 transition-colors duration-300 bg-white md:bg-transparent ${
+      isScrolled ? 'md:bg-white md:shadow-md' : ''
     }`}>
-      <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
-        <div className="flex lg:flex-1">
+      <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-3 md:p-6 lg:px-8">
+        <div className="flex-1 lg:flex-none">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Solarmax</span>
             <img
               alt=""
+              src="/images/logo-solarmax.svg"
+              className="lg:hidden h-5 w-auto"
+            />
+            <img
+              alt=""
               src={isScrolled ? "/images/logo-solarmax.svg" : "/images/logo-solarmax-white.svg"}
-              className="lg:h-8 h-5 w-auto"
+              className="hidden lg:block h-8 w-auto"
             />
           </a>
         </div>
-        <div className="flex lg:hidden">
+        <div className="flex-1 flex lg:hidden justify-end">
           <button
             type="button"
             onClick={() => setMobileMenuOpen(true)}
@@ -175,8 +180,8 @@ export default function Header() {
             <Bars3Icon aria-hidden="true" className="size-6" />
           </button>
         </div>
-        <div className="bg-white  rounded-full flex items-center pl-4 justify-center">
-        <PopoverGroup className="hidden lg:flex lg:gap-x-12  p-4 rounded-full">
+        <div className="bg-white  rounded-full flex items-center pl-2 justify-center">
+        <PopoverGroup className="hidden lg:flex lg:gap-x-8  p-4 rounded-full">
           <Popover className="relative">
             <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
               Sản phẩm & Dịch vụ
@@ -265,7 +270,7 @@ export default function Header() {
                       </div>
                     </div>
                     {item.submenu && (
-                      <div className="ml-16 mt-2 space-y-1 border-l-2 border-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                      <div className="ml-16 mt-2 space-y-1 border-l-2 border-gray-100 ">
                         {item.submenu.map((subitem) => (
                           <a
                             key={subitem.name}
@@ -298,15 +303,10 @@ export default function Header() {
             </PopoverPanel>
           </Popover>
 
-          {/* <a href="#" className="text-sm/6 font-semibold text-gray-900">
-            Features
+          <a href="lien-he" className="text-sm/6  font-semibold text-gray-900">
+            Liên hệ
           </a>
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
-            Marketplace
-          </a>
-          <a href="#" className="text-sm/6 font-semibold text-gray-900">
-            Company
-          </a> */}
+          
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end  pt-2">
           <div className="relative group">
@@ -355,18 +355,23 @@ export default function Header() {
           </div>
         </div>
         </div>
-        <div className='w-1/5'>
+       
+        <div className='hidden lg:block w-1/5'>
           <div className="flex items-center justify-end gap-4">
             <button className={`${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'} focus:outline-none transition-colors`}>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8">
                 <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
               </svg>
             </button>
-            <button className={`${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'} focus:outline-none transition-colors`}>
+            <a 
+              href="https://daily.slmsolar.com" 
+              target="_blank" 
+              className={`${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'} focus:outline-none transition-colors`}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
               </svg>
-            </button>
+            </a>
           </div>
         </div>
       </nav>

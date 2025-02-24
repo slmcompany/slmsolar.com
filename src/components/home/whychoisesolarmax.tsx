@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const WhyChooseSolarmax = () => {
   const [activeTab, setActiveTab] = useState(0);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((prevTab) => (prevTab + 1) % productLinks.length);
+    }, 5000); // Chuyển tab sau mỗi 5 giây
+
+    return () => clearInterval(interval);
+  }, []);
+
   const productLinks = [
     {
-      icon: "📞",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+        </svg>
+      ),
       text: "Tư Vấn Miễn Phí",
       href: "#",
       background: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?q=80",
@@ -23,7 +35,11 @@ const WhyChooseSolarmax = () => {
       }
     },
     {
-      icon: "📏",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
       text: "Khảo Sát Miễn Phí",
       href: "#",
       background: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80",
@@ -41,7 +57,11 @@ const WhyChooseSolarmax = () => {
       }
     },
     {
-      icon: "🏗️",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+        </svg>
+      ),
       text: "Lắp Đặt Trọn Gói",
       href: "#",
       background: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80",
@@ -59,7 +79,11 @@ const WhyChooseSolarmax = () => {
       }
     },
     {
-      icon: "🛠️",
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75a4.5 4.5 0 01-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 11-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 016.336-4.486l-3.276 3.276a3.004 3.004 0 002.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852z" />
+        </svg>
+      ),
       text: "Bảo Hành 24/7",
       href: "#",
       background: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80",
@@ -81,7 +105,7 @@ const WhyChooseSolarmax = () => {
   return (
     <div className="relative">
       <div 
-        className="absolute inset-0 w-full h-[600px] transition-opacity duration-500 ease-in-out"
+        className="absolute inset-0 w-full h-[1000px] md:h-[800px] transition-opacity duration-500 ease-in-out"
         style={{
           backgroundImage: `linear-gradient(to bottom, rgba(246, 246, 246, 0.75), rgba(246, 246, 246, 0.95)), url(${productLinks[activeTab].background})`,
           backgroundSize: 'cover',
@@ -89,17 +113,17 @@ const WhyChooseSolarmax = () => {
         }}
       />
 
-      <div className="relative bg-transparent py-8 sm:py-16">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-4xl font-bold tracking-tight text-[#1B1B1B] mb-3">TẠI SAO BẠN NÊN CHỌN SOLARMAX</h2>
-          <p className="text-lg text-[#1B1B1B]">Solarmax cam kết mang đến giải pháp điện mặt trời toàn diện và chuyên nghiệp</p>
+      <div className="relative bg-transparent py-12 sm:py-24">
+        <div className="mx-auto max-w-2xl text-center px-4">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#1B1B1B] mb-3">TẠI SAO BẠN NÊN CHỌN SOLARMAX</h2>
+          <p className="text-base sm:text-lg text-[#1B1B1B]">Solarmax cam kết mang đến giải pháp điện mặt trời toàn diện và chuyên nghiệp</p>
         </div>
 
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-8">
+        <div className="mx-auto max-w-7xl px-4 lg:px-8 mt-12">
           <div className="relative">
-            <div className="grid grid-cols-2 gap-8 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="max-w-2xl">
-                <h3 className="text-2xl font-bold text-[#1B1B1B] mb-4">
+                <h3 className="text-xl sm:text-2xl font-bold text-[#1B1B1B] mb-6">
                   {productLinks[activeTab].content.title}
                 </h3>
                 <p className="text-base text-[#1B1B1B] mb-4">
@@ -122,7 +146,7 @@ const WhyChooseSolarmax = () => {
                   </svg>
                 </a>
               </div>
-              <div className="relative h-[300px]">
+              <div className="relative aspect-[3/2] order-first md:order-last">
                 <img 
                   src={productLinks[activeTab].content.image}
                   alt={productLinks[activeTab].content.title}
@@ -133,21 +157,25 @@ const WhyChooseSolarmax = () => {
           </div>
         </div>
 
-        <div className="flex justify-center gap-x-16 mt-12">
-          {productLinks.map((link, index) => (
-            <button 
-              key={index}
-              onClick={() => setActiveTab(index)}
-              className={`flex items-center gap-2 text-base font-medium transition-all duration-300 ${
-                activeTab === index 
-                  ? 'text-[#4CAF50] border-b-2 border-[#4CAF50] transform scale-105' 
-                  : 'text-[#1B1B1B] hover:text-[#4CAF50]'
-              }`}
-            >
-              <span className="w-6 h-6">{link.icon}</span>
-              {link.text}
-            </button>
-          ))}
+        <div className="overflow-x-auto scrollbar-hide pb-4 md:pb-0">
+          <div className="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-4 md:gap-x-16 mt-8 md:mt-12 bg-white min-w-max md:w-1/2 mx-auto md:rounded-full p-4 md:p-2 md:h-12 shadow-md">
+            {productLinks.map((link, index) => (
+              <button 
+                key={index}
+                onClick={() => {
+                  setActiveTab(index);
+                }}
+                className={`flex items-center gap-2 whitespace-nowrap px-4 text-sm md:text-base font-medium transition-all duration-300 ${
+                  activeTab === index 
+                    ? 'text-[#4CAF50] transform scale-105' 
+                    : 'text-[#1B1B1B] hover:text-[#4CAF50]'
+                }`}
+              >
+                <span className="w-5 h-5 md:w-6 md:h-6">{link.icon}</span>
+                {link.text}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>

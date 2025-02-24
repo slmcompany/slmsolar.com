@@ -23,7 +23,7 @@ const ongridTiers = [
   {
     name: '5.2 kW',
     id: 'tier-5.2',
-    href: 'goi-san-pham/on-grid-1p-ja-55-invt-5',
+    href: '/goi-san-pham/he-gia-dinh/on-grid/on-grid-1p-ja-55-invt-5',
     price: '48.900.000',
     priceSuffix: 'đ',
     hoiVon: 'Hoàn vốn: 5 năm',
