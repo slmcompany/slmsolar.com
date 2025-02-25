@@ -325,7 +325,7 @@ export default function Header() {
                   </svg>
                   Gọi điện
                 </a>
-                <a href="mailto:info@solarmax.vn" className="flex items-center gap-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <a href="mailto:sale@solarmax.vn" className="flex items-center gap-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-red-500">
                     <rect width="20" height="16" x="2" y="4" rx="2"/>
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
@@ -338,42 +338,13 @@ export default function Header() {
                   </svg>
                   Nhắn Zalo
                 </a>
-                <a href="https://wa.me/84964920242" target="_blank" className="flex items-center gap-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                    <path fill="#25D366" d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.029 18.88c-1.161 0-2.305-.292-3.318-.844l-3.677.964.984-3.595c-.607-1.052-.927-2.246-.926-3.468.001-3.825 3.113-6.937 6.937-6.937 1.856.001 3.598.723 4.907 2.034 1.31 1.311 2.031 3.054 2.03 4.908-.001 3.825-3.113 6.938-6.937 6.938z"/>
-                  </svg>
-                  WhatsApp
-                </a>
-                <a href="https://m.me/solarmax87" target="_blank" className="flex items-center gap-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                    <path fill="#0084FF" d="M12 2C6.477 2 2 6.145 2 11.243c0 2.936 1.444 5.544 3.695 7.241v3.516l3.373-1.851c.92.256 1.904.394 2.932.394 5.523 0 10-4.145 10-9.243C22 6.145 17.523 2 12 2zm1.085 12.37l-2.523-2.697-4.924 2.697 5.416-5.751 2.523 2.697 4.924-2.697-5.416 5.751z"/>
-                  </svg>
-                  Messenger
-                </a>
               </div>
             </div>
           </div>
         </div>
         </div>
        
-        <div className='hidden lg:block w-1/5'>
-          <div className="flex items-center justify-end gap-4">
-            <button className={`${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'} focus:outline-none transition-colors`}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-              </svg>
-            </button>
-            <a 
-              href="https://daily.slmsolar.com" 
-              target="_blank" 
-              className={`${isScrolled ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'} focus:outline-none transition-colors`}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-8">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-              </svg>
-            </a>
-          </div>
-        </div>
+    
       </nav>
       <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
         <div className="fixed inset-0 z-10" />
