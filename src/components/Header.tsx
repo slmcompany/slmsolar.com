@@ -303,7 +303,7 @@ export default function Header() {
             </PopoverPanel>
           </Popover>
 
-          <a href="lien-he" className="text-sm/6  font-semibold text-gray-900">
+          <a href="/lien-he" className="text-sm/6  font-semibold text-gray-900">
             Liên hệ
           </a>
           
