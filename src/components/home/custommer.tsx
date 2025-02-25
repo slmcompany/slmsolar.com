@@ -12,35 +12,51 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    quote: 'Chúng tôi đã tìm kiếm một đơn vị lắp đặt điện mặt trời chuyên nghiệp và Solar đã cung cấp giải pháp toàn diện một cách nhanh chóng với chất lượng hoàn hảo. Chúng tôi đánh giá cao mối quan hệ với Solar và xem họ như một phần mở rộng của công ty chúng tôi.',
-    name: 'Nguyễn Văn A',
-    address: 'Công ty ABC, Hà Nội',
-    avatar: '/images/avatars/customer1.jpg',
+    quote: "I have to give you a compliment. Your wiring is as PROFESSIONAL and CLEAN, as German standards. (I'm an engineer myself from Germany). I can definitely see this working in 10-20 years without any issues 👍 I am more than happy that I chose you",
+    name: 'Ông FELIX HALDORN',
+    address: 'Tây Hồ, Hà Nội',
+    avatar: '',
     rating: 5
   },
   {
     id: 2,
-    quote: 'Solar đã lắp đặt hệ thống điện mặt trời cho nhà máy của chúng tôi. Đây là một hệ thống phức tạp với yêu cầu kỹ thuật cao về độ chính xác và hiệu suất. Solar là một đối tác đáng tin cậy; họ luôn đảm bảo chất lượng và tiến độ thi công đúng hẹn.',
-    name: 'Trần Thị B',
-    address: 'Nhà máy XYZ, TP. Hồ Chí Minh',
-    avatar: '/images/avatars/customer2.jpg',
-    rating: 4
+    quote: 'Sau khi theo dõi nhân viên kĩ thuật của SolarMax đến khảo sát và xử trí công như trong quá trình lắp đặt, mình thấy SolarMax làm việc khá NHANH và CHUYÊN NGHIỆP. Mình có yêu cầu về thẩm mỹ trong việc lắp đặt các thiết bị điện khá cao và SolarMax đáp ứng được các yêu cầu của mình',
+    name: 'Anh Lại Văn Phúc',
+    address: 'Tiên Hải, Thái Bình',
+    avatar: '',
+    rating: 5
   },
   {
     id: 3,
-    quote: 'Tôi đã chọn Solar để lắp đặt hệ thống điện mặt trời trên mái nhà. Tôi rất hài lòng với sự tư vấn nhiệt tình và chuyên nghiệp. Hệ thống hoạt động tốt đã giúp gia đình tôi tiết kiệm đáng kể chi phí điện hàng tháng.',
-    name: 'Lê Hoàng C',
-    address: 'Chung cư Green Park, Đà Nẵng',
+    quote: 'Hệ năng lượng điện mặt trời đã đáp ứng việc sử dụng điện tại khung giờ cao điểm, có bạn thời gian đó về chi phí tiền điện là nhà mình không mất. Chắc chắn mình sẽ tuyên truyền và vận động người thân, bạn bè và anh em đồng nghiệp của mình về SolarMax',
+    name: 'Anh Nguyễn Văn Biên',
+    address: 'Thanh Oai, Hà Nội',
     avatar: '',
     rating: 5
   },
   {
     id: 4,
-    quote: 'Chúng tôi đã hợp tác với Solar cho dự án năng lượng tái tạo của tập đoàn. Họ đã thể hiện sự chuyên nghiệp cao từ khâu tư vấn đến triển khai. Kết quả vượt ngoài mong đợi và chúng tôi đã tiết kiệm được hơn 30% chi phí năng lượng.',
-    name: 'Phạm Minh D',
-    address: 'Tập đoàn EFG, Cần Thơ',
+    quote: 'Nhà mình cũng buôn bán rất nhiều thiết bị điện. Lần đầu tiên gặp SolarMax và tham khảo trên mạng nhận thấy có nhiều ý kiến đánh giá rất tốt, mình đã trao đổi với kĩ thuật của công ty và được nhận báo giá thẩm định. Mình lắp vào đúng ngày báo, để thử thách luôn đánh giá về chất lượng và sự chuyên nghiệp. Công báo không hề làm gì đến hệ điện. Đội ngũ chăm sóc khách hàng cũng rất phù hợp với thị trường hiện tại',
+    name: 'Anh Trần Ngọc Sáng',
+    address: 'Phú Xuyên, Hà Nội',
     avatar: '',
-    rating: 4.5
+    rating: 5
+  },
+  {
+    id: 5,
+    quote: 'Đã lắp và sử dụng điện mặt trời do công ty SolarMax từ vẫn và lắp được 6 tháng. Hiệu quả hồ trợ tiền điện sinh hoạt hàng tháng tốt, giờ mỗi tháng chỉ cần đóng 300-500k cho điện EVN. Đánh giá 5 sao vì đánh giá cao tính thân hồ trợ tận tâm',
+    name: 'Chị Đỗ Hoàng Nga',
+    address: 'Văn Giang, Hưng Yên',
+    avatar: '',
+    rating: 5
+  },
+  {
+    id: 6,
+    quote: 'Công ty điện mặt trời có đội ngũ nhân viên chuyên nghiệp và tận tâm. Luôn đảm bảo rằng tôi nhận được dịch vụ và tư vấn giá giải quyết vấn đề một cách nhanh chóng.',
+    name: 'Anh Lê Khả Nguyên',
+    address: 'Yên Dũng, Bắc Giang',
+    avatar: '',
+    rating: 5
   }
 ];
 
