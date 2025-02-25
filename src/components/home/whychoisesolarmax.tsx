@@ -20,40 +20,17 @@ const WhyChooseSolarmax = () => {
       ),
       text: "Tư Vấn Miễn Phí",
       href: "#",
-      background: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?q=80",
+      background: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80",
       content: {
-        title: "Tư Vấn Miễn Phí",
-        description: "Đội ngũ tư vấn chuyên nghiệp của Solarmax sẽ phân tích chi tiết nhu cầu sử dụng điện của bạn:",
+        title: "Tư Vấn & Khảo Sát Hoàn Toàn Miễn Phí",
+        description: "Đội ngũ kỹ thuật chuyên nghiệp của SolarMax sẽ đo đạc chi tiết – đánh giá kết cấu mái – kiểm tra hệ thống điện hiện có để đưa ra phương án thi công an toàn – hiệu quả – tiết kiệm nhất.",
         features: [
-          "Phân tích hóa đơn tiền điện hàng tháng",
-          "Khảo sát mặt bằng lắp đặt",
-          "Đánh giá hệ nắng và vị trí tối ưu",
-          "Tư vấn hệ thống điện phù hợp",
-          "Dự toán chi phí đầu tư và thời gian hoàn vốn"
+          "Phân tích & tối ưu chi phí điện hàng tháng",
+          "Khảo sát tận nơi – tư vấn giải pháp phù hợp",
+          "Đánh giá vị trí lắp đặt để tối ưu hiệu suất",
+          "Dự toán chi phí đầu tư & thời gian hoàn vốn nhanh chóng"
         ],
-        image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80"
-      }
-    },
-    {
-      icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
-      text: "Khảo Sát Miễn Phí",
-      href: "#",
-      background: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80",
-      content: {
-        title: "Khảo Sát Miễn Phí",
-        description: "Đội ngũ kỹ thuật sẽ trực tiếp khảo sát để đưa ra phương án thi công tối ưu nhất:",
-        features: [
-          "Khảo sát trực tiếp mặt bằng lắp đặt",
-          "Đo đạc chi tiết kích thước",
-          "Đánh giá kết cấu mái nhà",
-          "Kiểm tra hệ thống điện hiện có",
-          "Đề xuất phương án thi công phù hợp"
-        ],
-        image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?q=80"
+        image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80"
       }
     },
     {
@@ -64,18 +41,18 @@ const WhyChooseSolarmax = () => {
       ),
       text: "Lắp Đặt Trọn Gói",
       href: "#",
-      background: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80",
+      background: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80",
       content: {
-        title: "Lắp Đặt Trọn Gói",
-        description: "Solarmax là tổng thầu EPC cho các dự án điện mặt trời với quy mô đa dạng:",
+        title: "Lắp Đặt Trọn Gói – Đảm Bảo Tiêu Chuẩn Quốc Tế",
+        description: "SolarMax là tổng thầu EPC chuyên nghiệp, thực hiện thi công trọn gói cho các dự án điện mặt trời với mọi quy mô:",
         features: [
           "Hệ gia đình: 3kW - 50kW",
           "Hệ công nghiệp: 100kW - 5MW",
-          "Đội ngũ kỹ thuật chuyên nghiệp",
-          "Thiết bị chính hãng 100%",
-          "Thi công đúng tiêu chuẩn quốc tế"
+          "Thiết bị chính hãng 100% – Đội ngũ kỹ thuật giàu kinh nghiệm",
+          "Lắp đặt nhanh chóng, tối ưu hiệu suất vận hành",
+          "Cam kết mang đến giải pháp đầu tư thông minh, sinh lời bền vững"
         ],
-        image: "https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?q=80"
+        image: "https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?q=80"
       }
     },
     {
@@ -86,18 +63,18 @@ const WhyChooseSolarmax = () => {
       ),
       text: "Bảo Hành 24/7",
       href: "#",
-      background: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?q=80",
+      background: "https://images.unsplash.com/photo-1542336391-ae2936d8af02?q=80",
       content: {
-        title: "Bảo Hành 24/7",
-        description: "Solarmax cam kết đồng hành cùng khách hàng trong suốt vòng đời sản phẩm:",
+        title: "Bảo Hành & Hỗ Trợ 24/7 – Đồng Hành Lâu Dài",
+        description: "Với SolarMax, bạn không chỉ đầu tư vào điện mặt trời – bạn đầu tư vào một tương lai bền vững!",
         features: [
           "Bảo hành sản phẩm lên đến 25 năm",
-          "Hỗ trợ kỹ thuật 24/7",
+          "Hỗ trợ kỹ thuật 24/7 – Giám sát hệ thống từ xa",
           "Bảo trì định kỳ miễn phí",
           "Phản hồi sự cố trong vòng 24h",
-          "Giám sát hiệu suất hệ thống từ xa"
+          "Đồng hành cùng khách hàng trong suốt vòng đời sản phẩm"
         ],
-        image: "https://images.unsplash.com/photo-1581094794329-c8112c4e5190?q=80"
+        image: "https://images.unsplash.com/photo-1591267990532-e5bdb1b0ceb8?q=80"
       }
     }
   ];
@@ -114,9 +91,12 @@ const WhyChooseSolarmax = () => {
       />
 
       <div className="relative bg-transparent py-12 sm:py-24">
-        <div className="mx-auto max-w-2xl text-center px-4">
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#1B1B1B] mb-3">TẠI SAO BẠN NÊN CHỌN SOLARMAX</h2>
-          <p className="text-base sm:text-lg text-[#1B1B1B]">Solarmax cam kết mang đến giải pháp điện mặt trời toàn diện và chuyên nghiệp</p>
+        <div className="mx-auto max-w-3xl text-center px-4">
+          <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-[#1B1B1B] mb-3">TẠI SAO BẠN NÊN CHỌN SOLARMAX?</h2>
+          <p className="text-base sm:text-lg text-[#1B1B1B]">🌞 Giải pháp điện mặt trời toàn diện – Chuyên nghiệp – Hiệu quả 🌞</p>
+          <p className="text-base sm:text-lg text-[#1B1B1B] mt-4">
+            SolarMax không chỉ cung cấp hệ thống điện mặt trời mà còn mang đến giải pháp tối ưu hóa năng lượng, giúp bạn tiết kiệm chi phí – nâng cao hiệu suất – bảo vệ môi trường.
+          </p>
         </div>
 
         <div className="mx-auto max-w-7xl px-4 lg:px-8 mt-12">
@@ -139,12 +119,26 @@ const WhyChooseSolarmax = () => {
                     </li>
                   ))}
                 </ul>
-                <a href="#" className="inline-flex items-center bg-[#4CAF50] text-white px-5 py-2 rounded-full hover:bg-[#45a049] transition-colors">
-                  Tìm hiểu thêm
-                  <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
-                  </svg>
-                </a>
+                <div className="flex gap-4">
+                  <a href="tel:0964920242" className="inline-flex items-center bg-[#4CAF50] text-white px-5 py-2 rounded-full hover:bg-[#45a049] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                    </svg>
+                    Liên hệ tư vấn
+                    <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </a>
+                  <a href="https://zalo.me/0964920242" target="_blank" rel="noopener noreferrer" className="inline-flex items-center border-2 border-[#4CAF50] text-[#4CAF50] px-5 py-2 rounded-full hover:bg-[#4CAF50] hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 mr-2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
+                    </svg>
+                    Nhận báo giá
+                    <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </a>
+                </div>
               </div>
               <div className="relative aspect-[3/2] order-first md:order-last">
                 <img 
