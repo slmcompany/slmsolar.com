@@ -80,7 +80,7 @@ interface CustomerReviews {
 
 interface DetailComboProps {
     combopage: ComboPage[];
-    customerReviews: CustomerReviews;
+    customerReviews?: CustomerReviews;
 }
 
 const timeline = [
@@ -194,14 +194,6 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage, customerReviews }
                                         {parseFloat(combopage[0].price).toLocaleString('vi-VN')}
                                         <span className="text-xl">₫</span>
                                     </p>
-                                    <p className="text-xl line-through text-gray-500">
-                                        {(Math.ceil((parseFloat(combopage[0].price) * 1.1) / 100000) * 100000).toLocaleString('vi-VN')}
-                                        <span>₫</span>
-                                    </p>
-                                    <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
-                                        <TagIcon className="h-3 w-3 mr-1" />
-                                        Giảm {Math.round(((Math.ceil((parseFloat(combopage[0].price) * 1.1) / 100000) * 100000) - parseFloat(combopage[0].price)) / (Math.ceil((parseFloat(combopage[0].price) * 1.1) / 100000) * 100000) * 100)}%
-                                    </span>
                                 </div>
                                 <p className="text-sm text-green-600 font-medium">
                                     Tiết kiệm điện
@@ -209,8 +201,6 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage, customerReviews }
                                     <span className="ml-1">đồng/tháng</span>
                                 </p>
                             </div>
-
-                          
                         </div>
 
                         <div className="mt-4 space-y-6">

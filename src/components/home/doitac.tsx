@@ -78,7 +78,7 @@ export default function DoiTac() {
           Đối tác
         </h1>
         <h1 className="text-center tracking-tight text-4xl font-bold leading-10 text-gray-900 hidden sm:hidden lg:block">
-          Các đối tác thương hiệu chúng tôi phục vụ
+        Đối tác chiến lược của SolarMax
         </h1>
         <div className="relative overflow-hidden py-12">
           {/* First row - slides left */}

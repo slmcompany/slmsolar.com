@@ -1,7 +1,6 @@
 'use client'
 import VideoSolar from '../hegiadinh/video'
 import { useState, useEffect } from 'react'
-import { Tabs } from 'antd'
 import { 
   BoltIcon,
   BuildingOfficeIcon,
@@ -49,7 +48,7 @@ const ongridTiers = [
   {
     name: '8.7 kW - 1 pha',
     id: 'tier-8.7-1p',
-    href: '#',
+    href: 'goi-san-pham/he-gia-dinh/on-grid/on-grid-1p-ja-87-invt-10',
     price: '77.800.000',
     hoiVon: 'Hoàn vốn: 5 năm',
     hieuQua: 'Hiệu quả/tháng: 1.300.000đ',
@@ -65,7 +64,7 @@ const ongridTiers = [
   {
     name: '8.7 kW - 3 pha',
     id: 'tier-8.7-3p',
-    href: '#',
+    href: 'goi-san-pham/he-gia-dinh/on-grid/on-grid-3p-ja-87-invt-10',
     price: '81.900.000',
     hoiVon: 'Hoàn vốn: 5 năm',
     hieuQua: 'Hiệu quả/tháng: 1.300.000đ',
@@ -81,7 +80,7 @@ const ongridTiers = [
   {
     name: '13.3 kW - 3 pha',
     id: 'tier-13.3-3p',
-    href: '#',
+    href: 'goi-san-pham/he-gia-dinh/on-grid/on-grid-3p-ja-133-invt-15',
     price: '113.900.000',
     hoiVon: 'Hoàn vốn: 5 năm',
     hieuQua: 'Hiệu quả/tháng: 2.000.000đ',
@@ -100,7 +99,7 @@ const hybridTiers = [
   {
     name: '5.2 kW',
     id: 'tier-5.2',
-    href: '#',
+    href: 'goi-san-pham/he-gia-dinh/hybrid/hybrid-1p-ja-52-solis-5-easyway-5',
     price: '85.900.000',
     hoiVon: 'Hoàn vốn: 5 năm',
     hieuQua: 'Hiệu quả/tháng: 1.400.000đ',
@@ -117,7 +116,7 @@ const hybridTiers = [
   {
     name: '11 kW - 1 pha',
     id: 'tier-11-1p',
-    href: '#',
+    href: 'goi-san-pham/he-gia-dinh/hybrid/hybrid-1p-ja-110-solis-11-easyway-5',
     price: '133.900.000',
     hoiVon: 'Hoàn vốn: 5 năm',
     hieuQua: 'Hiệu quả/tháng: 2.200.000đ',
@@ -134,7 +133,7 @@ const hybridTiers = [
   {
     name: '11 kW - 3 pha áp thấp',
     id: 'tier-11-3p-low',
-    href: '#',
+    href: 'goi-san-pham/he-gia-dinh/hybrid/off-grid-3p-ja-110-deye-12-easyway-5-ap-thap',
     price: '155.900.000',
     hoiVon: 'Hoàn vốn: 5 năm',
     hieuQua: 'Hiệu quả/tháng: 2.500.000đ',
@@ -151,7 +150,7 @@ const hybridTiers = [
   {
     name: '11 kW - 3 pha áp cao',
     id: 'tier-11-3p-high',
-    href: '#',
+    href: 'goi-san-pham/he-gia-dinh/hybrid/off-grid-3p-ja-110-solis-10-easyway-10-ap-cao',
     price: '189.900.000',
     hoiVon: 'Hoàn vốn: 5 năm',
     hieuQua: 'Hiệu quả/tháng: 2.800.000đ',
@@ -167,18 +166,6 @@ const hybridTiers = [
   },
 ]
 
-const descriptions = {
-  ongrid: {
-    title: "Hệ thống điện mặt trời bám tải On-Grid",
-    content: "Hệ thống điện mặt trời On-Grid, là hệ thống vận hành kết hợp giữa nguồn điện mặt trời, và nguồn điện lưới, không bao gồm Pin lưu trữ Lithium. Do vậy, khi mất điện lưới, hệ thống sẽ không vận hành được.",
-    image: "/images/so-do-he-thong-dien-mat-troi.png"
-  },
-  hybrid: {
-    title: "Hệ thống điện mặt trời độc lập Hybrid",
-    content: "Hệ thống điện mặt trời Hybrid, có bao gồm Pin lưu trữ Lithium, nên có thể vận hành độc lập với nguồn lưới điện. Do vậy, khi mất điện lưới, hệ thống sẽ tự động vận hành dựa trên nguồn điện từ Pin Lithium.",
-    image: "/images/so-do-he-thong-dien-mat-troi.png"
-  }
-} as const
 
 function classNames(...classes: string[]): string {
   return classes.filter(Boolean).join(' ')
@@ -238,34 +225,39 @@ export default function Example() {
   return (
     <div className="bg-white py-2 sm:py-4">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-       
-
         <div className="lg:flex lg:items-center lg:gap-x-8">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Điện Mặt Trời Gia Đình
-          </h1>
-          <p className="mt-2 text-lg leading-8 text-gray-600">
-            Giải pháp năng lượng xanh toàn diện cho mọi gia đình. Với công nghệ tiên tiến và 
-            thiết kế tối ưu, chúng tôi mang đến giải pháp điện mặt trời giúp:
-          </p>
-          <div className="mt-4 space-y-2">
-            <p className="flex items-center gap-x-2 text-gray-600">
-              <CheckCircleIcon className="h-5 w-5 text-green-500" />
-              Tiết kiệm đến 90% chi phí điện hàng tháng
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Điện Mặt Trời Gia Đình
+            </h1>
+            <p className="mt-2 text-lg leading-8 text-gray-600">
+              Giải pháp điện mặt trời thông minh cho mọi gia đình! Với công nghệ tiên tiến và 
+              thiết kế tối ưu, chúng tôi mang đến hệ thống điện mặt trời giúp:
             </p>
-            <p className="flex items-center gap-x-2 text-gray-600">
-              <CheckCircleIcon className="h-5 w-5 text-green-500" />
-              Hoàn vốn đầu tư chỉ trong 5 năm
-            </p>
-            <p className="flex items-center gap-x-2 text-gray-600">
-              <CheckCircleIcon className="h-5 w-5 text-green-500" />
-              Bảo vệ môi trường với nguồn năng lượng sạch
-            </p>
-          </div>
+            <div className="mt-4 space-y-2">
+              <p className="flex items-center gap-x-2 text-gray-600">
+                <CheckCircleIcon className="h-5 w-5 text-green-500" />
+                Giảm đến 90% hóa đơn tiền điện, tối ưu chi phí sinh hoạt hàng tháng
+              </p>
+              <p className="flex items-center gap-x-2 text-gray-600">
+                <CheckCircleIcon className="h-5 w-5 text-green-500" />
+                Hoàn vốn nhanh trong 4 - 5 năm, hiệu quả đầu tư dài hạn
+              </p>
+              <p className="flex items-center gap-x-2 text-gray-600">
+                <CheckCircleIcon className="h-5 w-5 text-green-500" />
+                Bảo vệ môi trường, sử dụng nguồn năng lượng tái tạo, giảm khí thải CO₂
+              </p>
+              <p className="flex items-center gap-x-2 text-gray-600">
+                <CheckCircleIcon className="h-5 w-5 text-green-500" />
+                Hoạt động bền bỉ, cung cấp điện ổn định, an toàn cho cả gia đình
+              </p>
+              <p className="mt-2 text-green-600 font-medium">
+                👉 Tiết kiệm hơn - Xanh hơn - An toàn hơn!
+              </p>
+            </div>
           </div>
           <div className="mt-4 sm:mt-8 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
-          <VideoSolar/>  
+            <VideoSolar/>  
           </div>
         </div>
 
@@ -278,7 +270,6 @@ export default function Example() {
             <button
               onClick={() => {
                 setFrequency(frequencies[0])
-                setIsAutoSwitching(false)
               }}
               className={classNames(
                 'rounded-lg py-2 px-6 text-sm font-semibold transition-all duration-200',
@@ -294,7 +285,6 @@ export default function Example() {
             <button
               onClick={() => {
                 setFrequency(frequencies[1])
-                setIsAutoSwitching(false)
               }}
               className={classNames(
                 'rounded-lg py-2 px-6 text-sm font-semibold transition-all duration-200',
@@ -317,12 +307,13 @@ export default function Example() {
           </a>
         </div>
 
-        {/* Hide grid on mobile, show on larger screens */}
         <div className="hidden sm:block">
           <div className="isolate mx-auto mt-4 sm:mt-6 grid max-w-md grid-cols-2 gap-3 sm:gap-4 md:max-w-2xl lg:max-w-4xl xl:mx-0 xl:max-w-none xl:grid-cols-4">
             {(frequency.value === 'ongrid' ? ongridTiers : hybridTiers).map((tier) => (
               <div
                 key={tier.id}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
                 className={classNames(
                   tier.mostPopular 
                     ? `ring-2 ${
@@ -408,7 +399,7 @@ export default function Example() {
                     </div>
                   </button>
                 </div>
-                <p className="mt-6 flex flex-col">
+                <p className="mt-6 flex flex-col items-center">
                   <span className="text-sm text-gray-500">Giá niêm yết T{priceMonth}</span>
                   <span className="flex items-baseline gap-x-1">
                     <span className={classNames(
@@ -480,7 +471,6 @@ export default function Example() {
           </div>
         </div>
 
-        {/* Show slider on mobile only */}
         <div className="sm:hidden mt-4 px-4">
           <Swiper
             modules={[FreeMode, Pagination, Autoplay]}
@@ -497,13 +487,19 @@ export default function Example() {
               pauseOnMouseEnter: true,
             }}
             className="w-full py-8"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             {(frequency.value === 'ongrid' ? ongridTiers : hybridTiers).map((tier) => (
               <SwiperSlide 
                 key={tier.id}
                 className="!w-[320px] pt-4 pb-8 h-auto"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
               >
                 <div
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
                   className={classNames(
                     tier.mostPopular 
                       ? `ring-2 ${
@@ -589,7 +585,7 @@ export default function Example() {
                       </div>
                     </button>
                   </div>
-                  <p className="mt-6 flex flex-col">
+                  <p className="mt-6 flex flex-col items-center">
                     <span className="text-sm text-gray-500">Giá niêm yết T{priceMonth}</span>
                     <span className="flex items-baseline gap-x-1">
                       <span className={classNames(

@@ -186,14 +186,38 @@ export default function Example() {
 
   useEffect(() => {
     if (window.innerWidth > 640) {
+      let isHovering = false;
+      
+      const cards = document.querySelectorAll('.card-container');
+      cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          isHovering = true;
+        });
+        card.addEventListener('mouseleave', () => {
+          isHovering = false;
+        });
+      });
+
       const interval = setInterval(() => {
-        setFrequency(current => {
-          const currentIndex = frequencies.findIndex(f => f.value === current.value)
-          return frequencies[(currentIndex + 1) % frequencies.length]
-        })
+        if (!isHovering) {
+          setFrequency(current => {
+            const currentIndex = frequencies.findIndex(f => f.value === current.value)
+            return frequencies[(currentIndex + 1) % frequencies.length]
+          })
+        }
       }, 5000)
 
-      return () => clearInterval(interval)
+      return () => {
+        clearInterval(interval);
+        cards.forEach(card => {
+          card.removeEventListener('mouseenter', () => {
+            isHovering = true;
+          });
+          card.removeEventListener('mouseleave', () => {
+            isHovering = false;
+          });
+        });
+      }
     }
   }, [])
 
@@ -206,23 +230,29 @@ export default function Example() {
               Điện Mặt Trời Công Nghiệp
             </h1>
             <p className="mt-2 text-lg leading-8 text-gray-600">
-              Giải pháp năng lượng xanh toàn diện cho doanh nghiệp. Với công nghệ tiên tiến và 
-              thiết kế tối ưu, chúng tôi mang đến giải pháp điện mặt trời giúp:
+              Giải pháp năng lượng xanh tối ưu cho doanh nghiệp! Với hệ thống công suất lớn, điện mặt trời giúp doanh nghiệp:
             </p>
             <div className="mt-4 space-y-2">
               <p className="flex items-center gap-x-2 text-gray-600">
                 <CheckCircleIcon className="h-5 w-5 text-green-500" />
-                Tiết kiệm đến 90% chi phí điện hàng tháng
+                Tiết kiệm hàng tỷ đồng tiền điện mỗi năm, tối ưu hóa chi phí vận hành
               </p>
               <p className="flex items-center gap-x-2 text-gray-600">
                 <CheckCircleIcon className="h-5 w-5 text-green-500" />
-                Hoàn vốn đầu tư chỉ trong 3 năm
+                Hoàn vốn chỉ từ 3 năm, sinh lời bền vững, tăng tính cạnh tranh
               </p>
               <p className="flex items-center gap-x-2 text-gray-600">
                 <CheckCircleIcon className="h-5 w-5 text-green-500" />
-                Bảo vệ môi trường với nguồn năng lượng sạch
+                Chủ động nguồn điện, giảm phụ thuộc vào điện lưới, hạn chế gián đoạn sản xuất
+              </p>
+              <p className="flex items-center gap-x-2 text-gray-600">
+                <CheckCircleIcon className="h-5 w-5 text-green-500" />
+                Giảm phát thải CO₂, nâng cao trách nhiệm môi trường, đáp ứng tiêu chuẩn ESG
               </p>
             </div>
+            <p className="mt-4 text-base font-semibold text-green-600">
+              👉 Giải pháp bền vững - Tăng trưởng mạnh mẽ - Dẫn đầu xu hướng!
+            </p>
           </div>
           <div className="mt-4 sm:mt-8 lg:mt-0 lg:flex-shrink-0 lg:flex-grow">
           <VideoSolar/>
@@ -265,6 +295,7 @@ export default function Example() {
               <div
                 key={tier.id}
                 className={classNames(
+                  'card-container',
                   tier.mostPopular 
                     ? `ring-2 ${
                         frequency.value === 'ongrid' 
@@ -348,7 +379,7 @@ export default function Example() {
                     </div>
                   </button>
                 </div>
-                <p className="mt-6 flex flex-col">
+                <p className="mt-6 flex flex-col items-center">
                   <span className="text-sm text-gray-500">Giá niêm yết T{priceMonth}</span>
                   <span className="flex items-baseline gap-x-1">
                     <span className={classNames(
@@ -528,7 +559,7 @@ export default function Example() {
                       </div>
                     </button>
                   </div>
-                  <p className="mt-6 flex flex-col">
+                  <p className="mt-6 flex flex-col items-center">
                     <span className="text-sm text-gray-500">Giá niêm yết T{priceMonth}</span>
                     <span className="flex items-baseline gap-x-1">
                       <span className={classNames(
