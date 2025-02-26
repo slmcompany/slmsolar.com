@@ -94,7 +94,7 @@ const socialLinks = [
               </svg>
             </dt>
             <dd>
-              <a class="text-white hover:text-gray-300 transition-colors" href="tel:{companyInfo.phone}">{companyInfo.phone}</a>
+              <a class="text-white hover:text-gray-300 transition-colors" href={`tel:${companyInfo.phone}`}>{companyInfo.phone}</a>
             </dd>
           </div>
           <div class="flex gap-x-4">
@@ -104,7 +104,7 @@ const socialLinks = [
               </svg>
             </dt>
             <dd>
-              <a class="text-white hover:text-gray-300 transition-colors" href="mailto:{companyInfo.email}">{companyInfo.email}</a>
+              <a class="text-white hover:text-gray-300 transition-colors" href={`mailto:${companyInfo.email}`}>{companyInfo.email}</a>
             </dd>
           </div>
         </dl>
@@ -148,8 +148,7 @@ const socialLinks = [
           <h3 class="text-lg font-medium uppercase text-white">Chứng chỉ & Chứng nhận</h3>
           <div class="grid grid-cols-3 md:grid-cols-3 gap-3 sm:gap-4">
             {certifications.map((cert) => (
-              <a 
-                href="#" 
+              <div 
                 class="block bg-white/5 hover:bg-white/10 rounded-lg p-2 sm:p-3 transition-colors group"
                 title={cert.description}
               >
@@ -161,7 +160,7 @@ const socialLinks = [
                   />
                 </div>
                 {/* <p class="text-xs text-center text-gray-400 mt-1 hidden sm:block">{cert.title}</p> */}
-              </a>
+              </div>
             ))}
           </div>
         </div>
@@ -193,11 +192,11 @@ const socialLinks = [
           </div>
         </div>
 
-        {/* Bộ Công Thương Section */}
+        <!-- {/* Bộ Công Thương Section */}
         <div class="space-y-4">
-          <h3 class="text-lg font-medium uppercase text-white">Đã đăng ký với</h3>
+          <h3 class="text-lg font-medium uppercase text-white">Đã đăng ký với Bộ Công Thương</h3>
           <div>
-            <a href="http://online.gov.vn" target="_blank" rel="noopener noreferrer" 
+            <a href="#" target="_blank" rel="noopener noreferrer" 
               class="inline-block bg-white/5 hover:bg-white/10 rounded-lg p-3 transition-colors">
               <img 
                 src="https://s3.amazonaws.com/cdn.freshdesk.com/data/helpdesk/attachments/production/42068879378/original/HeXCMKuLyHCzmaKrdo-I8C6l8vAiyQtM4w.png?1624931763" 
@@ -207,7 +206,7 @@ const socialLinks = [
               />
             </a>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 

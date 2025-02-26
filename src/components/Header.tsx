@@ -203,7 +203,7 @@ export default function Header() {
                           <img src={`/images/${item.icon_img}`} alt={item.name} className="size-12 text-gray-600 group-hover:text-green-600" />
                         </div>
                         <div className="flex-auto">
-                          <a href={item.href} className="block font-semibold text-gray-900" target="_blank" rel="noopener noreferrer">
+                          <a href={item.href} className="block font-semibold text-gray-900">
                             {item.name}
                             <span className="absolute inset-0" />
                           </a>
@@ -234,7 +234,7 @@ export default function Header() {
                           <img src={`/images/${item.icon_img}`} alt={item.name} className="size-12 text-gray-600 group-hover:text-green-600" />
                         </div>
                         <div className="flex-auto">
-                          <a href={item.href} className="block font-semibold text-gray-900" target="_blank" rel="noopener noreferrer">
+                          <a href={item.href} className="block font-semibold text-gray-900">
                             {item.name}
                             <span className="absolute inset-0" />
                           </a>
@@ -263,7 +263,7 @@ export default function Header() {
                             <img src={`/images/${item.icon_img}`} alt={item.name} className="size-12 text-gray-600 group-hover:text-green-600" />
                           </div>
                           <div className="flex-auto">
-                            <a href={item.href} className="block font-semibold text-gray-900" target="_blank" rel="noopener noreferrer">
+                            <a href={item.href} className="block font-semibold text-gray-900">
                               {item.name}
                               {!item.submenu && <span className="absolute inset-0" />}
                             </a>
@@ -314,7 +314,7 @@ export default function Header() {
         </div>
         <div className="hidden lg:block lg:w-32">
           <div className="relative group">
-            <a href="tel:0964920242" type="button" className="flex items-center gap-x-2 text-white drop-shadow-lg bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center">
+            <a href="tel:0964920242" target="_blank" rel="noopener noreferrer" type="button" className="flex items-center gap-x-2 text-white drop-shadow-lg bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
               </svg>
@@ -323,20 +323,20 @@ export default function Header() {
 
             <div className="absolute z-40 right-0 mt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-in-out">
               <div className="bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                <a href="tel:0964920242" className="flex items-center gap-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <a href="tel:0964920242" target="_blank" rel="noopener noreferrer" className="flex items-center gap-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
                   <svg className="size-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
                   </svg>
                   Gọi điện
                 </a>
-                <a href="mailto:sale@solarmax.vn" className="flex items-center gap-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <a href="mailto:sale@solarmax.vn" target="_blank" rel="noopener noreferrer" className="flex items-center gap-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-red-500">
                     <rect width="20" height="16" x="2" y="4" rx="2"/>
                     <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                   </svg>
                   Email
                 </a>
-                <a href="https://zalo.me/0964920242" target="_blank" className="flex items-center gap-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
+                <a href="https://zalo.me/0964920242" target="_blank" rel="noopener noreferrer" className="flex items-center gap-x-3 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 50 50">
                     <path fill="#0068ff" d="M25,2C12.318,2,2,12.318,2,25s10.318,23,23,23s23-10.318,23-23S37.682,2,25,2z M35.7,32.2h-6.4 c-0.5,0-0.9-0.4-0.9-0.9v-4.7c0-0.5-0.4-0.9-0.9-0.9h-4.7c-0.5,0-0.9,0.4-0.9,0.9v4.7c0,0.5-0.4,0.9-0.9,0.9h-6.4 c-0.5,0-0.9-0.4-0.9-0.9V18.7c0-0.5,0.4-0.9,0.9-0.9h6.4c0.5,0,0.9,0.4,0.9,0.9v4.7c0,0.5,0.4,0.9,0.9,0.9h4.7 c0.5,0,0.9-0.4,0.9-0.9v-4.7c0-0.5,0.4-0.9,0.9-0.9h6.4c0.5,0,0.9,0.4,0.9,0.9v12.6C36.6,31.8,36.2,32.2,35.7,32.2z"/>
                   </svg>
@@ -382,8 +382,6 @@ export default function Header() {
                         key={item.name}
                         as="a"
                         href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
                       >
                         {item.name}
@@ -405,8 +403,6 @@ export default function Header() {
                         key={item.name}
                         as="a"
                         href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
                       >
                         {item.name}
@@ -428,8 +424,6 @@ export default function Header() {
                         key={item.name}
                         as="a"
                         href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
                       >
                         {item.name}
