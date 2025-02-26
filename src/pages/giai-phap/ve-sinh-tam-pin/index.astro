@@ -1,125 +1,122 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-const pageContent = {
-  title: "Gói sản phẩm",
-  subtitle: "Giải pháp SoLarMax",
-  heading: "Giải pháp vệ sinh tấm pin",
-  description: "Vệ sinh tấm pin năng lượng mặt trời định kỳ giúp duy trì hiệu suất và kéo dài tuổi thọ hệ thống"
+const content = {
+  pageContent: {
+    title: "Gói sản phẩm",
+    subtitle: "Giải pháp SoLarMax",
+    heading: "Giải pháp vệ sinh tấm pin",
+    description: "Vệ sinh tấm pin năng lượng mặt trời định kỳ giúp duy trì hiệu suất và kéo dài tuổi thọ hệ thống"
+  },
+  notices: [
+    {
+      icon: "cloud",
+      title: "Thời điểm vệ sinh tấm pin",
+      description: "Việc làm sạch tấm pin nên được thực hiện vào sáng sớm, buổi tối, hoặc vào những ngày mưa. Đồng thời hãy chọn thời điểm khi ánh nắng không quá mạnh"
+    },
+    {
+      icon: "calendar",
+      title: "Tần suất vệ sinh",
+      description: "Nên vệ sinh tấm pin định kỳ 3-6 tháng/lần tùy theo môi trường lắp đặt. Đối với khu vực nhiều bụi, gần đường, khu công nghiệp nên vệ sinh thường xuyên hơn"
+    },
+    {
+      icon: "chart",
+      title: "Lợi ích khi vệ sinh định kỳ",
+      description: "Vệ sinh tấm pin thường xuyên giúp tăng hiệu suất lên đến 30%, kéo dài tuổi thọ thiết bị và đảm bảo hiệu quả đầu tư của hệ thống điện mặt trời"
+    }
+  ],
+  steps: [
+    {
+      title: "Bước 1",
+      description: "Ngắt kết nối điện (Gạt át DC trong tủ điện)"
+    },
+    {
+      title: "Bước 2",
+      description: "Sử dụng bàn chải và hỗn hợp xà phòng với nước rồi nhẹ nhàng lau chùi lên bề mặt"
+    },
+    {
+      title: "Bước 3",
+      description: "Rửa lại bề mặt tấm pin bằng nước sạch"
+    },
+    {
+      title: "Bước 4",
+      description: "Chờ 30-45 phút cho tấm pin khô ráo. Sau khi tấm pin đã khô tiến hành bật lại át DC"
+    }
+  ],
+  guidelines: [
+    {
+      icon: "hand",
+      description: "Không sử dụng tay trần. Đeo găng tay sạch để tránh để lại dấu vân tay và bụi bẩn trên kính"
+    },
+    {
+      icon: "lock",
+      description: "Không sử dụng các công cụ kim loại (lưỡi dao, vật liệu mài mòn khác) dẫn đến trầy xước bề mặt kính, làm giảm hiệu suất hoặc thậm chí là hư hỏng bề mặt tấm pin."
+    },
+    {
+      icon: "gear",
+      description: "Không sử dụng chất tẩy mài mòn, chất làm sạch mài mòn, chất đánh bóng, natri hydroxide, benzen, chất pha loãng nitro, axit hoặc kiềm, và các chất hóa học khác"
+    },
+    {
+      icon: "refresh",
+      description: "Có thể sử dụng các loại vật liệu mềm như xốp, chổi lông, miếng bọt biển mềm, bàn chải mềm"
+    },
+    {
+      icon: "signal",
+      description: "Có thể sử dụng tất cả các loại chất tẩy kính thương mại, cồn/ethanol/methanol"
+    },
+    {
+      icon: "laptop",
+      description: "Không sử dụng hơi nước hoặc hóa chất ăn mòn để tăng tốc độ làm sạch"
+    },
+    {
+      icon: "laptop",
+      description: "Không làm sạch bề mặt bị nứt và phần liên kết giữa tấm pin với dây vì có thể gây chập điện"
+    },
+    {
+      icon: "laptop",
+      description: "Không bước, đứng hoặc ngồi trên tấm pin trong quá trình vệ sinh"
+    }
+  ],
+  images: [
+    {
+      src: "/images/ve-sinh-tam-pin/ve-sinh-pin-1.jpeg",
+      alt: "Nhân viên kỹ thuật đang vệ sinh tấm pin mặt trời",
+      title: "Quy trình vệ sinh chuyên nghiệp"
+    },
+    {
+      src: "/images/ve-sinh-tam-pin/ve-sinh-pin-2.jpeg",
+      alt: "Kiểm tra bề mặt tấm pin sau khi vệ sinh",
+      title: "Kiểm tra chất lượng"
+    },
+    {
+      src: "/images/ve-sinh-tam-pin/ve-sinh-pin-3.jpeg",
+      alt: "Sử dụng thiết bị chuyên dụng làm sạch",
+      title: "Thiết bị chuyên nghiệp"
+    },
+    {
+      src: "/images/ve-sinh-tam-pin/ve-sinh-pin-4.jpeg",
+      alt: "Đội ngũ kỹ thuật làm việc trên mái nhà",
+      title: "Đội ngũ chuyên nghiệp"
+    },
+    {
+      src: "/images/ve-sinh-tam-pin/ve-sinh-pin-5.jpeg",
+      alt: "So sánh trước và sau khi vệ sinh",
+      title: "Hiệu quả rõ rệt"
+    },
+    {
+      src: "/images/ve-sinh-tam-pin/ve-sinh-pin-6.jpeg",
+      alt: "Hoàn thiện công việc vệ sinh",
+      title: "Kết quả hoàn hảo"
+    }
+  ]
 };
-
-const notices = [
-  {
-    icon: "cloud", // SVG path for cloud icon
-    title: "Thời điểm vệ sinh tấm pin",
-    description: "Việc làm sạch tấm pin nên được thực hiện vào sáng sớm, buổi tối, hoặc vào những ngày mưa. Đồng thời hãy chọn thời điểm khi ánh nắng không quá mạnh"
-  },
-  {
-    icon: "calendar", // SVG path for calendar icon
-    title: "Tần suất vệ sinh",
-    description: "Nên vệ sinh tấm pin định kỳ 3-6 tháng/lần tùy theo môi trường lắp đặt. Đối với khu vực nhiều bụi, gần đường, khu công nghiệp nên vệ sinh thường xuyên hơn"
-  },
-  {
-    icon: "chart", // SVG path for chart icon
-    title: "Lợi ích khi vệ sinh định kỳ",
-    description: "Vệ sinh tấm pin thường xuyên giúp tăng hiệu suất lên đến 30%, kéo dài tuổi thọ thiết bị và đảm bảo hiệu quả đầu tư của hệ thống điện mặt trời"
-  }
-];
-
-const steps = [
-  {
-    title: "Bước 1",
-    description: "Ngắt kết nối điện (Gạt át DC trong tủ điện)"
-  },
-  {
-    title: "Bước 2",
-    description: "Sử dụng bàn chải và hỗn hợp xà phòng với nước rồi nhẹ nhàng lau chùi lên bề mặt"
-  },
-  {
-    title: "Bước 3",
-    description: "Rửa lại bề mặt tấm pin bằng nước sạch"
-  },
-  {
-    title: "Bước 4",
-    description: "Chờ 30-45 phút cho tấm pin khô ráo. Sau khi tấm pin đã khô tiến hành bật lại át DC"
-  }
-];
-
-const guidelines = [
-  {
-    icon: "hand", // SVG path for hand icon
-    description: "Không sử dụng tay trần. Đeo găng tay sạch để tránh để lại dấu vân tay và bụi bẩn trên kính"
-  },
-  {
-    icon: "lock", // SVG path for lock icon
-    description: "Không sử dụng các công cụ kim loại (lưỡi dao, vật liệu mài mòn khác) dẫn đến trầy xước bề mặt kính, làm giảm hiệu suất hoặc thậm chí là hư hỏng bề mặt tấm pin."
-  },
-  {
-    icon: "gear", // SVG path for gear icon
-    description: "Không sử dụng chất tẩy mài mòn, chất làm sạch mài mòn, chất đánh bóng, natri hydroxide, benzen, chất pha loãng nitro, axit hoặc kiềm, và các chất hóa học khác"
-  },
-  {
-    icon: "refresh", // SVG path for refresh icon
-    description: "Có thể sử dụng các loại vật liệu mềm như xốp, chổi lông, miếng bọt biển mềm, bàn chải mềm"
-  },
-  {
-    icon: "signal", // SVG path for signal icon
-    description: "Có thể sử dụng tất cả các loại chất tẩy kính thương mại, cồn/ethanol/methanol"
-  },
-  
-  {
-    icon: "laptop", // SVG path for laptop icon
-    description: "Không sử dụng hơi nước hoặc hóa chất ăn mòn để tăng tốc độ làm sạch"
-  },
-  {
-    icon: "laptop", // SVG path for laptop icon
-    description: "Không làm sạch bề mặt bị nứt và phần liên kết giữa tấm pin với dây vì có thể gây chập điện"
-  },
-  {
-    icon: "laptop", // SVG path for laptop icon
-    description: "Không bước, đứng hoặc ngồi trên tấm pin trong quá trình vệ sinh"
-  }
-];
-
-const images = [
-  {
-    src: "/images/giai-phap/ve-sinh-tam-pin/ve-sinh-pin-1.jpeg",
-    alt: "Nhân viên kỹ thuật đang vệ sinh tấm pin mặt trời",
-    title: "Quy trình vệ sinh chuyên nghiệp"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1200",
-    alt: "Kiểm tra bề mặt tấm pin sau khi vệ sinh",
-    title: "Kiểm tra chất lượng"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80&w=1200",
-    alt: "Sử dụng thiết bị chuyên dụng làm sạch",
-    title: "Thiết bị chuyên nghiệp"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=1200",
-    alt: "Đội ngũ kỹ thuật làm việc trên mái nhà",
-    title: "Đội ngũ chuyên nghiệp"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1591696205602-2f950c417cb9?q=80&w=1200",
-    alt: "So sánh trước và sau khi vệ sinh",
-    title: "Hiệu quả rõ rệt"
-  },
-  {
-    src: "https://images.unsplash.com/photo-1497440001374-f26997328c1b?q=80&w=1200",
-    alt: "Hoàn thiện công việc vệ sinh",
-    title: "Kết quả hoàn hảo"
-  }
-];
 ---
 
-<Layout title={pageContent.title}>
+<Layout title={content.pageContent.title}>
   <header class="header-section">
     <div class="relative isolate overflow-hidden pt-14">
         <img src="https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?q=80&w=2070" 
              alt="Vệ sinh tấm pin năng lượng mặt trời" 
-             class="absolute inset-0 -z-10 size-full object-cover brightness-50 sm:brightness-100">
+             class="absolute inset-0 -z-10 size-full object-cover brightness-50 sm:brightness-100" />
         <div class="mx-auto container px-4 sm:px-6 lg:px-8">
           <div class="mx-auto py-16 sm:py-48 lg:py-32">
             <div class="sm:mb-8 flex justify-start">
@@ -143,9 +140,9 @@ const images = [
     <div class="bg-white py-8 sm:py-16">
         <div class="mx-auto container px-4 sm:px-6 lg:px-8">
           <div class="mx-auto max-w-2xl lg:mx-0">
-            <p class="text-base font-semibold text-green-600">{pageContent.subtitle}</p>
-            <h1 class="mt-2 text-3xl sm:text-4xl font-semibold tracking-tight text-gray-900 lg:text-5xl">{pageContent.heading}</h1>
-            <p class="mt-4 sm:mt-6 text-base sm:text-lg text-pretty text-gray-600 max-w-3xl">{pageContent.description}</p>
+            <p class="text-base font-semibold text-green-600">{content.pageContent.subtitle}</p>
+            <h1 class="mt-2 text-3xl sm:text-4xl font-semibold tracking-tight text-gray-900 lg:text-5xl">{content.pageContent.heading}</h1>
+            <p class="mt-4 sm:mt-6 text-base sm:text-lg text-pretty text-gray-600 max-w-3xl">{content.pageContent.description}</p>
           </div>
           
           <div class="mt-8 sm:mt-16 grid grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2">
@@ -161,7 +158,7 @@ const images = [
             </div>
             <div class="flex flex-col justify-center">
               <ul role="list" class="space-y-4 sm:space-y-6 text-gray-600">
-                {notices.map(notice => (
+                {content.notices.map(notice => (
                   <li class="flex gap-x-3 bg-gray-50 p-3 sm:p-4 rounded-lg transition duration-300 hover:bg-gray-100 hover:shadow-md">
                     {notice.icon === "cloud" && (
                       <svg class="mt-1 size-5 flex-none text-green-600" viewBox="0 0 24 24" fill="currentColor">
@@ -196,7 +193,7 @@ const images = [
         <div class="mx-auto container px-4 sm:px-6 lg:px-8">
           <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 lg:text-4xl text-center mb-8 sm:mb-16">Quy trình vệ sinh</h2>
           <div class="mx-auto grid max-w-2xl grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 lg:mx-0 lg:max-w-none lg:grid-cols-4">
-            {steps.map((step, index) => (
+            {content.steps.map((step, index) => (
               <div class="relative bg-white p-4 sm:p-6 rounded-lg shadow-sm transition duration-300 hover:shadow-lg hover:scale-105">
                 <div class="flex items-center mb-4">
                   <span class="flex items-center justify-center w-8 h-8 rounded-full bg-green-600 text-white font-semibold">
@@ -215,7 +212,7 @@ const images = [
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
             <div class="lg:sticky lg:top-4">
                 <img
-                    src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?q=80&w=800"
+                    src= "/images/ve-sinh-tam-pin/ve-sinh-pin-main.jpeg"
                     alt="Dụng cụ vệ sinh tấm pin"
                     class="rounded-xl shadow-lg object-cover w-full aspect-[3/4] lg:max-h-[600px]"
                 />
@@ -223,7 +220,7 @@ const images = [
             <div class="space-y-4 sm:space-y-6">
                 <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 lg:text-3xl">Hướng dẫn và lưu ý quan trọng</h2>
                 <dl class="grid grid-cols-1 gap-4 sm:gap-6">
-                    {guidelines.map((guideline, index) => (
+                    {content.guidelines.map((guideline, index) => (
                         <div class="relative bg-white p-4 sm:p-6 rounded-lg shadow-sm">
                             <dt class="flex items-center gap-4">
                               <span class="flex items-center justify-center w-8 h-8 rounded-full bg-green-100 text-green-600">
@@ -250,7 +247,7 @@ const images = [
                 </p>
             </div>
             <div class="mx-auto mt-8 sm:mt-16 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 lg:grid-cols-3">
-                {images.map((image) => (
+                {content.images.map((image) => (
                     <div class="relative isolate overflow-hidden rounded-2xl bg-gray-900">
                         <img
                             src={image.src}
