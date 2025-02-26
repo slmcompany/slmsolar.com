@@ -61,7 +61,7 @@ const Slider: React.FC = () => {
               </div>
               
               <div className="absolute inset-0 bg-black/20 flex items-center justify-start">
-                <div className="text-white text-left max-w-7xl mx-auto w-full">
+                <div className="text-white text-left container mx-auto w-full">
                   <button className="bg-white text-black px-6 py-3 rounded-full mb-4 flex items-center gap-2">
                     <svg 
                       xmlns="http://www.w3.org/2000/svg" 

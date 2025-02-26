@@ -4,7 +4,7 @@ import { Carousel } from 'antd';
 const Slider: React.FC = () => {
   return (
     <div className="bg-slate-100 py-4">
- <div className="max-w-7xl mx-auto">
+ <div className="container mx-auto">
   <h2 className='text-bold text-2xl pt-10'>Đề xuất</h2>
    <div className="hidden sm:block  mx-auto">
      

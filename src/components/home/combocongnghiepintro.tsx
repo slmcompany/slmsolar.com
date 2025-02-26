@@ -223,7 +223,7 @@ export default function Example() {
 
   return (
     <div className="bg-white py-2 sm:py-4">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto container px-6 lg:px-8">
         <div className="lg:flex lg:items-center lg:gap-x-8">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">

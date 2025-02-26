@@ -73,7 +73,7 @@ export default function DoiTac() {
           />
         </svg>
       </div>
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto container px-6 lg:px-8">
         <h1 className="text-left tracking-tight text-4xl font-bold leading-10 text-gray-900 block sm:block lg:hidden">
           Đối tác
         </h1>

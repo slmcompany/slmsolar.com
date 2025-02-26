@@ -176,7 +176,7 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage, customerReviews }
                     style={{ maxWidth: '100%', maxHeight: '80vh' }}
                 />
             </Modal>
-            <div className="mx-auto max-w-2xl bg-gray-100 px-4 pt-4 pb-4 sm:px-6 sm:pt-8 sm:pb-6 sm:rounded-lg sm:shadow-md lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:mt-40">
+            <div className="mx-auto max-w-2xl bg-gray-100 px-4 pt-4 pb-4 sm:px-6 sm:pt-8 sm:pb-6 sm:rounded-lg sm:shadow-md lg:grid lg:container lg:grid-cols-2 lg:gap-x-8 lg:px-8 lg:mt-40">
                 {/* Product details */}
                 <div className="lg:max-w-lg lg:self-end">
                     <div className="mt-4">
@@ -414,7 +414,7 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage, customerReviews }
           
 
             {/* Reviews and Specifications section */}
-            <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+            <div className="mx-auto container px-4 py-8 sm:px-6 lg:px-8">
                 <div className="lg:grid lg:grid-cols-12 lg:gap-x-8">
                     {/* Danh mục thiết bị - Left column - Ẩn trên mobile */}
                     <div className="hidden sm:block lg:col-span-7">
@@ -478,7 +478,7 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage, customerReviews }
             </div>
 
             {/* Thư viện ảnh thực tế section */}
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+            <div className="mx-auto container px-4 sm:px-6 lg:px-8 pb-16">
                 <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl mb-8">
                     Hình ảnh thực tế
                 </h2>
@@ -508,7 +508,7 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage, customerReviews }
             </div>
 
             {/* Dự án tham khảo section */}
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16">
+            <div className="mx-auto container px-4 sm:px-6 lg:px-8 pb-16">
                 <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl mb-8">
                     Dự án đã triển khai
                 </h2>
@@ -549,7 +549,7 @@ export const DetailCombo: FC<DetailComboProps> = ({ combopage, customerReviews }
             </div>
 
             {/* Đánh giá khách hàng section - moved down */}
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+            <div className="mx-auto container px-4 sm:px-6 lg:px-8 py-16">
                 <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl mb-8">
                     Đánh giá từ khách hàng
                 </h2>

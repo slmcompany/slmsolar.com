@@ -99,7 +99,7 @@ const WhyChooseSolarmax = () => {
           </p>
         </div>
 
-        <div className="mx-auto max-w-7xl px-4 lg:px-8 mt-12">
+        <div className="mx-auto container px-4 lg:px-8 mt-12">
           <div className="relative">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="max-w-2xl">
