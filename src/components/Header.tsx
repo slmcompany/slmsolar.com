@@ -119,9 +119,9 @@ const gioithieu = [
         href: '/blog/hoi-xoay-hoi-xoay'
       },
       {
-        name: 'Em là ai',
+        name: 'Em biết không',
         description: 'Tìm hiểu về Solarmax',
-        href: '/blog/em-la-ai'
+        href: '/blog/em-biet-khong'
       },
      
     ]
