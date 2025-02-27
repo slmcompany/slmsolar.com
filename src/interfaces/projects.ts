@@ -11,6 +11,8 @@ export default interface Projects {
     updatedAt: string;
     publishedAt: string;
     category: string;
+    loai_he_thong: string;
+    cong_suat: number;
     image: {
       data: {
         id: number;

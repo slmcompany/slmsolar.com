@@ -1,10 +1,20 @@
 ---
 import Layout from '../../layouts/Layout.astro'
-import DuAn from '../../components/duan/duan.tsx'
+// import DuAn from '../../components/duan/duan.tsx'
+import fetchApi from "../../lib/strapi.ts";
+import type Projects from "../../interfaces/projects.ts";
+// import Image from "astro/components/Image.astro";
+import DuAnOld from '../../components/duan/duanold.tsx'
+
+const project = await fetchApi<Projects[]>({
+    endpoint: "projects?populate=image", // the content type to fetch
+    wrappedByKey: "data", // the key to unwrap the response
+});
 ---
 
 <Layout title="Dự án">
-  <div class="pt-14 bg-white">
-    <DuAn client:load/>
-  </div>
+  
+ <div>
+  <DuAnOld client:load projects={project}/>
+ </div>
 </Layout>
