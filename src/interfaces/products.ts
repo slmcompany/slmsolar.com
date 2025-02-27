@@ -1,14 +1,14 @@
-export default interface Projects {
+export default interface Products {
   id: number;
   attributes: {
     title: string;
     price: number;
     he: string;
     pha: string;
-    highlight: {
+    highlight: Array<{
       title: string;
       value: string;
-    };
+    }>;
     youtube_id: string;
     description: string;
     content: string;
@@ -17,6 +17,7 @@ export default interface Projects {
     updatedAt: string;
     publishedAt: string;
     category: string;
+    categories: string | string[];
     image: {
       data: {
         id: number;

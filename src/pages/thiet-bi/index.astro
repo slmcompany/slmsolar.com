@@ -1,8 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import fetchApi from "../../lib/strapi.ts";
+import type Products from "../../interfaces/products.ts";
+import Image from "astro/components/Image.astro";
 import Slider from "../../components/devices/slider.tsx";
 
-// Thay thế import Icon bằng các icon cụ thể từ @heroicons/react
+// Import icons từ heroicons
 import {
   BuildingOfficeIcon,
   TagIcon,
@@ -24,7 +27,7 @@ import {
   DevicePhoneMobileIcon
 } from '@heroicons/react/24/outline';
 
-// Add at the top of file
+// Interface cho thông số kỹ thuật
 interface Specs {
   brand?: string;
   technology?: string;
@@ -51,35 +54,63 @@ interface Specs {
   additionalFeature?: string;
 }
 
-interface Product {
-  id: number;
-  name: string;
-  href: string;
-  imageSrc: string;
-  imageAlt: string;
-  specs?: Specs;
-  status?: 'instock' | 'outofstock' | 'preorder';
+// Interface cho cấu hình hiển thị spec
+interface SpecConfig {
+  key: keyof Specs;
+  label: string;
+  icon: any;
 }
 
-interface SubCategory {
-  title: string;
-  items: Product[];
-}
+// Cấu hình hiển thị thông số kỹ thuật với biểu tượng
+const specConfigs: SpecConfig[] = [
+  // Thông số chung
+  { key: 'brand', label: 'Thương hiệu', icon: BuildingOfficeIcon },
+  { key: 'type', label: 'Loại', icon: TagIcon },
+  { key: 'protection', label: 'Bảo vệ', icon: ShieldCheckIcon },
+  
+  // Pin quang năng
+  { key: 'technology', label: 'Công nghệ', icon: CpuChipIcon },
+  { key: 'cell', label: 'Cell pin', icon: DevicePhoneMobileIcon },
+  { key: 'power', label: 'Công suất', icon: BoltIcon },
+  { key: 'dimensions', label: 'Kích thước', icon: Square3Stack3DIcon },
+  { key: 'weight', label: 'Khối lượng', icon: ScaleIcon },
+  { key: 'efficiency', label: 'Hiệu suất', icon: ChartBarIcon },
 
-interface Category {
-  title: string;
-  description: string;
-  items?: Product[];
-  categories?: {
-    [key: string]: SubCategory;
-  };
-}
+  // Biến tần
+  { key: 'dcInput', label: 'Đầu vào DC', icon: ArrowRightCircleIcon },
+  { key: 'batteryVoltage', label: 'Điện áp pin', icon: Battery50Icon },
+  { key: 'maxDC', label: 'DC tối đa', icon: BoltIcon },
 
-interface Products {
-  [key: string]: Category;
-}
+  // Pin lưu trữ
+  { key: 'capacity', label: 'Dung lượng', icon: Battery100Icon },
+  { key: 'cellType', label: 'Loại cell', icon: DevicePhoneMobileIcon },
+  { key: 'voltage', label: 'Điện áp', icon: ArrowRightCircleIcon },
+  { key: 'installation', label: 'Lắp đặt', icon: WrenchScrewdriverIcon },
+  { key: 'maxPacks', label: 'Mở rộng', icon: PlusIcon },
 
-// Add data variables
+  // Phụ kiện
+  { key: 'material', label: 'Vật liệu', icon: RectangleStackIcon },
+  { key: 'resistance', label: 'Điện trở', icon: ScaleIcon },
+  { key: 'standards', label: 'Tiêu chuẩn', icon: CheckCircleIcon },
+];
+
+const productsData = await fetchApi<Products[]>({
+    endpoint: "products", // the content type to fetch
+    query: {
+      "populate[0]": "image",
+      "populate[1]": "highlight",
+      "populate[2]": "categories",
+      "sort[0]": "categories:desc",
+      "sort[1]": "he:desc",
+      "sort[2]": "pha:asc"
+    },
+    wrappedByKey: "data",
+});
+
+// Sử dụng trực tiếp productsData mà không cần kiểm tra
+const productsArray = productsData;
+
+// Định nghĩa các danh mục cho sidebar
 const categories = [
   { 
     name: "Pin quang năng", 
@@ -119,406 +150,122 @@ const categories = [
   },
 ];
 
-const products: Products = {
-  pinquangnang: {
-    title: "Pin quang năng",
-    description: "Pin quang năng là thiết bị chuyển đổi năng lượng mặt trời thành điện năng sạch, giúp giảm thiểu tác động tiêu cực đến môi trường và tiết kiệm chi phí cho người dùng.",
-    items: [
-      {
-        id: 1,
-        name: "Pin năng lượng mặt trời JA Solar 580Wp",
-        href: "#",
-        imageSrc: "https://www.jasolar.com/uploadfile/2023/0428/20230428025102444.png",
-        imageAlt: "Pin năng lượng mặt trời JA Solar 580Wp",
-        status: "instock",
-        specs: {
-          brand: "JA SOLAR",
-          technology: "DEEP BLUE 4.0",
-          cell: "Mono-16BB",
-          power: "580Wp",
-          dimensions: "2278 x 1134 x 30mm",
-          weight: "31.8kg",
-          protection: "IP68",
-          efficiency: "22.5%"
-        }
-      },
-      {
-        id: 2,
-        name: "Pin năng lượng mặt trời Longi 580Wp",
-        href: "#",
-        imageSrc: "https://www.longi.com/upload/sem/2022/04/6266d0f2e258f.png",
-        imageAlt: "Pin năng lượng mặt trời Longi 580Wp",
-        status: "instock",
-        specs: {
-          brand: "LONGI",
-          technology: "Guardian Anti-Dust",
-          cell: "HPBC",
-          power: "580Wp",
-          dimensions: "2281 x 1134 x 30mm",
-          weight: "27.2kg",
-          protection: "IP68",
-          efficiency: "22.4%"
-        }
-      }
-    ]
-  },
-  bientan: {
-    title: "Biến tần",
-    description: "Biến tần là thiết bị chuyển đổi điện một chiều từ tấm pin mặt trời thành điện xoay chiều để sử dụng cho các thiết bị điện trong gia đình và doanh nghiệp.",
-    categories: {
-      hybrid: {
-        title: "Biến tần Hybrid",
-        items: [
-          {
-            id: 1,
-            name: "Biến tần Solis 1 pha - áp thấp",
-            href: "#",
-            imageSrc: "https://www.ginverter.com/wp-content/uploads/2022/12/S6-GR3P8K-12K_45-1.png",
-            imageAlt: "Biến tần Solis 1 pha áp thấp",
-            status: "instock",
-            specs: {
-              brand: "SOLIS",
-              type: "1 pha - áp thấp",
-              dcInput: "Đầu vào DC tối đa 200%",
-              batteryVoltage: "Dải điện áp pin 42-58V",
-              features: "Chức năng tích hợp AFCI",
-              protection: "IP66",
-              power: "5kW/8kW/12kW/14kW/16kW",
-              maxDC: "10kW/16kW/24kW/28kW/32kW"
-            }
-          },
-          {
-            id: 2,
-            name: "Biến tần Solis 3 pha - áp thấp",
-            href: "#",
-            imageSrc: "https://www.ginverter.com/wp-content/uploads/2022/12/S6-GR3P15K-20K_45-1.png",
-            imageAlt: "Biến tần Solis 3 pha áp thấp", 
-            status: "instock",
-            specs: {
-              brand: "SOLIS",
-              type: "3 pha - áp thấp",
-              dcInput: "Đầu vào DC tối đa 200%",
-              batteryVoltage: "Dải điện áp pin 40-60V",
-              features: "Chức năng tích hợp AFCI",
-              protection: "IP66",
-              power: "8kW/10kW/12kW/15kW",
-              maxDC: "16kW/20kW/24kW/30kW"
-            }
-          },
-          {
-            id: 3,
-            name: "Biến tần Solis 3 pha - áp cao",
-            href: "#",
-            imageSrc: "https://www.ginverter.com/wp-content/uploads/2022/12/255-S6-GC30K-50K_45-1.png",
-            imageAlt: "Biến tần Solis 3 pha áp cao",
-            status: "instock",
-            specs: {
-              brand: "SOLIS", 
-              type: "3 pha - áp cao",
-              dcInput: "Đầu vào DC tối đa 200%",
-              batteryVoltage: "Dải điện áp pin 120-800V",
-              features: "Chức năng tích hợp AFCI",
-              protection: "IP66",
-              power: "10kW/15kW/20kW/30kW/50kW",
-              maxDC: "20kW/30kW/40kW/60kW/100kW"
-            }
-          }
-        ]
-      },
-      ongrid: {
-        title: "Biến tần Ongrid",
-        items: [
-          {
-            id: 1,
-            name: "Biến tần INVT 1 pha - bám tải",
-            href: "#",
-            imageSrc: "https://www.invt-solar.com/wp-content/uploads/2023/08/ipv-series.png",
-            imageAlt: "Biến tần INVT 1 pha bám tải",
-            status: "instock",
-            specs: {
-              brand: "INVT",
-              type: "1 pha - bám tải",
-              dcInput: "Đầu vào DC tối đa 150%",
-              features: "Hệ thống xử lý lỗi thông minh",
-              protection: "IP66",
-              power: "5kW/10kW",
-              maxDC: "7.5kW/15kW",
-              additionalFeature: "Bảo vệ thiết bị điện hạ thế"
-            }
-          },
-          {
-            id: 2,
-            name: "Biến tần INVT 3 pha - bám tải",
-            href: "#",
-            imageSrc: "https://www.invt-solar.com/wp-content/uploads/2023/08/ipv-3phase.png",
-            imageAlt: "Biến tần INVT 3 pha bám tải",
-            status: "instock",
-            specs: {
-              brand: "INVT",
-              type: "3 pha - bám tải",
-              dcInput: "Đầu vào DC tối đa lên đến 160%",
-              features: "Hệ thống xử lý lỗi thông minh",
-              protection: "IP66",
-              power: "10kW/15kW/20kW/30kW/50kW/110kW",
-              maxDC: "16kW/24kW/32kW/48kW/80kW/128kW",
-              additionalFeature: "Bảo vệ thiết bị điện hạ thế"
-            }
-          },
-          {
-            id: 3,
-            name: "Biến tần Solis 3 pha - bám tải",
-            href: "#",
-            imageSrc: "https://www.ginverter.com/wp-content/uploads/2022/12/S6-GC100K-136K_45-1.png",
-            imageAlt: "Biến tần Solis 3 pha bám tải",
-            status: "instock",
-            specs: {
-              brand: "SOLIS",
-              type: "3 pha - bám tải",
-              dcInput: "Đầu vào DC tối đa lên đến 150%",
-              features: "Hệ thống xử lý lỗi thông minh",
-              protection: "IP66",
-              power: "30kW/50kW/80kW/100kW/125kW",
-              maxDC: "45kW/75kW/115kW/128kW/138kW",
-              additionalFeature: "Bảo vệ thiết bị điện hạ thế"
-            }
-          }
-        ]
-      }
-    }
-  },
-  pinluutru: {
-    title: "Pin lưu trữ",
-    description: "Pin lưu trữ là thiết bị tích trữ điện năng, giúp bảo vệ hệ thống điện khi có sự cố hoặc khi không có ánh nắng mặt trời.",
-    categories: {
-      apthap: {
-        title: "Pin lưu trữ áp thấp",
-        items: [
-          {
-            id: 1,
-            name: "Pin lưu trữ Easyway 5.2kWh",
-            href: "#",
-            imageSrc: "https://www.easywaysolar.com/wp-content/uploads/2023/09/5.2kwh.png",
-            imageAlt: "Pin lưu trữ Easyway 5.2kWh",
-            status: "instock",
-            specs: {
-              brand: "Easyway",
-              capacity: "5.2 kWh",
-              cellType: "Gotion",
-              protection: "IP20",
-              voltage: "102 Ah / 51.2 Vd.c",
-              installation: "Cố định trên sàn & Treo tường",
-              features: []
-            }
-          },
-          {
-            id: 2,
-            name: "Pin lưu trữ Easyway 7.6kWh",
-            href: "#",
-            imageSrc: "https://www.easywaysolar.com/wp-content/uploads/2023/09/7.6kwh.png",
-            imageAlt: "Pin lưu trữ Easyway 7.6kWh",
-            status: "instock",
-            specs: {
-              brand: "Easyway",
-              capacity: "7.6 kWh",
-              cellType: "Tianneng",
-              protection: "IP20",
-              voltage: "150 Ah / 51.2V d.c",
-              installation: "Treo tường & Xếp chồng",
-              features: []
-            }
-          },
-          {
-            id: 3,
-            name: "Pin lưu trữ Easyway 10kWh",
-            href: "#",
-            imageSrc: "https://www.easywaysolar.com/wp-content/uploads/2023/09/10kwh.png",
-            imageAlt: "Pin lưu trữ Easyway 10kWh",
-            status: "instock",
-            specs: {
-              brand: "Easyway",
-              capacity: "10 kWh",
-              cellType: "Tianneng",
-              protection: "IP20",
-              voltage: "280 Ah / 51.2V d.c",
-              installation: "Cố định trên sàn",
-              features: []
-            }
-          },
-          {
-            id: 4,
-            name: "Pin lưu trữ Easyway 14.3kWh",
-            href: "#",
-            imageSrc: "https://www.easywaysolar.com/wp-content/uploads/2023/09/14.3kwh.png",
-            imageAlt: "Pin lưu trữ Easyway 14.3kWh",
-            status: "instock",
-            specs: {
-              brand: "Easyway",
-              capacity: "14.3 kWh",
-              cellType: "GreatPower/Tianneng",
-              protection: "IP20/IP54",
-              voltage: "280 Ah / 51.2V d.c",
-              installation: "Đặt trên sàn (Dịch chuyển bằng bánh xe)",
-              features: []
-            }
-          }
-        ]
-      },
-      apcao: {
-        title: "Pin lưu trữ áp cao",
-        items: [
-          {
-            id: 1,
-            name: "Pin lưu trữ áp cao 5-40kWh",
-            href: "#",
-            imageSrc: "https://www.ginverter.com/wp-content/uploads/2023/03/S6-EH1P5K-6K_Battery-Pack_45-1.png",
-            imageAlt: "Pin lưu trữ áp cao 5-40kWh",
-            status: "instock",
-            specs: {
-              brand: "Solis",
-              capacity: "5-40 kWh",
-              cellType: "Gotion",
-              protection: "IP20",
-              voltage: "52 Ah / 96 Vd.c",
-              maxPacks: "Nâng cấp tối đa 6 pack",
-              features: ["Xếp chồng đặng cấp"]
-            }
-          },
-          {
-            id: 2,
-            name: "Pin lưu trữ áp cao 7.8-61kWh",
-            href: "#",
-            imageSrc: "https://www.ginverter.com/wp-content/uploads/2023/03/S6-EH1P5K-6K_Battery-Pack-2_45-1.png",
-            imageAlt: "Pin lưu trữ áp cao 7.8-61kWh",
-            status: "instock",
-            specs: {
-              brand: "Solis",
-              capacity: "7.8-61 kWh",
-              cellType: "Tianneng",
-              protection: "IP20",
-              voltage: "100 Ah / 76.8 Vd.c",
-              maxPacks: "Nâng cấp tối đa 8 pack",
-              features: ["Xếp chồng đặng cấp"]
-            }
-          },
-          {
-            id: 3,
-            name: "Pin lưu trữ áp cao 100kWh",
-            href: "#",
-            imageSrc: "https://www.ginverter.com/wp-content/uploads/2023/03/S6-EH1P5K-6K_Battery-Cabinet_45-1.png",
-            imageAlt: "Pin lưu trữ áp cao 100kWh",
-            status: "instock",
-            specs: {
-              brand: "Solis",
-              capacity: "100 kWh",
-              cellType: "Tianneng",
-              protection: "IP20",
-              voltage: "280 Ah / 358.4 Vd.c",
-              features: ["Hệ thống điều hòa làm mát", "Tủ pin phiên bản cao cấp"]
-            }
-          }
-        ]
-      }
-    }
-  },
-  phukien: {
-    title: "Phụ kiện",
-    description: "Các phụ kiện đi kèm giúp tối ưu hóa hiệu suất và kéo dài tuổi thọ của hệ thống điện mặt trời.",
-    categories: {
-      tudien: {
-        title: "Tủ điện",
-        items: [
-          {
-            id: 1,
-            name: "Tủ điện năng lượng mặt trời",
-            href: "#",
-            imageSrc: "https://www.solarpowerworldonline.com/wp-content/uploads/2020/03/midnite-solar-e-panel.jpg",
-            imageAlt: "Tủ điện năng lượng mặt trời",
-            status: "instock",
-            specs: {
-              brand: "SLM Solar",
-              type: "Tủ điện DC/AC",
-              protection: "IP65",
-              material: "Thép sơn tĩnh điện",
-              features: [
-                "Chống thấm nước",
-                "Chống bụi",
-                "Tích hợp CB DC, AC",
-                "Chống sét lan truyền"
-              ],
-              installation: "Treo tường hoặc đặt sàn"
-            }
-          }
-        ]
-      },
-      hetiepdia: {
-        title: "Hệ tiếp địa",
-        items: [
-          {
-            id: 1,
-            name: "Hệ thống tiếp địa",
-            href: "#", 
-            imageSrc: "https://www.solarpowerworldonline.com/wp-content/uploads/2019/08/grounding-system.jpg",
-            imageAlt: "Hệ thống tiếp địa chống sét",
-            status: "instock",
-            specs: {
-              brand: "SLM Solar",
-              type: "Hệ tiếp địa",
-              material: "Đồng nguyên chất",
-              components: [
-                "Cọc tiếp địa",
-                "Dây đồng trần",
-                "Hóa chất giảm điện trở", 
-                "Phụ kiện kết nối"
-              ],
-              resistance: "≤ 4 Ohm",
-              standards: "Đạt tiêu chuẩn IEC"
-            }
-          }
-        ]
-      }
-    }
-  },
-};
-
-// Thêm interface cho cấu hình spec
-interface SpecConfig {
-  key: keyof Specs;  // Đảm bảo key phải là một thuộc tính của Specs
-  label: string;
-  icon: any; // hoặc định nghĩa type cụ thể cho icon component
+// Định nghĩa interface cho danh mục sản phẩm
+interface ProductCategory {
+  title: string;
+  products: Products[];
+  description: string;
 }
 
-// Cập nhật khai báo specConfigs
-const specConfigs: SpecConfig[] = [
-  // Thông số chung
-  { key: 'brand', label: 'Thương hiệu', icon: BuildingOfficeIcon },
-  { key: 'type', label: 'Loại', icon: TagIcon },
-  { key: 'protection', label: 'Bảo vệ', icon: ShieldCheckIcon },
+// Nhóm sản phẩm theo danh mục
+const categoryMapping: Record<string, string> = {
+  // Các tên danh mục gốc
+  "Pin quang năng": "pinquangnang",
+  "Biến tần": "bientan",
+  "Pin lưu trữ": "pinluutru",
+  "Phụ kiện": "phukien",
   
-  // Pin quang năng
-  { key: 'technology', label: 'Công nghệ', icon: CpuChipIcon },
-  { key: 'cell', label: 'Cell pin', icon: DevicePhoneMobileIcon },
-  { key: 'power', label: 'Công suất', icon: BoltIcon },
-  { key: 'dimensions', label: 'Kích thước', icon: Square3Stack3DIcon },
-  { key: 'weight', label: 'Khối lượng', icon: ScaleIcon },
-  { key: 'efficiency', label: 'Hiệu suất', icon: ChartBarIcon },
+  // Thêm các tên danh mục dạng khác (không dấu, viết thường) để đảm bảo tương thích
+  "pin quang nang": "pinquangnang",
+  "bien tan": "bientan", 
+  "pin luu tru": "pinluutru",
+  "phu kien": "phukien",
+  
+  // Thêm các tên danh mục tiếng Anh có thể có
+  "solar panels": "pinquangnang",
+  "inverter": "bientan",
+  "battery": "pinluutru",
+  "accessories": "phukien",
+  
+  // Thêm các ID danh mục có thể được trả về từ API
+  "1": "pinquangnang",
+  "2": "bientan",
+  "3": "pinluutru",
+  "4": "phukien"
+};
 
-  // Biến tần
-  { key: 'dcInput', label: 'Đầu vào DC', icon: ArrowRightCircleIcon },
-  { key: 'batteryVoltage', label: 'Điện áp pin', icon: Battery50Icon },
-  { key: 'maxDC', label: 'DC tối đa', icon: BoltIcon },
+const productsByCategory: Record<string, ProductCategory> = {};
 
-  // Pin lưu trữ
-  { key: 'capacity', label: 'Dung lượng', icon: Battery100Icon },
-  { key: 'cellType', label: 'Loại cell', icon: DevicePhoneMobileIcon },
-  { key: 'voltage', label: 'Điện áp', icon: ArrowRightCircleIcon },
-  { key: 'installation', label: 'Lắp đặt', icon: WrenchScrewdriverIcon },
-  { key: 'maxPacks', label: 'Mở rộng', icon: PlusIcon },
+// Khởi tạo các danh mục trước
+Object.keys(categoryMapping).forEach(catName => {
+  const catId = categoryMapping[catName];
+  if (catId) {
+    productsByCategory[catId] = {
+      title: catName,
+      products: [],
+      description: ""
+    };
+  }
+});
 
-  // Phụ kiện
-  { key: 'material', label: 'Vật liệu', icon: RectangleStackIcon },
-  { key: 'resistance', label: 'Điện trở', icon: ScaleIcon },
-  { key: 'standards', label: 'Tiêu chuẩn', icon: CheckCircleIcon },
-];
+// Thiết lập mô tả cho các danh mục
+productsByCategory["pinquangnang"].description = "Pin quang năng là thiết bị chuyển đổi năng lượng mặt trời thành điện năng sạch, giúp giảm thiểu tác động tiêu cực đến môi trường và tiết kiệm chi phí.";
+productsByCategory["bientan"].description = "Biến tần là thiết bị chuyển đổi điện một chiều từ tấm pin mặt trời thành điện xoay chiều để sử dụng cho các thiết bị điện trong gia đình và doanh nghiệp.";
+productsByCategory["pinluutru"].description = "Pin lưu trữ là thiết bị tích trữ điện năng, giúp bảo vệ hệ thống điện khi có sự cố hoặc khi không có ánh nắng mặt trời.";
+productsByCategory["phukien"].description = "Các phụ kiện đi kèm giúp tối ưu hóa hiệu suất và kéo dài tuổi thọ của hệ thống điện mặt trời.";
+
+// Phân loại sản phẩm vào các danh mục
+productsArray.forEach(product => {
+  if (product.attributes) {
+    // Ưu tiên sử dụng trường categories
+    if (product.attributes.categories) {
+      // Xử lý trường hợp categories là một mảng
+      const categoriesList = Array.isArray(product.attributes.categories) 
+        ? product.attributes.categories 
+        : [product.attributes.categories];
+      
+      // Kiểm tra từng category trong danh sách
+      let foundCategory = false;
+      
+      for (const catName of categoriesList) {
+        const catId = categoryMapping[catName];
+        if (catId && productsByCategory[catId]) {
+          productsByCategory[catId].products.push(product);
+          foundCategory = true;
+          break; // Chỉ thêm vào danh mục đầu tiên tìm thấy
+        }
+      }
+      
+      // Nếu không tìm thấy danh mục nào phù hợp, thêm vào phụ kiện
+      if (!foundCategory) {
+        productsByCategory["phukien"].products.push(product);
+      }
+    } 
+    // Sử dụng trường category cũ nếu không có trường categories
+    else if (product.attributes.category) {
+      const catName = product.attributes.category;
+      const catId = categoryMapping[catName];
+      
+      if (catId && productsByCategory[catId]) {
+        productsByCategory[catId].products.push(product);
+      } else {
+        // Nếu không xác định được danh mục, đặt mặc định vào danh mục "Phụ kiện"
+        productsByCategory["phukien"].products.push(product);
+      }
+    } else {
+      // Nếu không có thuộc tính category hoặc categories, đặt vào danh mục "Phụ kiện"
+      productsByCategory["phukien"].products.push(product);
+    }
+  }
+});
+
+// Tính toán xem có bao nhiêu danh mục có sản phẩm
+const activeCategoryCount = Object.values(productsByCategory).filter(
+  (cat: ProductCategory) => cat.products.length > 0
+).length;
+
+// Loại bỏ các danh mục trùng lặp trong trường hợp một sản phẩm được đặt vào nhiều danh mục
+Object.values(productsByCategory).forEach(category => {
+  // Đảm bảo không có sản phẩm trùng lặp trong cùng một danh mục
+  const uniqueProductIds = new Set();
+  category.products = category.products.filter(product => {
+    if (uniqueProductIds.has(product.id)) {
+      return false;
+    }
+    uniqueProductIds.add(product.id);
+    return true;
+  });
+});
 ---
 
 <Layout title="Thiết bị">
@@ -528,8 +275,8 @@ const specConfigs: SpecConfig[] = [
         <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden  sm:-top-80" aria-hidden="true">
           <div class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
         </div>
-        <div class="mx-auto container px-6 lg:px-8">
-          <div class="mx-auto  py-32 sm:py-48 lg:py-32">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div class="mx-auto py-32 sm:py-48 lg:py-32">
             <div class="hidden sm:mb-8 sm:flex sm:justify-start">
              <div>
                 <span class="text-2xl font-semibold tracking-tight text-balance text-white sm:text-5xl">Thiết bị</span>
@@ -541,30 +288,28 @@ const specConfigs: SpecConfig[] = [
         <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
           <div class="relative left-[calc(50%+3rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
         </div>
+      </div>
   </header>
   <Slider client:load />
-  
 
-  <main class="mx-auto container pt-10">
-  
-
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8 pt-10 max-w-7xl">
     <section aria-labelledby="products-heading" class="pt-6 pb-24">
-      <h2 id="products-heading" class="sr-only">Products</h2>
-      <div class="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
+      <h2 id="products-heading" class="sr-only">Thiết bị</h2>
+      <div class="grid grid-cols-1 gap-x-4 gap-y-10 lg:grid-cols-5">
         <!-- Filters -->
-        <form class="hidden lg:block sticky top-4 h-fit">
-          <h3 class="sr-only">Categories</h3>
-          <ul role="list" class="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
+        <form class="hidden lg:block sticky top-4 h-fit lg:col-span-1">
+          <h3 class="sr-only">Danh mục</h3>
+          <ul role="list" class="space-y-3 border-b border-gray-200 pb-4 text-sm font-medium text-gray-900">
             {categories.map((category) => (
               <li>
-                <div class="font-medium text-lg text-green-500">
-                  <a href={category.href}>{category.name}</a>
+                <div class="font-medium text-base text-green-500">
+                  <a href={category.href} class="hover:text-green-600 transition-colors">{category.name}</a>
                 </div>
                 {category.submenu && (
-                  <ul class="ml-4 mt-2 space-y-2">
+                  <ul class="ml-3 mt-1 space-y-1">
                     {category.submenu.map((submenu) => (
                       <li class="text-gray-600 hover:text-green-500">
-                        <a href={submenu.href}>{submenu.name}</a>
+                        <a href={submenu.href} class="transition-colors">{submenu.name}</a>
                       </li>
                     ))}
                   </ul>
@@ -575,201 +320,253 @@ const specConfigs: SpecConfig[] = [
         </form>
 
         <!-- Product grid -->
-        <div class="lg:col-span-3">
-          {Object.entries(products).map(([key, category]) => (
-            <div class="mb-10" id={key}>
-              <h2 class="font-bold text-2xl mb-6">{category.title}</h2>
-              <p class="text-gray-500 mb-6">{category.description}</p>
-              
-              {category.categories ? (
-                // Hiển thị các danh mục con nếu có
-                Object.entries(category.categories).map(([subKey, subCategory]) => (
-                  <div class="mb-8" id={subKey}>
-                    <h3 class="font-bold text-xl mb-4">{subCategory.title}</h3>
-                    <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
-                      {subCategory.items?.map((product: Product) => (
-                        <div class="group relative">
-                          <div class="relative overflow-hidden">
-                            <img 
-                              src={product.imageSrc}
-                              alt={product.imageAlt}
-                              class="aspect-3/4 w-full bg-gray-200 object-cover transition-transform duration-300 
-                                     group-hover:scale-105 sm:aspect-auto sm:h-96"
-                            />
+        <div class="lg:col-span-4">
+          <h2 class="font-bold text-2xl mb-3">Thiết bị Solarmax</h2>
+          <div class="mb-10">
+            <p class="text-gray-500 mb-2">Danh sách các thiết bị chất lượng cao dành cho hệ thống năng lượng mặt trời.</p>
+            <p class="text-gray-500">Thiết kế tối ưu, hiệu suất cao và độ bền vượt trội - Giải pháp toàn diện cho nhu cầu năng lượng sạch của bạn.</p>
+          </div>
+          
+          {/* Danh sách các sản phẩm theo từng danh mục */}
+          {Object.entries(productsByCategory).map(([categoryId, category]) => (
+            category.products.length > 0 && (
+              <div class="mb-16 scroll-mt-24" id={categoryId}>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-200">{category.title}</h2>
+                <p class="text-gray-500 mb-8">{category.description}</p>
+                
+                <div class="grid grid-cols-2 gap-x-2 gap-y-3 sm:grid-cols-2 sm:gap-x-4 sm:gap-y-6 lg:grid-cols-3 lg:gap-x-6">
+                  {category.products.map((product) => (
+                    <div class="group relative bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                      <div class="relative overflow-hidden p-1.5 sm:p-2">
+                        
+                        <!-- Product image with highlight specs -->
+                        <div class="flex">
+                          <div class="flex-grow relative overflow-hidden rounded-lg aspect-square">
+                            <a href={`/thiet-bi/${product.attributes.slug}/`} class="block relative z-10">
+                              <Image
+                                class="mx-auto object-cover w-full h-full transition-all duration-300 group-hover:opacity-30 group-hover:blur-sm product-image"
+                                src={`https://app.slmsolar.com${product.attributes.image.data.attributes.formats.small.url}`}
+                                alt={product.attributes.title}
+                                inferSize
+                              />
+                            </a>
                             
                             {/* Specs overlay */}
-                            <div class="absolute inset-0 bg-black/80 translate-y-full transition-transform duration-300 ease-in-out group-hover:translate-y-0">
-                              <div class="p-4 text-white h-full overflow-y-auto">
-                                {product.specs && (
-                                  <div class="grid grid-cols-1 gap-3 text-sm">
-                                    {specConfigs.map(config => 
-                                      product.specs?.[config.key as keyof Specs] && (
-                                        <div class="bg-white/5 rounded-lg overflow-hidden">
-                                          <div class="flex items-center gap-2 bg-white/10 px-3 py-1.5">
-                                            <config.icon className="w-4 h-4" />
-                                            <span class="font-medium text-xs uppercase tracking-wider">{config.label}</span>
-                                          </div>
-                                          <div class="px-3 py-2">
-                                            <span class="text-sm">{product.specs[config.key as keyof Specs]}</span>
-                                          </div>
-                                        </div>
-                                      )
-                                    )}
-
-                                    {product.specs.features && Array.isArray(product.specs.features) && product.specs.features.length > 0 && (
-                                      <div class="bg-white/5 rounded-lg overflow-hidden">
-                                        <div class="flex items-center gap-2 bg-white/10 px-3 py-1.5">
-                                          <SparklesIcon className="w-4 h-4" />
-                                          <span class="font-medium text-xs uppercase tracking-wider">Tính năng</span>
-                                        </div>
-                                        <div class="px-3 py-2">
-                                          <ul class="list-disc list-inside space-y-1 text-sm">
-                                            {product.specs.features.map((feature) => (
-                                              <li>{feature}</li>
-                                            ))}
-                                          </ul>
-                                        </div>
+                            <div class="absolute inset-0 bg-gradient-to-b from-black/90 to-black/95 opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 rounded-lg flex flex-col max-h-full">
+                              <div class="p-3 text-white overflow-y-auto scrollbar-thin max-h-full flex-1">
+                                {product.attributes && (
+                                  <div class="grid grid-cols-1 gap-1 text-sm">
+                                    {/* Product badges */}
+                                    {(product.attributes.he || product.attributes.pha) && (
+                                      <div class="flex flex-wrap gap-1 mb-1">
+                                        {product.attributes.he && (
+                                          <span class="inline-flex bg-green-600 text-white items-center rounded-md px-2 py-0.5 text-xs font-semibold">
+                                            {product.attributes.he}
+                                          </span>
+                                        )}
+                                        {product.attributes.pha && (
+                                          <span class="inline-flex bg-green-600 text-white items-center rounded-md px-2 py-0.5 text-xs font-semibold ml-1">
+                                            {product.attributes.pha}
+                                          </span>
+                                        )}
                                       </div>
                                     )}
-
-                                    {product.specs.components && Array.isArray(product.specs.components) && product.specs.components.length > 0 && (
-                                      <div class="bg-white/5 rounded-lg overflow-hidden">
-                                        <div class="flex items-center gap-2 bg-white/10 px-3 py-1.5">
-                                          <PuzzlePieceIcon className="w-4 h-4" />
-                                          <span class="font-medium text-xs uppercase tracking-wider">Thành phần</span>
+                                    
+                                    {/* Mô tả ngắn gọn nếu có */}
+                                    {product.attributes.description && (
+                                      <p class="text-xs text-gray-300 mb-2">{product.attributes.description}</p>
+                                    )}
+                                    
+                                    <div class="grid grid-cols-1 gap-1">
+                                      {/* Specs chính */}
+                                      {specConfigs.map(config => 
+                                        product.attributes[config.key as keyof typeof product.attributes] && (
+                                          <div class="flex items-center bg-white/5 rounded-md p-1.5">
+                                            <div class="flex items-center gap-1.5 mr-2">
+                                              <config.icon className="w-3 h-3 text-green-400" />
+                                              <span class="font-medium text-xs text-gray-200">{config.label}:</span>
+                                            </div>
+                                            <span class="text-xs ml-auto">{product.attributes[config.key as keyof typeof product.attributes]}</span>
+                                          </div>
+                                        )
+                                      )}
+                                      
+                                      {/* Công suất nếu có */}
+                                      {(product.attributes.he || product.attributes.pha) && (
+                                        <div class="flex items-center bg-white/5 rounded-md p-1.5">
+                                          <div class="flex items-center gap-1.5 mr-2">
+                                            <BoltIcon className="w-3 h-3 text-green-400" />
+                                            <span class="font-medium text-xs text-gray-200">Công suất:</span>
+                                          </div>
+                                          <span class="text-xs ml-auto">
+                                            {product.attributes.he && `${product.attributes.he}`}
+                                            {product.attributes.he && product.attributes.pha && ' - '}
+                                            {product.attributes.pha && `${product.attributes.pha}`}
+                                          </span>
                                         </div>
-                                        <div class="px-3 py-2">
-                                          <ul class="list-disc list-inside space-y-1 text-sm">
-                                            {product.specs.components.map((component) => (
-                                              <li>{component}</li>
-                                            ))}
-                                          </ul>
+                                      )}
+                                    </div>
+                                    
+                                    {/* Highlights nếu có */}
+                                    {Array.isArray(product.attributes.highlight) && product.attributes.highlight.length > 0 && (
+                                      <div class="mt-2">
+                                        <div class="flex items-center gap-1.5 mb-1.5">
+                                          <CheckCircleIcon className="w-3 h-3 text-green-400" />
+                                          <span class="font-medium text-xs text-gray-200">Thông số nổi bật</span>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-1">
+                                          {product.attributes.highlight.map((item: any) => (
+                                            <div class="flex flex-col bg-white/5 rounded p-1.5">
+                                              <span class="text-xs text-gray-400">{item.title}</span>
+                                              <span class="text-xs font-medium">{item.value}</span>
+                                            </div>
+                                          ))}
                                         </div>
                                       </div>
                                     )}
                                   </div>
                                 )}
                               </div>
+                              
+                              {/* Nút xem chi tiết */}
+                              <div class="border-t border-white/10 p-2 text-center">
+                                <a href={`/thiet-bi/${product.attributes.slug}/`} class="text-xs text-green-400 hover:text-green-300 font-medium">
+                                  Xem chi tiết
+                                </a>
+                              </div>
                             </div>
                           </div>
+                          
+                         
+                        </div>
 
-                          {/* Tên sản phẩm */}
-                          <div class="mt-2">
-                            <h3 class="text-sm font-medium text-gray-900 truncate">
-                              <a href={product.href}>
-                                {product.name}
-                              </a>
+                        <!-- Product title and price -->
+                        <div class="mt-2 sm:mt-4">
+                          <a href={`/thiet-bi/${product.attributes.slug}/`}>
+                            <h3 class="text-base truncate font-normal text-gray-900 hover:text-green-600 transition-colors">
+                              {product.attributes.title}
                             </h3>
-                            {/* Status badge */}
-                            <div class="mt-1">
-                              {product.status === 'instock' && (
-                                <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                                  Có sẵn
-                                </span>
-                              )}
-                              {/* ... các status khác ... */}
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <!-- Hiển thị sản phẩm bình thường nếu không có danh mục con -->
-                <div class="grid grid-cols-1 gap-y-4 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-10 lg:grid-cols-3 lg:gap-x-8">
-                  {category.items?.map((product: Product) => (
-                    <div class="group relative">
-                      <div class="relative overflow-hidden">
-                        <img 
-                          src={product.imageSrc}
-                          alt={product.imageAlt}
-                          class="aspect-3/4 w-full bg-gray-200 object-cover transition-transform duration-300 
-                                 group-hover:scale-105 sm:aspect-auto sm:h-96"
-                        />
-                        
-                        {/* Specs overlay */}
-                        <div class="absolute inset-0 bg-black/80 translate-y-full transition-transform duration-300 ease-in-out group-hover:translate-y-0">
-                          <div class="p-4 text-white h-full overflow-y-auto">
-                            {product.specs && (
-                              <div class="grid grid-cols-1 gap-3 text-sm">
-                                {specConfigs.map(config => 
-                                  product.specs?.[config.key as keyof Specs] && (
-                                    <div class="bg-white/5 rounded-lg overflow-hidden">
-                                      <div class="flex items-center gap-2 bg-white/10 px-3 py-1.5">
-                                        <config.icon className="w-4 h-4" />
-                                        <span class="font-medium text-xs uppercase tracking-wider">{config.label}</span>
-                                      </div>
-                                      <div class="px-3 py-2">
-                                        <span class="text-sm">{product.specs[config.key as keyof Specs]}</span>
-                                      </div>
-                                    </div>
-                                  )
-                                )}
-
-                                {product.specs.features && Array.isArray(product.specs.features) && product.specs.features.length > 0 && (
-                                  <div class="bg-white/5 rounded-lg overflow-hidden">
-                                    <div class="flex items-center gap-2 bg-white/10 px-3 py-1.5">
-                                      <SparklesIcon className="w-4 h-4" />
-                                      <span class="font-medium text-xs uppercase tracking-wider">Tính năng</span>
-                                    </div>
-                                    <div class="px-3 py-2">
-                                      <ul class="list-disc list-inside space-y-1 text-sm">
-                                        {product.specs.features.map((feature) => (
-                                          <li>{feature}</li>
-                                        ))}
-                                      </ul>
-                                    </div>
-                                  </div>
-                                )}
-
-                                {product.specs.components && Array.isArray(product.specs.components) && product.specs.components.length > 0 && (
-                                  <div class="bg-white/5 rounded-lg overflow-hidden">
-                                    <div class="flex items-center gap-2 bg-white/10 px-3 py-1.5">
-                                      <PuzzlePieceIcon className="w-4 h-4" />
-                                      <span class="font-medium text-xs uppercase tracking-wider">Thành phần</span>
-                                    </div>
-                                    <div class="px-3 py-2">
-                                      <ul class="list-disc list-inside space-y-1 text-sm">
-                                        {product.specs.components.map((component) => (
-                                          <li>{component}</li>
-                                        ))}
-                                      </ul>
-                                    </div>
-                                  </div>
-                                )}
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Tên sản phẩm */}
-                      <div class="mt-2">
-                        <h3 class="text-sm font-medium text-gray-900 truncate">
-                          <a href={product.href}>
-                            {product.name}
                           </a>
-                        </h3>
-                        {/* Status badge */}
-                        <div class="mt-1">
-                          {product.status === 'instock' && (
-                            <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                              Có sẵn
-                            </span>
-                          )}
-                          {/* ... các status khác ... */}
                         </div>
                       </div>
                     </div>
                   ))}
                 </div>
-              )}
-            </div>
+              </div>
+            )
           ))}
+
+          {/* Hiển thị thông báo nếu không có sản phẩm nào */}
+          {activeCategoryCount === 0 && (
+            <div class="text-center py-10">
+              <p class="text-lg text-gray-500">Không tìm thấy sản phẩm nào</p>
+            </div>
+          )}
         </div>
       </div>
     </section>
   </main>
 
+  {/* Thêm CSS để cuộn mượt và hiệu ứng hover */}
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    .group:hover .group-hover\:opacity-100 {
+      opacity: 1;
+    }
+    
+    /* Tùy chỉnh thanh cuộn */
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 3px;
+    }
+    
+    .scrollbar-thin::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 2px;
+    }
+    
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+    }
+    
+    .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Cải thiện khả năng cuộn trên thiết bị cảm ứng */
+    @media (pointer: coarse) {
+      .scrollbar-thin {
+        -webkit-overflow-scrolling: touch;
+        scroll-padding: 0.5rem;
+      }
+      
+      .scrollbar-thin::-webkit-scrollbar {
+        width: 4px;
+      }
+    }
+    
+    /* Đảm bảo overlay hiển thị đầy đủ nội dung */
+    .group:hover .flex-1.scrollbar-thin {
+      overflow-y: auto;
+      max-height: 100%;
+    }
+    
+    /* Hiệu ứng gương cho overlay */
+    .backdrop-blur-md {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    
+    /* Hiệu ứng phản chiếu ánh sáng */
+    .border-white\/20 {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .border-white\/20::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0) 80%
+      );
+      transform: rotate(30deg);
+      pointer-events: none;
+    }
+    
+    /* Hiệu ứng nội dung blur */
+    .glass-effect .flex-1 {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .glass-effect::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.05);
+      z-index: 0;
+      filter: blur(4px);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+    
+    /* Hiệu ứng blur cho ảnh khi hover */
+    .product-image {
+      filter: blur(0px);
+      transition: filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+    
+    .group:hover .group-hover\:blur-sm {
+      filter: blur(4px);
+    }
+  </style>
 </Layout>
