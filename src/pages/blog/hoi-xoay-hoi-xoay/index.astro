@@ -4,9 +4,11 @@ import fetchApi from "../../../lib/strapi.ts";
 import Header from '../../../components/blog/header.astro';
 import type { default as BlogType, BlogCategory } from "../../../interfaces/blogs.ts";
 import   BlogComponent from '../../../components/blog/blog.tsx'
+import MenuBloghoixoayhoixoay from '../../../components/blog/menubloghoixoayhoixoay.astro'
+
 const [blogs, categories] = await Promise.all([
   fetchApi<BlogType[]>({
-    endpoint: "blogs?populate[image][fields][0]=url&populate[image][fields][1]=formats&populate[blog_category][fields][0]=title",
+    endpoint: "blogs?filters[blog_category][id][$eq]=3&populate[image][fields][0]=url&populate[image][fields][1]=formats&populate[blog_category][fields][0]=title&pagination[limit]=100",
     wrappedByKey: "data",
   }),
   fetchApi<BlogCategory[]>({
@@ -24,6 +26,19 @@ const categoriesArray = Array.isArray(categories) ? categories : [];
 <Layout title="Blog">
   <div>
     <Header />
-    <BlogComponent client:load blogs={blogsArray} categories={categoriesArray}/>
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col lg:flex-row gap-8">
+          {/* Main content */}
+          <div class="lg:w-3/4">
+            <BlogComponent client:load blogs={blogsArray} categories={categoriesArray} />
+          </div>
+          
+          {/* Sidebar with categories */}
+          <MenuBloghoixoayhoixoay 
+          />
+        </div>
+      </div>
+    </section>
   </div>
 </Layout>

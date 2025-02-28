@@ -1,13 +1,33 @@
+import React from 'react';
 import type { FC } from 'react';
 import type { BlogCategory } from '../../interfaces/blogs';
 
 interface MenuBlogProps {
   categories: BlogCategory[];
   selectedCategory: string | null;
-  onCategoryChange: (categoryId: string | null) => void;
+  onCategoryChange?: (categoryId: string | null) => void;
 }
 
-const MenuBlog: FC<MenuBlogProps> = ({ categories, selectedCategory, onCategoryChange }) => {
+const MenuBlog: FC<MenuBlogProps> = ({ categories, selectedCategory: initialSelectedCategory, onCategoryChange }) => {
+  // State to maintain selected category locally
+  const [selectedCategory, setSelectedCategory] = React.useState<string | null>(initialSelectedCategory);
+
+  // Function to handle category change
+  const handleCategoryChange = (categoryId: string | null) => {
+    setSelectedCategory(categoryId);
+    
+    // If callback exists, use it (for backward compatibility)
+    if (onCategoryChange) {
+      onCategoryChange(categoryId);
+    }
+    
+    // Dispatch custom event for other components to listen
+    const event = new CustomEvent('categoryChange', { 
+      detail: { categoryId } 
+    });
+    window.dispatchEvent(event);
+  };
+
   return (
     <div className="lg:w-1/4">
       <div className="sticky top-28">
@@ -20,7 +40,7 @@ const MenuBlog: FC<MenuBlogProps> = ({ categories, selectedCategory, onCategoryC
               href="/blog"
               onClick={(e) => {
                 e.preventDefault();
-                onCategoryChange(null);
+                handleCategoryChange(null);
               }}
               className={`text-left px-4 py-2 rounded-lg transition-colors duration-200 ${
                 selectedCategory === null
@@ -36,7 +56,7 @@ const MenuBlog: FC<MenuBlogProps> = ({ categories, selectedCategory, onCategoryC
                 href={`/blog/${category.attributes.slug}`}
                 onClick={(e) => {
                   e.preventDefault();
-                  onCategoryChange(category.id.toString());
+                  handleCategoryChange(category.id.toString());
                 }}
                 className={`text-left px-4 py-2 rounded-lg transition-colors duration-200 ${
                   selectedCategory === category.id.toString()
