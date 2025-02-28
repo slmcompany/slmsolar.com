@@ -290,7 +290,7 @@ Object.values(productsByCategory).forEach(category => {
         </div>
       </div>
   </header>
-  <Slider client:load />
+  
 
   <main class="container mx-auto px-4 sm:px-6 lg:px-8 pt-10 max-w-7xl">
     <section aria-labelledby="products-heading" class="pt-6 pb-24">
@@ -322,11 +322,13 @@ Object.values(productsByCategory).forEach(category => {
         <!-- Product grid -->
         <div class="lg:col-span-4">
           <h2 class="font-bold text-2xl mb-3">Thiết bị Solarmax</h2>
-          <div class="mb-10">
-            <p class="text-gray-500 mb-2">Danh sách các thiết bị chất lượng cao dành cho hệ thống năng lượng mặt trời.</p>
-            <p class="text-gray-500">Thiết kế tối ưu, hiệu suất cao và độ bền vượt trội - Giải pháp toàn diện cho nhu cầu năng lượng sạch của bạn.</p>
-          </div>
+         
           
+          <!-- Thêm Slider vào đây -->
+          <div class="mb-8">
+            <Slider client:load />
+          </div>
+
           {/* Danh sách các sản phẩm theo từng danh mục */}
           {Object.entries(productsByCategory).map(([categoryId, category]) => (
             category.products.length > 0 && (

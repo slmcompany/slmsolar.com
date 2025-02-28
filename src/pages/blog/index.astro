@@ -7,7 +7,7 @@ import   BlogComponent from '../../components/blog/blog.tsx'
 
 const [blogs, categories] = await Promise.all([
   fetchApi<BlogType[]>({
-    endpoint: "blogs?populate[image][fields][0]=url&populate[image][fields][1]=formats&populate[blog_category][fields][0]=title",
+    endpoint: "blogs?populate[image][fields][0]=url&populate[image][fields][1]=formats&populate[blog_category][fields][0]=title&pagination[limit]=100",
     wrappedByKey: "data",
   }),
   fetchApi<BlogCategory[]>({

@@ -7,7 +7,7 @@ import { vi } from 'date-fns/locale';
 
 export async function getStaticPaths({}) {
     const projects: Array<Projects> = await fetchApi({
-        endpoint: "blogs?populate=image", // the content type to fetch
+        endpoint: "blogs?populate[image][fields][0]=url&populate[image][fields][1]=formats&populate[blog_category][fields][0]=title&pagination[limit]=100",
         wrappedByKey: "data",
     });
 
@@ -39,9 +39,9 @@ const readingTime = Math.ceil(wordCount / 200) || 1; // Minimum 1 minute read ti
         <div class="relative px-6 py-12 lg:px-8">
             <div class="mx-auto max-w-7xl">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                    <!-- Video Section - Left (1/3) -->
-                    {project.attributes.youtube_id && project.attributes.image?.data && (
-                        <div class="lg:col-span-4 relative w-[360px] mx-auto lg:mx-0">
+                    <!-- Media Section - Left (1/3) -->
+                    <div class="lg:col-span-4 relative w-[360px] mx-auto lg:mx-0">
+                        {project.attributes.youtube_id ? (
                             <div class="relative" style="padding-top: 177.78%"> <!-- 9:16 aspect ratio -->
                                 <iframe
                                     class="absolute inset-0 w-full h-full rounded-xl shadow-lg"
@@ -51,8 +51,18 @@ const readingTime = Math.ceil(wordCount / 200) || 1; // Minimum 1 minute read ti
                                     allowfullscreen
                                 ></iframe>
                             </div>
-                        </div>
-                    )}
+                        ) : (
+                            project.attributes.image?.data && (
+                                <div class="relative" style="padding-top: 100%"> <!-- 1:1 aspect ratio, adjust as needed -->
+                                    <img 
+                                        src={project.attributes.image.data.attributes.url}
+                                        alt={project.attributes.title}
+                                        class="absolute inset-0 w-full h-full object-cover rounded-xl shadow-lg"
+                                    />
+                                </div>
+                            )
+                        )}
+                    </div>
 
                     <!-- Title and Meta Section - Right (2/3) -->
                     <div class="lg:col-span-8 flex flex-col">

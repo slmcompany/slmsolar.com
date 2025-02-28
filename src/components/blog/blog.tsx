@@ -25,7 +25,7 @@ const BlogComponent: FC<BlogListProps> = ({ blogs = [], categories = [] }) => {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Main content */}
           <div className="lg:w-3/4">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {filteredBlogs.map((blog, index) => {
                 const imageUrl = blog.attributes?.image?.data?.attributes?.formats?.medium?.url;
                 
@@ -39,7 +39,7 @@ const BlogComponent: FC<BlogListProps> = ({ blogs = [], categories = [] }) => {
                     
                     {/* Main content with glass background */}
                     <div className="relative bg-white/70 backdrop-blur-sm rounded-xl h-full">
-                      <div className="relative pt-[133.33%] group -mt-5">
+                      <div className="relative pt-[177.78%] group -mt-5">
                         {imageUrl ? (
                           <img
                             src={`https://app.slmsolar.com${imageUrl}`}
@@ -59,7 +59,7 @@ const BlogComponent: FC<BlogListProps> = ({ blogs = [], categories = [] }) => {
                         )}
                       </div>
                       
-                      <div className="p-4 md:p-6">
+                      <div className="p-3 md:p-4">
                         <div className="flex flex-col gap-2">
                           {blog.attributes?.blog_category?.data && (
                             <span className="text-sm text-green-600 font-medium">
