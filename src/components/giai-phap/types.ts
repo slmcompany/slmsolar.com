@@ -28,4 +28,10 @@ export interface GiaiPhapMaiProps {
     alt: string;
   }>;
   systemName: string;
+  headerImage: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
 } 

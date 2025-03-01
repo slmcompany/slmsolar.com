@@ -20,7 +20,7 @@ const WhyChooseSolarmax = () => {
       ),
       text: "Tư Vấn & Khảo Sát miễn Phí",
       href: "#",
-      background: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80",
+      background: "images/home/tai-sao-chon-solarmax-1.jpg",
       content: {
         title: "Tư Vấn & Khảo Sát Hoàn Toàn Miễn Phí",
         description: "Đội ngũ kỹ thuật chuyên nghiệp của SolarMax sẽ đo đạc chi tiết – đánh giá kết cấu mái – kiểm tra hệ thống điện hiện có để đưa ra phương án thi công an toàn – hiệu quả – tiết kiệm nhất.",
@@ -30,7 +30,7 @@ const WhyChooseSolarmax = () => {
           "Đánh giá vị trí lắp đặt để tối ưu hiệu suất",
           "Dự toán chi phí đầu tư & thời gian hoàn vốn nhanh chóng"
         ],
-        image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?q=80"
+        image: "images/home/tai-sao-chon-solarmax-1.jpg"
       }
     },
     {
@@ -41,7 +41,7 @@ const WhyChooseSolarmax = () => {
       ),
       text: "Lắp Đặt Trọn Gói",
       href: "#",
-      background: "https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80",
+      background: "images/home/tai-sao-chon-solarmax-2.jpg",
       content: {
         title: "Lắp Đặt Trọn Gói – Đảm Bảo Tiêu Chuẩn Quốc Tế",
         description: "SolarMax là tổng thầu EPC chuyên nghiệp, thực hiện thi công trọn gói cho các dự án điện mặt trời với mọi quy mô:",
@@ -52,7 +52,7 @@ const WhyChooseSolarmax = () => {
           "Lắp đặt nhanh chóng, tối ưu hiệu suất vận hành",
           "Cam kết mang đến giải pháp đầu tư thông minh, sinh lời bền vững"
         ],
-        image: "https://images.unsplash.com/photo-1611365892117-00ac5ef43c90?q=80"
+        image: "images/home/tai-sao-chon-solarmax-2.jpg"
       }
     },
     {
@@ -63,7 +63,7 @@ const WhyChooseSolarmax = () => {
       ),
       text: "Bảo Hành & Hỗ Trợ 24/7",
       href: "#",
-      background: "https://images.unsplash.com/photo-1542336391-ae2936d8af02?q=80",
+      background: "images/home/tai-sao-chon-solarmax-3.jpg",
       content: {
         title: "Bảo Hành & Hỗ Trợ 24/7 – Đồng Hành Lâu Dài",
         description: "Với SolarMax, bạn không chỉ đầu tư vào điện mặt trời – bạn đầu tư vào một tương lai bền vững!",
@@ -74,7 +74,7 @@ const WhyChooseSolarmax = () => {
           "Phản hồi sự cố trong vòng 24h",
           "Đồng hành cùng khách hàng trong suốt vòng đời sản phẩm"
         ],
-        image: "https://images.unsplash.com/photo-1591267990532-e5bdb1b0ceb8?q=80"
+        image: "images/home/tai-sao-chon-solarmax-3.jpg"
       }
     }
   ];

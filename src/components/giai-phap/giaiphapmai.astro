@@ -2,16 +2,16 @@
 import type { GiaiPhapMaiProps } from './types';
 
 interface Props extends GiaiPhapMaiProps {}
-const { pageContent, components, steps, advantages, sampleImages, systemName, mainImage } = Astro.props;
+const { pageContent, components, steps, advantages, sampleImages, systemName, mainImage, headerImage } = Astro.props;
 ---
 
     <header class="header-section">
         <div class="relative isolate overflow-hidden pt-14">
             <img 
-              src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=1920"
-              alt="Mái tôn lắp điện mặt trời"
-              width="1920"
-              height="1080"
+              src={headerImage.src}
+              alt={headerImage.alt}
+              width={headerImage.width}
+              height={headerImage.height}
               class="absolute inset-0 -z-10 size-full object-cover"
             />
             <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden  sm:-top-80" aria-hidden="true">
