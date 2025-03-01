@@ -24,14 +24,14 @@ import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/
 const products = [
   { 
     name: 'Hệ gia đình', 
-    description: 'Hệ nhỏ cho gia đình tối ưu chi phí điện', 
+    description: 'Nhỏ gọn, tiết kiệm, chủ động nguồn điện sạch', 
     href: '/he-gia-dinh', icon: ChartPieIcon,
     icon_img:"icon-he-gia-dinh.svg"
 
    },
   { 
     name: 'Hệ công nghiệp', 
-    description: 'Hệ lớn cho nhà xưởng, toà nhà, trang trại', 
+    description: 'Bền vững, ổn định, tối ưu chi phí năng lượng', 
     href: '/he-cong-nghiep', 
     icon: CursorArrowRaysIcon,
     icon_img:"icon-he-cong-nghiep.svg"
@@ -39,7 +39,7 @@ const products = [
   },
   { 
     name: 'Thiết bị', 
-    description: 'Thiết bị điện năng lượng mặt trời', 
+    description: 'Chuẩn quốc tế, nâng tầm hiệu suất điện mặt trời', 
     href: '/thiet-bi', 
     icon: FingerPrintIcon ,
     icon_img:"icon-thiet-bi.svg"
