@@ -18,6 +18,17 @@ export default interface Products {
     publishedAt: string;
     category: string;
     categories: string | string[];
+    thuonghieu?: string;
+    cong_suat?: string;
+    brand?: {
+      data?: {
+        id: number;
+        attributes: {
+          name: string;
+          slug: string;
+        };
+      };
+    };
     image: {
       data: {
         id: number;

@@ -21,6 +21,20 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 
+// Định nghĩa kiểu cho các mục menu
+interface MenuItem {
+  name: string;
+  description: string;
+  href: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  icon_img: string;
+  submenu?: Array<{
+    name: string;
+    description: string;
+    href: string;
+  }>;
+}
+
 const products = [
   { 
     name: 'Hệ gia đình', 
@@ -80,19 +94,18 @@ const giaiphap = [
 
   },
 ]
-const gioithieu = [
+const gioithieu: MenuItem[] = [
   { 
     name: 'Giới thiệu về SoLarMax', 
     description: 'Sứ mệnh - Tầm nhìn - Giá trị cốt lõi', 
     href: '/gioi-thieu', 
-    icon: ChartPieIcon ,
+    icon: ChartPieIcon,
     icon_img:"icon-gioi-thieu.svg"
-
   },
   { name: 'Các dự án tiêu biểu',
      description: 'Điện năng lượng mặt trời', 
      href: '/du-an', 
-     icon: ChartPieIcon ,
+     icon: ChartPieIcon,
      icon_img:"icon-du-an.svg"
     },
 
@@ -100,7 +113,7 @@ const gioithieu = [
   { name: 'Blog', 
     description: 'Tin tức và bài viết', 
     href: '/blog', 
-    icon: FingerPrintIcon ,
+    icon: FingerPrintIcon,
     icon_img:"icon-blog.svg",
     submenu: [
       {
@@ -125,8 +138,7 @@ const gioithieu = [
       },
      
     ]
-  },
- 
+  }
 ]
 const callsToAction = [
   { name: 'Xem video', href: 'https://www.tiktok.com/@solarmax87', icon: PlayCircleIcon },

@@ -1,9 +1,10 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import fetchApi from "../../lib/strapi.ts";
-import type Products from "../../interfaces/products.ts";
-import Image from "astro/components/Image.astro";
-import Slider from "../../components/devices/slider.tsx";
+import Layout from '../../layouts/Layout.astro'
+import UnavailableContent from '../../components/UnavailableContent.astro';
+
+// Không còn sử dụng API Strapi
+// import fetchApi from "../../lib/strapi.ts"
+// import type Product from "../../interfaces/products.ts"
 
 // Import icons từ heroicons
 import {
@@ -52,6 +53,7 @@ interface Specs {
   batteryVoltage?: string;
   maxDC?: string;
   additionalFeature?: string;
+  thuonghieu?: string;
 }
 
 // Interface cho cấu hình hiển thị spec
@@ -93,22 +95,6 @@ const specConfigs: SpecConfig[] = [
   { key: 'resistance', label: 'Điện trở', icon: ScaleIcon },
   { key: 'standards', label: 'Tiêu chuẩn', icon: CheckCircleIcon },
 ];
-
-const productsData = await fetchApi<Products[]>({
-    endpoint: "products", // the content type to fetch
-    query: {
-      "populate[0]": "image",
-      "populate[1]": "highlight",
-      "populate[2]": "categories",
-      "sort[0]": "categories:desc",
-      "sort[1]": "he:desc",
-      "sort[2]": "pha:asc"
-    },
-    wrappedByKey: "data",
-});
-
-// Sử dụng trực tiếp productsData mà không cần kiểm tra
-const productsArray = productsData;
 
 // Định nghĩa các danh mục cho sidebar
 const categories = [
@@ -153,7 +139,7 @@ const categories = [
 // Định nghĩa interface cho danh mục sản phẩm
 interface ProductCategory {
   title: string;
-  products: Products[];
+  products: any[]; // Changed from Products[] to fix error
   description: string;
 }
 
@@ -205,6 +191,8 @@ productsByCategory["pinluutru"].description = "Pin lưu trữ là thiết bị t
 productsByCategory["phukien"].description = "Các phụ kiện đi kèm giúp tối ưu hóa hiệu suất và kéo dài tuổi thọ của hệ thống điện mặt trời.";
 
 // Phân loại sản phẩm vào các danh mục
+// Code này không còn cần thiết vì không còn sử dụng Strapi API
+/* 
 productsArray.forEach(product => {
   if (product.attributes) {
     // Ưu tiên sử dụng trường categories
@@ -266,309 +254,23 @@ Object.values(productsByCategory).forEach(category => {
     return true;
   });
 });
+*/
+
+// Giá trị mặc định để tránh lỗi khi không có dữ liệu từ API
+const activeCategoryCount = 0;
 ---
 
 <Layout title="Thiết bị">
-  <header class="header-section">
-    <div class="relative isolate overflow-hidden pt-14">
-        <img src="https://dyness.com/Public/Uploads/uploadfile/images/20241029/20240627140333.jpg" alt="" class="absolute inset-0 -z-10 size-full object-cover">
-        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden  sm:-top-80" aria-hidden="true">
-          <div class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
-        </div>
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <div class="mx-auto py-32 sm:py-48 lg:py-32">
-            <div class="hidden sm:mb-8 sm:flex sm:justify-start">
-             <div>
-                <span class="text-2xl font-semibold tracking-tight text-balance text-white sm:text-5xl">Thiết bị</span>
-             </div>
-            </div>
-         
-          </div>
-        </div>
-        <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
-          <div class="relative left-[calc(50%+3rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
-        </div>
+  <div class="relative overflow-hidden bg-white">
+    <div class="mx-auto max-w-7xl">
+      <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:w-full lg:max-w-2xl lg:pb-28 xl:pb-32">
+        <main class="mx-auto px-4 sm:px-6 lg:px-8">
+          <UnavailableContent 
+            title="Danh mục thiết bị đang được cập nhật" 
+            description="Nội dung về thiết bị hiện không khả dụng do chúng tôi đang tiến hành nâng cấp hệ thống. Vui lòng quay lại sau."
+          />
+        </main>
       </div>
-  </header>
-  
-
-  <main class="container mx-auto px-4 sm:px-6 lg:px-8 pt-10 max-w-7xl">
-    <section aria-labelledby="products-heading" class="pt-6 pb-24">
-      <h2 id="products-heading" class="sr-only">Thiết bị</h2>
-      <div class="grid grid-cols-1 gap-x-4 gap-y-10 lg:grid-cols-5">
-        <!-- Filters -->
-        <form class="hidden lg:block sticky top-4 h-fit lg:col-span-1">
-          <h3 class="sr-only">Danh mục</h3>
-          <ul role="list" class="space-y-3 border-b border-gray-200 pb-4 text-sm font-medium text-gray-900">
-            {categories.map((category) => (
-              <li>
-                <div class="font-medium text-base text-green-500">
-                  <a href={category.href} class="hover:text-green-600 transition-colors">{category.name}</a>
-                </div>
-                {category.submenu && (
-                  <ul class="ml-3 mt-1 space-y-1">
-                    {category.submenu.map((submenu) => (
-                      <li class="text-gray-600 hover:text-green-500">
-                        <a href={submenu.href} class="transition-colors">{submenu.name}</a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-          </ul>
-        </form>
-
-        <!-- Product grid -->
-        <div class="lg:col-span-4">
-          <h2 class="font-bold text-2xl mb-3">Thiết bị Solarmax</h2>
-         
-          
-          <!-- Thêm Slider vào đây -->
-          <div class="mb-8">
-            <Slider client:load />
-          </div>
-
-          {/* Danh sách các sản phẩm theo từng danh mục */}
-          {Object.entries(productsByCategory).map(([categoryId, category]) => (
-            category.products.length > 0 && (
-              <div class="mb-16 scroll-mt-24" id={categoryId}>
-                <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-200">{category.title}</h2>
-                <p class="text-gray-500 mb-8">{category.description}</p>
-                
-                <div class="grid grid-cols-2 gap-x-2 gap-y-3 sm:grid-cols-2 sm:gap-x-4 sm:gap-y-6 lg:grid-cols-3 lg:gap-x-6">
-                  {category.products.map((product) => (
-                    <div class="group relative bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-                      <div class="relative overflow-hidden p-1.5 sm:p-2">
-                        
-                        <!-- Product image with highlight specs -->
-                        <div class="flex">
-                          <div class="flex-grow relative overflow-hidden rounded-lg aspect-square">
-                            <a href={`/thiet-bi/${product.attributes.slug}/`} class="block relative z-10">
-                              <Image
-                                class="mx-auto object-cover w-full h-full transition-all duration-300 group-hover:opacity-30 group-hover:blur-sm product-image"
-                                src={`https://app.slmsolar.com${product.attributes.image.data.attributes.formats.small.url}`}
-                                alt={product.attributes.title}
-                                inferSize
-                              />
-                            </a>
-                            
-                            {/* Specs overlay */}
-                            <div class="absolute inset-0 bg-gradient-to-b from-black/90 to-black/95 opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 rounded-lg flex flex-col max-h-full">
-                              <div class="p-3 text-white overflow-y-auto scrollbar-thin max-h-full flex-1">
-                                {product.attributes && (
-                                  <div class="grid grid-cols-1 gap-1 text-sm">
-                                    {/* Product badges */}
-                                    {(product.attributes.he || product.attributes.pha) && (
-                                      <div class="flex flex-wrap gap-1 mb-1">
-                                        {product.attributes.he && (
-                                          <span class="inline-flex bg-green-600 text-white items-center rounded-md px-2 py-0.5 text-xs font-semibold">
-                                            {product.attributes.he}
-                                          </span>
-                                        )}
-                                        {product.attributes.pha && (
-                                          <span class="inline-flex bg-green-600 text-white items-center rounded-md px-2 py-0.5 text-xs font-semibold ml-1">
-                                            {product.attributes.pha}
-                                          </span>
-                                        )}
-                                      </div>
-                                    )}
-                                    
-                                    {/* Mô tả ngắn gọn nếu có */}
-                                    {product.attributes.description && (
-                                      <p class="text-xs text-gray-300 mb-2">{product.attributes.description}</p>
-                                    )}
-                                    
-                                    <div class="grid grid-cols-1 gap-1">
-                                      {/* Specs chính */}
-                                      {specConfigs.map(config => 
-                                        product.attributes[config.key as keyof typeof product.attributes] && (
-                                          <div class="flex items-center bg-white/5 rounded-md p-1.5">
-                                            <div class="flex items-center gap-1.5 mr-2">
-                                              <config.icon className="w-3 h-3 text-green-400" />
-                                              <span class="font-medium text-xs text-gray-200">{config.label}:</span>
-                                            </div>
-                                            <span class="text-xs ml-auto">{product.attributes[config.key as keyof typeof product.attributes]}</span>
-                                          </div>
-                                        )
-                                      )}
-                                      
-                                      {/* Công suất nếu có */}
-                                      {(product.attributes.he || product.attributes.pha) && (
-                                        <div class="flex items-center bg-white/5 rounded-md p-1.5">
-                                          <div class="flex items-center gap-1.5 mr-2">
-                                            <BoltIcon className="w-3 h-3 text-green-400" />
-                                            <span class="font-medium text-xs text-gray-200">Công suất:</span>
-                                          </div>
-                                          <span class="text-xs ml-auto">
-                                            {product.attributes.he && `${product.attributes.he}`}
-                                            {product.attributes.he && product.attributes.pha && ' - '}
-                                            {product.attributes.pha && `${product.attributes.pha}`}
-                                          </span>
-                                        </div>
-                                      )}
-                                    </div>
-                                    
-                                    {/* Highlights nếu có */}
-                                    {Array.isArray(product.attributes.highlight) && product.attributes.highlight.length > 0 && (
-                                      <div class="mt-2">
-                                        <div class="flex items-center gap-1.5 mb-1.5">
-                                          <CheckCircleIcon className="w-3 h-3 text-green-400" />
-                                          <span class="font-medium text-xs text-gray-200">Thông số nổi bật</span>
-                                        </div>
-                                        <div class="grid grid-cols-2 gap-1">
-                                          {product.attributes.highlight.map((item: any) => (
-                                            <div class="flex flex-col bg-white/5 rounded p-1.5">
-                                              <span class="text-xs text-gray-400">{item.title}</span>
-                                              <span class="text-xs font-medium">{item.value}</span>
-                                            </div>
-                                          ))}
-                                        </div>
-                                      </div>
-                                    )}
-                                  </div>
-                                )}
-                              </div>
-                              
-                              {/* Nút xem chi tiết */}
-                              <div class="border-t border-white/10 p-2 text-center">
-                                <a href={`/thiet-bi/${product.attributes.slug}/`} class="text-xs text-green-400 hover:text-green-300 font-medium">
-                                  Xem chi tiết
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                          
-                         
-                        </div>
-
-                        <!-- Product title and price -->
-                        <div class="mt-2 sm:mt-4">
-                          <a href={`/thiet-bi/${product.attributes.slug}/`}>
-                            <h3 class="text-base truncate font-normal text-gray-900 hover:text-green-600 transition-colors">
-                              {product.attributes.title}
-                            </h3>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )
-          ))}
-
-          {/* Hiển thị thông báo nếu không có sản phẩm nào */}
-          {activeCategoryCount === 0 && (
-            <div class="text-center py-10">
-              <p class="text-lg text-gray-500">Không tìm thấy sản phẩm nào</p>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  </main>
-
-  {/* Thêm CSS để cuộn mượt và hiệu ứng hover */}
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    .group:hover .group-hover\:opacity-100 {
-      opacity: 1;
-    }
-    
-    /* Tùy chỉnh thanh cuộn */
-    .scrollbar-thin::-webkit-scrollbar {
-      width: 3px;
-    }
-    
-    .scrollbar-thin::-webkit-scrollbar-track {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 2px;
-    }
-    
-    .scrollbar-thin::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 2px;
-    }
-    
-    .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 255, 255, 0.3);
-    }
-    
-    /* Cải thiện khả năng cuộn trên thiết bị cảm ứng */
-    @media (pointer: coarse) {
-      .scrollbar-thin {
-        -webkit-overflow-scrolling: touch;
-        scroll-padding: 0.5rem;
-      }
-      
-      .scrollbar-thin::-webkit-scrollbar {
-        width: 4px;
-      }
-    }
-    
-    /* Đảm bảo overlay hiển thị đầy đủ nội dung */
-    .group:hover .flex-1.scrollbar-thin {
-      overflow-y: auto;
-      max-height: 100%;
-    }
-    
-    /* Hiệu ứng gương cho overlay */
-    .backdrop-blur-md {
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-    
-    /* Hiệu ứng phản chiếu ánh sáng */
-    .border-white\/20 {
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .border-white\/20::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        to bottom right,
-        rgba(255, 255, 255, 0.3) 0%,
-        rgba(255, 255, 255, 0) 80%
-      );
-      transform: rotate(30deg);
-      pointer-events: none;
-    }
-    
-    /* Hiệu ứng nội dung blur */
-    .glass-effect .flex-1 {
-      position: relative;
-      z-index: 1;
-    }
-    
-    .glass-effect::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.05);
-      z-index: 0;
-      filter: blur(4px);
-      border-radius: inherit;
-      pointer-events: none;
-    }
-    
-    /* Hiệu ứng blur cho ảnh khi hover */
-    .product-image {
-      filter: blur(0px);
-      transition: filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    }
-    
-    .group:hover .group-hover\:blur-sm {
-      filter: blur(4px);
-    }
-  </style>
+    </div>
+  </div>
 </Layout>

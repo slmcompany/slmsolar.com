@@ -1,47 +1,37 @@
 ---
 import Layout from '../../layouts/Layout.astro'
-import fetchApi from "../../lib/strapi.ts";
 import Header from '../../components/blog/header.astro';
-import type { default as BlogType, BlogCategory } from "../../interfaces/blogs.ts";
-import BlogComponent from '../../components/blog/blog.tsx'
-import MenuBlog from '../../components/blog/menublog.tsx'
+import UnavailableContent from '../../components/UnavailableContent.astro';
 
-const [blogs, categories] = await Promise.all([
-  fetchApi<BlogType[]>({
-    endpoint: "blogs?populate[image][fields][0]=url&populate[image][fields][1]=formats&populate[blog_category][fields][0]=title&pagination[limit]=100",
-    wrappedByKey: "data",
-  }),
-  fetchApi<BlogCategory[]>({
-    endpoint: "blog-categories",
-    wrappedByKey: "data", 
-  })
-]);
+// Không còn sử dụng API Strapi
+// import fetchApi from "../../lib/strapi.ts";
+// import type { default as BlogType, BlogCategory } from "../../interfaces/blogs.ts";
+// import BlogComponent from '../../components/blog/blog.tsx'
+// import MenuBlog from '../../components/blog/menublog.tsx'
+
+// const [blogs, categories] = await Promise.all([
+//   fetchApi<BlogType[]>({
+//     endpoint: "blogs?populate[image][fields][0]=url&populate[image][fields][1]=formats&populate[blog_category][fields][0]=title&pagination[limit]=100",
+//     wrappedByKey: "data",
+//   }),
+//   fetchApi<BlogCategory[]>({
+//     endpoint: "blog-categories",
+//     wrappedByKey: "data", 
+//   })
+// ]);
 
 // Ensure we have arrays even if the response is undefined
-const blogsArray = Array.isArray(blogs) ? blogs : [];
-const categoriesArray = Array.isArray(categories) ? categories : [];
+// const blogsArray = Array.isArray(blogs) ? blogs : [];
+// const categoriesArray = Array.isArray(categories) ? categories : [];
 
 ---
 
 <Layout title="Blog">
   <div>
     <Header />
-    <section class="py-16 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="flex flex-col lg:flex-row gap-8">
-          {/* Main content */}
-          <div class="lg:w-3/4">
-            <BlogComponent client:load blogs={blogsArray} categories={categoriesArray} />
-          </div>
-          
-          {/* Sidebar with categories */}
-          <MenuBlog client:load 
-            categories={categoriesArray}
-            selectedCategory={null}
-            onCategoryChange={() => {}}
-          />
-        </div>
-      </div>
-    </section>
+    <UnavailableContent 
+      title="Blog đang được cập nhật" 
+      description="Nội dung blog hiện không khả dụng do chúng tôi đang tiến hành nâng cấp hệ thống. Vui lòng quay lại sau."
+    />
   </div>
 </Layout>

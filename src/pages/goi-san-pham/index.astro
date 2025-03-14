@@ -1,13 +1,143 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import fetchApi from "../../lib/strapi.ts";
 import type Combos from "../../interfaces/combos.ts";
 import Image from "astro/components/Image.astro";
 
-const Combos = await fetchApi<Combos[]>({
-  endpoint: "combos?populate=image", // the content type to fetch
-  wrappedByKey: "data", // the key to unwrap the response
-});
+// Dữ liệu mẫu thay thế cho API
+const Combos: Combos[] = [
+  {
+    id: 1,
+    attributes: {
+      tilte: "Combo On-Grid 5kW 1 pha",
+      nhom_combo: "On-Grid",
+      he: "On-Grid",
+      pha: "1 pha",
+      cong_suat: "5",
+      slug: "on-grid-5kw-1pha",
+      gia_niem_yet: 65000000,
+      san_luong: "500-600",
+      hoan_von: "4-5 năm",
+      dien_tich: "25",
+      createdAt: "2023-01-15T08:00:00.000Z",
+      updatedAt: "2023-05-20T10:30:00.000Z",
+      publishedAt: "2023-01-20T09:00:00.000Z",
+      category: "on-grid",
+      image: {
+        data: {
+          id: 1,
+          attributes: {
+            name: "on-grid-image.jpg",
+            url: "/images/combo-ongrid.jpg",
+            formats: {
+              medium: { url: "/images/combo-ongrid.jpg" },
+              small: { url: "/images/combo-ongrid.jpg" },
+              large: { url: "/images/combo-ongrid.jpg" }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    id: 2,
+    attributes: {
+      tilte: "Combo Off-Grid 3kW 1 pha",
+      nhom_combo: "Off-Grid",
+      he: "Off-Grid",
+      pha: "1 pha",
+      cong_suat: "3",
+      slug: "off-grid-3kw-1pha",
+      gia_niem_yet: 75000000,
+      san_luong: "300-400",
+      hoan_von: "5-6 năm",
+      dien_tich: "15",
+      createdAt: "2023-02-10T08:30:00.000Z",
+      updatedAt: "2023-06-15T11:20:00.000Z",
+      publishedAt: "2023-02-15T09:15:00.000Z",
+      category: "off-grid",
+      image: {
+        data: {
+          id: 2,
+          attributes: {
+            name: "off-grid-image.jpg",
+            url: "/images/combo-offgrid.jpg",
+            formats: {
+              medium: { url: "/images/combo-offgrid.jpg" },
+              small: { url: "/images/combo-offgrid.jpg" },
+              large: { url: "/images/combo-offgrid.jpg" }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    id: 3,
+    attributes: {
+      tilte: "Combo On-Grid 10kW 3 pha",
+      nhom_combo: "On-Grid",
+      he: "On-Grid",
+      pha: "3 pha",
+      cong_suat: "10",
+      slug: "on-grid-10kw-3pha",
+      gia_niem_yet: 120000000,
+      san_luong: "1000-1200",
+      hoan_von: "3-4 năm",
+      dien_tich: "50",
+      createdAt: "2023-03-05T09:10:00.000Z",
+      updatedAt: "2023-07-10T14:25:00.000Z",
+      publishedAt: "2023-03-10T10:00:00.000Z",
+      category: "on-grid",
+      image: {
+        data: {
+          id: 3,
+          attributes: {
+            name: "on-grid-3pha-image.jpg",
+            url: "/images/combo-ongrid-3pha.jpg",
+            formats: {
+              medium: { url: "/images/combo-ongrid-3pha.jpg" },
+              small: { url: "/images/combo-ongrid-3pha.jpg" },
+              large: { url: "/images/combo-ongrid-3pha.jpg" }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    id: 4,
+    attributes: {
+      tilte: "Combo Off-Grid 8kW 3 pha áp thấp",
+      nhom_combo: "Off-Grid",
+      he: "Off-Grid",
+      pha: "3 pha áp thấp",
+      cong_suat: "8",
+      slug: "off-grid-8kw-3pha-ap-thap",
+      gia_niem_yet: 150000000,
+      san_luong: "800-900",
+      hoan_von: "6-7 năm",
+      dien_tich: "40",
+      createdAt: "2023-04-12T10:45:00.000Z",
+      updatedAt: "2023-08-05T16:15:00.000Z",
+      publishedAt: "2023-04-15T11:30:00.000Z", 
+      category: "off-grid",
+      image: {
+        data: {
+          id: 4,
+          attributes: {
+            name: "off-grid-3pha-image.jpg",
+            url: "/images/combo-offgrid-3pha.jpg",
+            formats: {
+              medium: { url: "/images/combo-offgrid-3pha.jpg" },
+              small: { url: "/images/combo-offgrid-3pha.jpg" },
+              large: { url: "/images/combo-offgrid-3pha.jpg" }
+            }
+          }
+        }
+      }
+    }
+  }
+];
 
 const getCurrentMonthYear = () => {
   const date = new Date();
@@ -81,12 +211,10 @@ const formatCurrency = (amount: any) => {
                     </li>
                   </ul>
                   <a href={`/goi-san-pham/${combo.attributes.slug}/`}>
-                    <Image
-                      transition:name={`offgrid${combo.id}`}
-                      class="rounded-2xl mx-auto aspect-[265/200] w-full "
-                      src={`https://app.slmsolar.com${combo.attributes.image.data.attributes.formats.small.url}`}
-                      alt=""
-                      inferSize
+                    <img
+                      class="rounded-2xl mx-auto aspect-[265/200] w-full object-cover"
+                      src={combo.attributes.image.data.attributes.url}
+                      alt={combo.attributes.tilte}
                     />
                   </a>
 
