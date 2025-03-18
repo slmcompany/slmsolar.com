@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro'
 import UnavailableContent from '../../components/UnavailableContent.astro';
+import Slider from "../../components/devices/slider.tsx";
 
 // Không còn sử dụng API Strapi
 // import fetchApi from "../../lib/strapi.ts"
@@ -27,6 +28,267 @@ import {
   PuzzlePieceIcon,
   DevicePhoneMobileIcon
 } from '@heroicons/react/24/outline';
+
+// Mock data cho sản phẩm
+const mockProducts = {
+  pinquangnang: {
+    title: "Pin quang năng",
+    description: "Pin quang năng là thiết bị chuyển đổi năng lượng mặt trời thành điện năng sạch, giúp giảm thiểu tác động tiêu cực đến môi trường và tiết kiệm chi phí.",
+    products: [
+      {
+        attributes: {
+          title: "Pin năng lượng mặt trời JA Solar",
+          slug: "pin-nang-luong-mat-troi-ja-solar-jam72d40-535w",
+          description: "Pin năng lượng mặt trời JA Solar JAM72D40 535W là sản phẩm cao cấp với hiệu suất cao và độ bền vượt trội",
+          image: {
+            data: {
+              attributes: {
+                formats: {
+                  small: {
+                    url: "https://dmtsolar.com/uploads/102tech/images/lap_dien_nang_luong_mat_troi/tam-pin-panel/ja/550w/Tam-pin-nang-luong-mat-troi-JA-550w-h1.jpg"
+                  }
+                }
+              }
+            }
+          },
+          brand: "JA Solar",
+          technology: "DEEP BLUE 4.0",
+          cell: "Mono-16BB",
+          power: "580Wp",
+          dimensions: "2278 x 1134 x 30mm",
+          weight: "31.8kg",
+          protection: "IP68",
+          efficiency: "22.5%",
+          highlight: [
+            { title: "Công suất", value: "580Wp" },
+            { title: "Hiệu suất", value: "22.5%" },
+            { title: "Bảo hành", value: "30 năm" }
+          ]
+        }
+      },
+      {
+        attributes: {
+          title: "Pin năng lượng mặt trời Longi Solar",
+          slug: "pin-nang-luong-mat-troi-longi-solar-lr5-72hph-550w",
+          description: "Pin năng lượng mặt trời Longi Solar LR5-72HPH 550W với công nghệ Hi-MO 5m",
+          image: {
+            data: {
+              attributes: {
+                formats: {
+                  small: {
+                    url: "https://nangluonghtb.vn/wp-content/uploads/2023/11/Longi-solar-560.png"
+                  }
+                }
+              }
+            }
+          },
+          brand: "Longi Solar",
+          technology: "Guardian Anti-Dust",
+          cell: "HPBC",
+          power: "580Wp",
+          dimensions: "2281 x 1134 x 30mm",
+          weight: "27.2kg",
+          protection: "IP68",
+          efficiency: "22.4%",
+          highlight: [
+            { title: "Công suất", value: "580Wp" },
+            { title: "Hiệu suất", value: "22.4%" },
+            { title: "Bảo hành", value: "30 năm" }
+          ]
+        }
+      }
+    ]
+  },
+  bientan: {
+    title: "Biến tần",
+    description: "Biến tần là thiết bị chuyển đổi điện một chiều từ tấm pin mặt trời thành điện xoay chiều để sử dụng cho các thiết bị điện trong gia đình và doanh nghiệp.",
+    products: [
+      {
+        attributes: {
+          title: "Biến tần Solis S5-GR1P(12-20)K-M",
+          slug: "bien-tan-solis-s5-gr1p-12-20k-m",
+          description: "Biến tần Solis S5-GR1P(12-20)K-M với hiệu suất cao và độ tin cậy tuyệt vời cho hệ thống pin mặt trời",
+          type: "Ongrid",
+          image: {
+            data: {
+              attributes: {
+                formats: {
+                  small: {
+                    url: "https://placehold.co/600x400/green/white?text=Bien+tan+Solis+S5"
+                  }
+                }
+              }
+            }
+          },
+          dcInput: "Công suất khuyến nghị 14.4kWp - 24kWp",
+          protection: "IP66",
+          maxDC: "22kW (15kW)",
+          features: "MPPT thông minh, Hiệu suất tối đa 98.1%, Bảo vệ chống PID",
+          highlight: [
+            { title: "Dải công suất", value: "12-20kW" },
+            { title: "Bảo vệ", value: "IP66" },
+            { title: "Hiệu suất", value: "98.1%" }
+          ],
+          brand: "Solis",
+          efficiency: "98.1%"
+        }
+      },
+      {
+        attributes: {
+          title: "Biến tần Offgrid 1 pha - hãm tải",
+          slug: "bien-tan-offgrid-1-pha-ham-tai",
+          description: "Biến tần Offgrid 1 pha với khả năng hãm tải và đầu vào DC tối đa 150%",
+          type: "Offgrid",
+          image: {
+            data: {
+              attributes: {
+                formats: {
+                  small: {
+                    url: "https://placehold.co/600x400/green/white?text=Biến+tần+1+pha"
+                  }
+                }
+              }
+            }
+          },
+          dcInput: "Tối đa 150%",
+          protection: "IP66",
+          maxDC: "7.5kW, 15kW",
+          features: "Hệ thống xử lý lỗi thông minh, Bảo vệ thiết bị điện hạ thế",
+          highlight: [
+            { title: "Dải công suất", value: "5kW, 10kW" },
+            { title: "Bảo vệ", value: "IP66" },
+            { title: "Tính năng", value: "Xử lý lỗi thông minh" }
+          ]
+        }
+      },
+      {
+        attributes: {
+          title: "Biến tần Offgrid 3 pha - hãm tải (Dòng 1)",
+          slug: "bien-tan-offgrid-3-pha-ham-tai-dong-1",
+          description: "Biến tần Offgrid 3 pha với khả năng hãm tải và đầu vào DC tối đa 160%",
+          type: "Offgrid",
+          image: {
+            data: {
+              attributes: {
+                formats: {
+                  small: {
+                    url: "https://placehold.co/600x400/green/white?text=Biến+tần+3+pha+(10-110kW)"
+                  }
+                }
+              }
+            }
+          },
+          dcInput: "Tối đa 160%",
+          protection: "IP66",
+          maxDC: "16kW, 24kW, 32kW, 48kW, 80kW, 128kW",
+          features: "Hệ thống xử lý lỗi thông minh, Bảo vệ thiết bị điện hạ thế",
+          highlight: [
+            { title: "Dải công suất", value: "10kW - 110kW" },
+            { title: "Bảo vệ", value: "IP66" },
+            { title: "Tính năng", value: "Xử lý lỗi thông minh" }
+          ]
+        }
+      },
+      {
+        attributes: {
+          title: "Biến tần Offgrid 3 pha - hãm tải (Dòng 2)",
+          slug: "bien-tan-offgrid-3-pha-ham-tai-dong-2",
+          description: "Biến tần Offgrid 3 pha với khả năng hãm tải và đầu vào DC tối đa 150%",
+          type: "Offgrid",
+          image: {
+            data: {
+              attributes: {
+                formats: {
+                  small: {
+                    url: "https://placehold.co/600x400/green/white?text=Biến+tần+3+pha+(30-125kW)"
+                  }
+                }
+              }
+            }
+          },
+          dcInput: "Tối đa 150%",
+          protection: "IP66",
+          maxDC: "45kW, 75kW, 115kW, 128kW, 138kW",
+          features: "Hệ thống xử lý lỗi thông minh, Bảo vệ thiết bị điện hạ thế",
+          highlight: [
+            { title: "Dải công suất", value: "30kW - 125kW" },
+            { title: "Bảo vệ", value: "IP66" },
+            { title: "Tính năng", value: "Xử lý lỗi thông minh" }
+          ]
+        }
+      }
+    ]
+  },
+  pinluutru: {
+    title: "Pin lưu trữ",
+    description: "Pin lưu trữ là thiết bị tích trữ điện năng, giúp bảo vệ hệ thống điện khi có sự cố hoặc khi không có ánh nắng mặt trời.",
+    products: [
+      {
+        attributes: {
+          title: "Pin lưu trữ Pylontech US3000C",
+          slug: "pin-luu-tru-pylontech-us3000c",
+          description: "Pin lưu trữ Pylontech US3000C với dung lượng 3.5kWh",
+          image: {
+            data: {
+              attributes: {
+                formats: {
+                  small: {
+                    url: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&auto=format&fit=crop&q=60"
+                  }
+                }
+              }
+            }
+          },
+          brand: "Pylontech",
+          capacity: "3.5kWh",
+          cellType: "LiFePO4",
+          voltage: "48V",
+          installation: "Rack mount",
+          maxPacks: "16",
+          highlight: [
+            { title: "Dung lượng", value: "3.5kWh" },
+            { title: "Điện áp", value: "48V" },
+            { title: "Bảo hành", value: "10 năm" }
+          ]
+        }
+      }
+    ]
+  },
+  phukien: {
+    title: "Phụ kiện",
+    description: "Các phụ kiện đi kèm giúp tối ưu hóa hiệu suất và kéo dài tuổi thọ của hệ thống điện mặt trời.",
+    products: [
+      {
+        attributes: {
+          title: "Tủ điện DC 1000V",
+          slug: "tu-dien-dc-1000v",
+          description: "Tủ điện DC 1000V cho hệ thống điện mặt trời",
+          image: {
+            data: {
+              attributes: {
+                formats: {
+                  small: {
+                    url: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?w=800&auto=format&fit=crop&q=60"
+                  }
+                }
+              }
+            }
+          },
+          brand: "Solarmax",
+          type: "DC",
+          material: "Thép mạ kẽm",
+          resistance: "IP65",
+          standards: "TUV, CE",
+          highlight: [
+            { title: "Điện áp", value: "1000V DC" },
+            { title: "Bảo vệ", value: "IP65" },
+            { title: "Bảo hành", value: "2 năm" }
+          ]
+        }
+      }
+    ]
+  }
+};
 
 // Interface cho thông số kỹ thuật
 interface Specs {
@@ -172,17 +434,13 @@ const categoryMapping: Record<string, string> = {
 
 const productsByCategory: Record<string, ProductCategory> = {};
 
-// Khởi tạo các danh mục trước
-Object.keys(categoryMapping).forEach(catName => {
-  const catId = categoryMapping[catName];
-  if (catId) {
-    productsByCategory[catId] = {
-      title: catName,
-      products: [],
-      description: ""
-    };
-  }
+// Cập nhật productsByCategory với dữ liệu mẫu
+Object.entries(mockProducts).forEach(([categoryId, category]) => {
+  productsByCategory[categoryId] = category;
 });
+
+// Cập nhật activeCategoryCount
+const activeCategoryCount = Object.values(productsByCategory).filter(cat => cat.products.length > 0).length;
 
 // Thiết lập mô tả cho các danh mục
 productsByCategory["pinquangnang"].description = "Pin quang năng là thiết bị chuyển đổi năng lượng mặt trời thành điện năng sạch, giúp giảm thiểu tác động tiêu cực đến môi trường và tiết kiệm chi phí.";
@@ -190,87 +448,313 @@ productsByCategory["bientan"].description = "Biến tần là thiết bị chuy�
 productsByCategory["pinluutru"].description = "Pin lưu trữ là thiết bị tích trữ điện năng, giúp bảo vệ hệ thống điện khi có sự cố hoặc khi không có ánh nắng mặt trời.";
 productsByCategory["phukien"].description = "Các phụ kiện đi kèm giúp tối ưu hóa hiệu suất và kéo dài tuổi thọ của hệ thống điện mặt trời.";
 
-// Phân loại sản phẩm vào các danh mục
-// Code này không còn cần thiết vì không còn sử dụng Strapi API
-/* 
-productsArray.forEach(product => {
-  if (product.attributes) {
-    // Ưu tiên sử dụng trường categories
-    if (product.attributes.categories) {
-      // Xử lý trường hợp categories là một mảng
-      const categoriesList = Array.isArray(product.attributes.categories) 
-        ? product.attributes.categories 
-        : [product.attributes.categories];
-      
-      // Kiểm tra từng category trong danh sách
-      let foundCategory = false;
-      
-      for (const catName of categoriesList) {
-        const catId = categoryMapping[catName];
-        if (catId && productsByCategory[catId]) {
-          productsByCategory[catId].products.push(product);
-          foundCategory = true;
-          break; // Chỉ thêm vào danh mục đầu tiên tìm thấy
-        }
-      }
-      
-      // Nếu không tìm thấy danh mục nào phù hợp, thêm vào phụ kiện
-      if (!foundCategory) {
-        productsByCategory["phukien"].products.push(product);
-      }
-    } 
-    // Sử dụng trường category cũ nếu không có trường categories
-    else if (product.attributes.category) {
-      const catName = product.attributes.category;
-      const catId = categoryMapping[catName];
-      
-      if (catId && productsByCategory[catId]) {
-        productsByCategory[catId].products.push(product);
-      } else {
-        // Nếu không xác định được danh mục, đặt mặc định vào danh mục "Phụ kiện"
-        productsByCategory["phukien"].products.push(product);
-      }
-    } else {
-      // Nếu không có thuộc tính category hoặc categories, đặt vào danh mục "Phụ kiện"
-      productsByCategory["phukien"].products.push(product);
-    }
-  }
-});
-
-// Tính toán xem có bao nhiêu danh mục có sản phẩm
-const activeCategoryCount = Object.values(productsByCategory).filter(
-  (cat: ProductCategory) => cat.products.length > 0
-).length;
-
-// Loại bỏ các danh mục trùng lặp trong trường hợp một sản phẩm được đặt vào nhiều danh mục
-Object.values(productsByCategory).forEach(category => {
-  // Đảm bảo không có sản phẩm trùng lặp trong cùng một danh mục
-  const uniqueProductIds = new Set();
-  category.products = category.products.filter(product => {
-    if (uniqueProductIds.has(product.id)) {
-      return false;
-    }
-    uniqueProductIds.add(product.id);
-    return true;
-  });
-});
-*/
-
-// Giá trị mặc định để tránh lỗi khi không có dữ liệu từ API
-const activeCategoryCount = 0;
 ---
 
 <Layout title="Thiết bị">
-  <div class="relative overflow-hidden bg-white">
-    <div class="mx-auto max-w-7xl">
-      <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:w-full lg:max-w-2xl lg:pb-28 xl:pb-32">
-        <main class="mx-auto px-4 sm:px-6 lg:px-8">
-          <UnavailableContent 
-            title="Danh mục thiết bị đang được cập nhật" 
-            description="Nội dung về thiết bị hiện không khả dụng do chúng tôi đang tiến hành nâng cấp hệ thống. Vui lòng quay lại sau."
-          />
-        </main>
+  <header class="header-section">
+    <div class="relative isolate overflow-hidden pt-14">
+        <img src="images/thiet-bi/thiet-bi-banner.jpg" alt="" class="absolute inset-0 -z-10 size-full object-cover">
+        <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden  sm:-top-80" aria-hidden="true">
+          <div class="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div class="mx-auto py-32 sm:py-48 lg:py-32">
+            <div class="hidden sm:mb-8 sm:flex sm:justify-start">
+             <div>
+                <span class="text-2xl font-semibold tracking-tight text-balance text-white sm:text-5xl">Thiết bị</span>
+             </div>
+            </div>
+         
+          </div>
+        </div>
+        <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+          <div class="relative left-[calc(50%+3rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+        </div>
       </div>
-    </div>
-  </div>
+  </header>
+  
+
+  <main class="container mx-auto px-4 sm:px-6 lg:px-8 pt-10 max-w-7xl">
+    <section aria-labelledby="products-heading" class="pt-6 pb-24">
+      <h2 id="products-heading" class="sr-only">Thiết bị</h2>
+      <div class="grid grid-cols-1 gap-x-4 gap-y-10 lg:grid-cols-5">
+        <!-- Filters -->
+        <form class="hidden lg:block sticky top-4 h-fit lg:col-span-1">
+          <h3 class="sr-only">Danh mục</h3>
+          <ul role="list" class="space-y-3 border-b border-gray-200 pb-4 text-sm font-medium text-gray-900">
+            {categories.map((category) => (
+              <li>
+                <div class="font-medium text-base text-green-500">
+                  <a href={category.href} class="hover:text-green-600 transition-colors">{category.name}</a>
+                </div>
+                {category.submenu && (
+                  <ul class="ml-3 mt-1 space-y-1">
+                    {category.submenu.map((submenu) => (
+                      <li class="text-gray-600 hover:text-green-500">
+                        <a href={submenu.href} class="transition-colors">{submenu.name}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </form>
+
+        <!-- Product grid -->
+        <div class="lg:col-span-4">
+          <h2 class="font-bold text-2xl mb-3">Thiết bị Solarmax</h2>
+         
+          
+          <!-- Thêm Slider vào đây -->
+          <div class="mb-8">
+            <Slider client:load />
+          </div>
+
+      
+
+          {/* Danh sách các sản phẩm theo từng danh mục */}
+          {Object.entries(productsByCategory).map(([categoryId, category]) => (
+            category.products.length > 0 && (
+              <div class="mb-16 scroll-mt-24" id={categoryId}>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-200">{category.title}</h2>
+                <p class="text-gray-500 mb-8">{category.description}</p>
+                
+                <div class="grid grid-cols-2 gap-x-2 gap-y-3 sm:grid-cols-2 sm:gap-x-4 sm:gap-y-6 lg:grid-cols-3 lg:gap-x-6">
+                  {category.products.map((product) => (
+                    <div class="group relative bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                      <div class="relative overflow-hidden p-1.5 sm:p-2">
+                        
+                        <!-- Product image with highlight specs -->
+                        <div class="flex">
+                          <div class="flex-grow relative overflow-hidden rounded-lg aspect-square">
+                            <a href={`/thiet-bi/${product.attributes.slug}/`} class="block relative z-10">
+                              <img
+                                class="mx-auto object-cover w-full h-full transition-all duration-300 group-hover:opacity-30 group-hover:blur-sm product-image"
+                                src={product.attributes.image.data.attributes.formats.small.url}
+                                alt={product.attributes.title}
+                              />
+                            </a>
+                            
+                            {/* Specs overlay */}
+                            <div class="absolute inset-0 bg-gradient-to-b from-black/90 to-black/95 opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 rounded-lg flex flex-col max-h-full">
+                              <div class="p-3 text-white overflow-y-auto scrollbar-thin max-h-full flex-1">
+                                {product.attributes && (
+                                  <div class="grid grid-cols-1 gap-1 text-sm">
+                                    {/* Product badges */}
+                                    {(product.attributes.he || product.attributes.pha) && (
+                                      <div class="flex flex-wrap gap-1 mb-1">
+                                        {product.attributes.he && (
+                                          <span class="inline-flex bg-green-600 text-white items-center rounded-md px-2 py-0.5 text-xs font-semibold">
+                                            {product.attributes.he}
+                                          </span>
+                                        )}
+                                        {product.attributes.pha && (
+                                          <span class="inline-flex bg-green-600 text-white items-center rounded-md px-2 py-0.5 text-xs font-semibold ml-1">
+                                            {product.attributes.pha}
+                                          </span>
+                                        )}
+                                      </div>
+                                    )}
+                                    
+                                    {/* Mô tả ngắn gọn nếu có */}
+                                    {product.attributes.description && (
+                                      <p class="text-xs text-gray-300 mb-2">{product.attributes.description}</p>
+                                    )}
+                                    
+                                    <div class="grid grid-cols-1 gap-1">
+                                      {/* Specs chính */}
+                                      {specConfigs.map(config => 
+                                        product.attributes[config.key as keyof typeof product.attributes] && (
+                                          <div class="flex items-center bg-white/5 rounded-md p-1.5">
+                                            <div class="flex items-center gap-1.5 mr-2">
+                                              <config.icon className="w-3 h-3 text-green-400" />
+                                              <span class="font-medium text-xs text-gray-200">{config.label}:</span>
+                                            </div>
+                                            <span class="text-xs ml-auto">
+                                              {config.key === 'thuonghieu' && product.attributes.thuonghieu 
+                                                ? product.attributes.thuonghieu.toUpperCase()
+                                                : product.attributes[config.key as keyof typeof product.attributes]}
+                                            </span>
+                                          </div>
+                                        )
+                                      )}
+                                      
+                                      {/* Công suất nếu có */}
+                                      {(product.attributes.he || product.attributes.pha) && (
+                                        <div class="flex items-center bg-white/5 rounded-md p-1.5">
+                                          <div class="flex items-center gap-1.5 mr-2">
+                                            <BoltIcon className="w-3 h-3 text-green-400" />
+                                            <span class="font-medium text-xs text-gray-200">Công suất:</span>
+                                          </div>
+                                          <span class="text-xs ml-auto">
+                                            {product.attributes.he && `${product.attributes.he}`}
+                                            {product.attributes.he && product.attributes.pha && ' - '}
+                                            {product.attributes.pha && `${product.attributes.pha}`}
+                                          </span>
+                                        </div>
+                                      )}
+                                    </div>
+                                    
+                                    {/* Highlights nếu có */}
+                                    {Array.isArray(product.attributes.highlight) && product.attributes.highlight.length > 0 && (
+                                      <div class="mt-2">
+                                        <div class="flex items-center gap-1.5 mb-1.5">
+                                          <CheckCircleIcon className="w-3 h-3 text-green-400" />
+                                          <span class="font-medium text-xs text-gray-200">Thông số nổi bật</span>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-1">
+                                          {product.attributes.highlight.map((item: any) => (
+                                            <div class="flex flex-col bg-white/5 rounded p-1.5">
+                                              <span class="text-xs text-gray-400">{item.title}</span>
+                                              <span class="text-xs font-medium">{item.value}</span>
+                                            </div>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+                              
+                              {/* Nút xem chi tiết */}
+                              <div class="border-t border-white/10 p-2 text-center">
+                                <a href={`/thiet-bi/${product.attributes.slug}/`} class="text-xs text-green-400 hover:text-green-300 font-medium">
+                                  Xem chi tiết
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                         
+                        </div>
+
+                        <!-- Product title and price -->
+                        <div class="mt-2 sm:mt-4">
+                          <a href={`/thiet-bi/${product.attributes.slug}/`}>
+                            <h3 class="text-base truncate font-normal text-gray-900 hover:text-green-600 transition-colors">
+                              {product.attributes.title}
+                            </h3>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+          ))}
+
+          {/* Hiển thị thông báo nếu không có sản phẩm nào */}
+          {activeCategoryCount === 0 && (
+            <div class="text-center py-10">
+              <p class="text-lg text-gray-500">Không tìm thấy sản phẩm nào</p>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  {/* Thêm CSS để cuộn mượt và hiệu ứng hover */}
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    .group:hover .group-hover\:opacity-100 {
+      opacity: 1;
+    }
+    
+    /* Tùy chỉnh thanh cuộn */
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 3px;
+    }
+    
+    .scrollbar-thin::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 2px;
+    }
+    
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+    }
+    
+    .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Cải thiện khả năng cuộn trên thiết bị cảm ứng */
+    @media (pointer: coarse) {
+      .scrollbar-thin {
+        -webkit-overflow-scrolling: touch;
+        scroll-padding: 0.5rem;
+      }
+      
+      .scrollbar-thin::-webkit-scrollbar {
+        width: 4px;
+      }
+    }
+    
+    /* Đảm bảo overlay hiển thị đầy đủ nội dung */
+    .group:hover .flex-1.scrollbar-thin {
+      overflow-y: auto;
+      max-height: 100%;
+    }
+    
+    /* Hiệu ứng gương cho overlay */
+    .backdrop-blur-md {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    
+    /* Hiệu ứng phản chiếu ánh sáng */
+    .border-white\/20 {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .border-white\/20::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        rgba(255, 255, 255, 0.3) 0%,
+        rgba(255, 255, 255, 0) 80%
+      );
+      transform: rotate(30deg);
+      pointer-events: none;
+    }
+    
+    /* Hiệu ứng nội dung blur */
+    .glass-effect .flex-1 {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .glass-effect::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.05);
+      z-index: 0;
+      filter: blur(4px);
+      border-radius: inherit;
+      pointer-events: none;
+    }
+    
+    /* Hiệu ứng blur cho ảnh khi hover */
+    .product-image {
+      filter: blur(0px);
+      transition: filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+    
+    .group:hover .group-hover\:blur-sm {
+      filter: blur(4px);
+    }
+  </style>
 </Layout>
