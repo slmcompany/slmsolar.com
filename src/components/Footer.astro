@@ -60,7 +60,7 @@ const socialLinks = [
 ];
 ---
 
-<footer class="bg-gray-900" aria-labelledby="footer-heading">
+<footer class="bg-gray-900 hidden md:block" aria-labelledby="footer-heading">
   <CTA /> 
   <h2 id="footer-heading" class="sr-only">Footer</h2>
 
@@ -144,7 +144,7 @@ const socialLinks = [
       {/* Column 3: Certifications & Apps */}
       <div class="space-y-8 sm:space-y-10">
         {/* Certifications Section */}
-        <div class="space-y-4">
+        <div class="space-y-4 hidden md:block">
           <h3 class="text-lg font-medium uppercase text-white">Chứng chỉ & Chứng nhận</h3>
           <div class="grid grid-cols-3 md:grid-cols-3 gap-3 sm:gap-4">
             {certifications.map((cert) => (
@@ -166,7 +166,7 @@ const socialLinks = [
         </div>
 
         {/* Mobile Apps Section */}
-        <div class="space-y-4">
+        <div class="space-y-4 hidden md:block">
           <h3 class="text-lg font-medium uppercase text-white">Tải ứng dụng</h3>
           <div class="flex flex-col sm:flex-row gap-4">
             <a href="https://apps.apple.com/gb/app/soliscloud/id1371324452" 
@@ -211,7 +211,7 @@ const socialLinks = [
     </div>
 
     {/* Social Links & Copyright */}
-    <div class="mt-12 pt-8 pb-20 border-t border-white/10">
+    <div class="mt-12 pt-8 pb-20 border-t border-white/10 hidden md:block">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
         <div class="flex items-center space-x-6 order-2 sm:order-1 w-full sm:w-1/3 justify-center sm:justify-start">
           {socialLinks.map((social) => (

@@ -115,7 +115,7 @@ export default function Example() {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white hidden md:block">
       <div className="mx-auto container px-6 py-12 sm:py-16 lg:px-8">
         <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Hỏi & Đáp</h2>
         <p className="mt-6 max-w-2xl text-base/7 text-gray-600">

@@ -1,6 +1,8 @@
 ---
 import Footer from "../components/Footer.astro";
+import FooterMobile from "../components/mobile/Footermobile.astro";
 import Header from "../components/Header.tsx";
+import HeaderMobile from "../components/mobile/Headermobile.tsx";
 interface Props {
   title: string;
 }
@@ -86,9 +88,11 @@ import Submenu from "../components/submenu.astro";
     <!-- End Google Tag Manager (noscript) -->
     <!-- <Submenu /> -->
     <Header client:load />
+    <HeaderMobile client:load />
 
     <slot />
     <Footer />
+    <FooterMobile />
     <Callbox
       client:load
       phone="0964920242"

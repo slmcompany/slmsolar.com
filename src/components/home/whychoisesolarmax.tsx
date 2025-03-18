@@ -80,7 +80,7 @@ const WhyChooseSolarmax = () => {
   ];
 
   return (
-    <div className="relative">
+    <div className="relative hidden md:block">
       <div 
         className="absolute inset-0 w-full h-[1000px] md:h-[800px] transition-opacity duration-500 ease-in-out"
         style={{

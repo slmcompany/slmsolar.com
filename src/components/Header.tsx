@@ -163,7 +163,7 @@ export default function Header() {
   }, [])
 
   return (
-    <header className={`md:fixed relative top-0 left-0 right-0 z-50 transition-colors duration-300 bg-white md:bg-transparent ${
+    <header className={`hidden md:block md:fixed relative top-0 left-0 right-0 z-50 transition-colors duration-300 bg-white md:bg-transparent ${
       isScrolled ? 'md:bg-white md:shadow-md' : ''
     }`}>
       <nav aria-label="Global" className="mx-auto flex container items-center justify-between p-3 md:p-6 lg:px-8 lg:py-2">

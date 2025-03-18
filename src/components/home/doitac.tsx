@@ -34,7 +34,7 @@ export default function DoiTac() {
   const secondRow = partners.slice(Math.ceil(partners.length / 2));
 
   return (
-    <div className="relative isolate -z-10 mt-16 sm:mt-12">
+      <div className="relative isolate -z-10 mt-16 sm:mt-12 hidden md:block">
       <div
         className="absolute inset-x-0 top-1/2 -z-10 flex -translate-y-1/2 justify-center overflow-hidden [mask-image:radial-gradient(50%_45%_at_50%_55%,white,transparent)]"
       >
