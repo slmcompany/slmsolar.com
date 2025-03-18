@@ -12,6 +12,9 @@ import QA from "../components/home/qa.tsx";
 import Customer from "../components/home/custommer.tsx";
 import Message from "../components/home/message.astro";
 import DoiTac from "../components/home/doitac.tsx";
+import Ongridmobile from "../components/mobile/Ongridmobile.astro";
+import Offgridmobile from "../components/mobile/Offgridmobile.astro";
+import Hoidamobile from "../components/mobile/hoidapmobile.astro";
 ---
 
 <AstroSeo
@@ -27,8 +30,51 @@ import DoiTac from "../components/home/doitac.tsx";
   <Combogiadinhintro client:load />
   <Combocongnghiepintro client:load />
   <Mobile />
+  <Ongridmobile zalo = "0964920242"/>
+  <Offgridmobile zalo = "0964920242"/>
+  
   <Message />
   <QA client:load />
+
+  <div class="bg-slate-100 py-10 sm:py-32 block  md:hidden">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <ul
+            role="list"
+            class="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-4"
+        >
+            <li>
+                <img
+                    class="aspect-[1/1] w-full rounded-2xl object-cover"
+                    src="/images/service-1.jpeg"
+                    alt=""
+                />
+            </li>
+            <li>
+                <img
+                    class="aspect-[1/1] w-full rounded-2xl object-cover"
+                    src="/images/service-2.jpeg"
+                    alt=""
+                />
+            </li>
+            <li>
+                <img
+                    class="aspect-[1/1] w-full rounded-2xl object-cover"
+                    src="/images/service-3.jpeg"
+                    alt=""
+                />
+            </li>
+            <li>
+                <img
+                    class="aspect-[1/1] w-full rounded-2xl object-cover"
+                    src="/images/service-4.jpeg"
+                    alt=""
+                />
+            </li>
+        </ul>
+    </div>
+</div>
+
+  <Hoidamobile />
   <Customer client:load />
   <DoiTac client:load />
   
