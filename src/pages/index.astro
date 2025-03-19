@@ -15,6 +15,7 @@ import DoiTac from "../components/home/doitac.tsx";
 import Ongridmobile from "../components/mobile/Ongridmobile.astro";
 import Offgridmobile from "../components/mobile/Offgridmobile.astro";
 import Hoidamobile from "../components/mobile/hoidapmobile.astro";
+import ServiceGalleryMobile from "../components/mobile/ServiceGalleryMobile.astro";
 ---
 
 <AstroSeo
@@ -36,43 +37,7 @@ import Hoidamobile from "../components/mobile/hoidapmobile.astro";
   <Message />
   <QA client:load />
 
-  <div class="bg-slate-100 py-10 sm:py-32 block  md:hidden">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <ul
-            role="list"
-            class="mx-auto grid max-w-2xl grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-4"
-        >
-            <li>
-                <img
-                    class="aspect-[1/1] w-full rounded-2xl object-cover"
-                    src="/images/service-1.jpeg"
-                    alt=""
-                />
-            </li>
-            <li>
-                <img
-                    class="aspect-[1/1] w-full rounded-2xl object-cover"
-                    src="/images/service-2.jpeg"
-                    alt=""
-                />
-            </li>
-            <li>
-                <img
-                    class="aspect-[1/1] w-full rounded-2xl object-cover"
-                    src="/images/service-3.jpeg"
-                    alt=""
-                />
-            </li>
-            <li>
-                <img
-                    class="aspect-[1/1] w-full rounded-2xl object-cover"
-                    src="/images/service-4.jpeg"
-                    alt=""
-                />
-            </li>
-        </ul>
-    </div>
-</div>
+  <ServiceGalleryMobile />
 
   <Hoidamobile />
   <Customer client:load />

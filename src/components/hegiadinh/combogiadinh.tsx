@@ -21,70 +21,70 @@ const frequencies = [
 
 const ongridTiers = [
   {
-    name: '5.2 kW',
-    id: 'tier-5.2',
+    name: '5 kW',
+    id: 'tier-5',
     href: '/goi-san-pham/he-gia-dinh/on-grid/on-grid-1p-ja-55-invt-5',
-    price: '48.900.000',
+    price: '47.500.000',
     priceSuffix: 'đ',
-    hoiVon: 'Hoàn vốn: 5 năm',
-    hieuQua: 'Hiệu quả/tháng: 800.000đ',
-    description: 'On-Grid | 1 pha | JA 52 | Invt 50',
+    hoiVon: 'Hoàn vốn: 32 tháng',
+    hieuQua: 'Hiệu quả/tháng: 1.520.000đ',
+    description: 'On-Grid | 1 pha | JA 50 | Invt 50',
     features: [
-      'Công suất: 5.2 kW',
+      'Công suất: 5 kW',
       'Hệ điện: 1 pha',
-      'Sản lượng: 500-600 kwh/tháng',
-      'Diện tích lắp đặt: 23,3 m2'
+      'Sản lượng: 400-550 kwh/tháng',
+      'Diện tích lắp đặt: 21,6 m2'
     ],
     mostPopular: false,
   },
   {
-    name: '8.7 kW - 1 pha',
-    id: 'tier-8.7-1p',
-    href: '#',
-    price: '77.800.000',
+    name: '8.5 kW - 1 pha',
+    id: 'tier-8.5-1p',
+    href: 'goi-san-pham/he-gia-dinh/on-grid/on-grid-1p-ja-87-invt-10',
+    price: '75.200.000',
     priceSuffix: 'đ',
-    hoiVon: 'Hoàn vốn: 5 năm',
-    hieuQua: 'Hiệu quả/tháng: 1.300.000đ',
-    description: 'On-Grid | 1 pha | JA 87 | Invt 100',
+    hoiVon: 'Hoàn vốn: 29 tháng',
+    hieuQua: 'Hiệu quả/tháng: 2.640.000đ',
+    description: 'On-Grid | 1 pha | JA 85 | Invt 85',
     features: [
-      'Công suất: 8.7 kW',
+      'Công suất: 8.5 kW',
       'Hệ điện: 1 pha',
-      'Sản lượng: 900-1000 kwh/tháng',
-      'Diện tích lắp đặt: 38,7 m2'
+      'Sản lượng: 750-900 kwh/tháng',
+      'Diện tích lắp đặt: 38,5 m2'
     ],
     mostPopular: false,
   },
   {
-    name: '8.7 kW - 3 pha',
-    id: 'tier-8.7-3p',
-    href: '#',
-    price: '81.900.000',
+    name: '8.5 kW - 3 pha',
+    id: 'tier-8.5-3p',
+    href: 'goi-san-pham/he-gia-dinh/on-grid/on-grid-3p-ja-87-invt-10',
+    price: '79.500.000',
     priceSuffix: 'đ',
-    hoiVon: 'Hoàn vốn: 5 năm',
-    hieuQua: 'Hiệu quả/tháng: 1.300.000đ',
-    description: 'On-Grid | 3 pha | JA 88 | Invt 100',
+    hoiVon: 'Hoàn vốn: 31 tháng',
+    hieuQua: 'Hiệu quả/tháng: 2.640.000đ',
+    description: 'On-Grid | 3 pha | JA 85 | Invt 85',
     features: [
-      'Công suất: 8.7 kW',
+      'Công suất: 8.5 kW',
       'Hệ điện: 3 pha',
-      'Sản lượng: 900-1000 kwh/tháng',
-      'Diện tích lắp đặt: 38,7 m2'
+      'Sản lượng: 750-900 kwh/tháng',
+      'Diện tích lắp đặt: 38,5 m2'
     ],
     mostPopular: true,
   },
   {
-    name: '13.3 kW - 3 pha',
-    id: 'tier-13.3-3p',
-    href: '#',
-    price: '113.900.000',
+    name: '11 kW - 3 pha',
+    id: 'tier-11-3p',
+    href: 'goi-san-pham/he-gia-dinh/on-grid/on-grid-3p-ja-133-invt-15',
+    price: '92.500.000',
     priceSuffix: 'đ',
-    hoiVon: 'Hoàn vốn: 5 năm',
-    hieuQua: 'Hiệu quả/tháng: 2.000.000đ',
-    description: 'On-Grid | 3 pha | JA 133 | Invt 150',
+    hoiVon: 'Hoàn vốn: 28 tháng',
+    hieuQua: 'Hiệu quả/tháng: 3.360.000đ',
+    description: 'On-Grid | 3 pha | JA 110 | Invt 110',
     features: [
-      'Công suất: 13.3 kW',
+      'Công suất: 11 kW',
       'Hệ điện: 3 pha',
-      'Sản lượng: 1400-1600 kwh/tháng',
-      'Diện tích lắp đặt: 59,4 m2'
+      'Sản lượng: 950-1150 kwh/tháng',
+      'Diện tích lắp đặt: 49,5 m2'
     ],
     mostPopular: false,
   },
@@ -92,74 +92,74 @@ const ongridTiers = [
 
 const hybridTiers = [
   {
-    name: '5.2 kW',
-    id: 'tier-5.2',
-    href: '#',
-    price: '85.900.000',
+    name: '5 kW',
+    id: 'tier-5',
+    href: 'goi-san-pham/he-gia-dinh/hybrid/hybrid-1p-ja-52-solis-5-easyway-5',
+    price: '83.300.000',
     priceSuffix: 'đ',
-    hoiVon: 'Hoàn vốn: 5 năm',
-    hieuQua: 'Hiệu quả/tháng: 1.400.000đ',
-    description: 'Off-Grid | 1 pha | JA 52 | solis 50 | easyway 52',
+    hoiVon: 'Hoàn vốn: 48 tháng',
+    hieuQua: 'Hiệu quả/tháng: 1.760.000đ',
+    description: 'Off-Grid | 1 pha | JA 50 | solis 50 | easyway 50',
     features: [
-      'Công suất: 5.2 kW',
+      'Công suất: 5 kW',
       'Hệ điện: 1 pha',
       'Pin lưu trữ Lithium',
       'Sản lượng: 500-600 kwh/tháng',
-      'Diện tích lắp đặt: 23,2 m2'
+      'Diện tích lắp đặt: 21,6 m2'
     ],
     mostPopular: false,
   },
   {
     name: '11 kW - 1 pha',
     id: 'tier-11-1p',
-    href: '#',
-    price: '133.900.000',
+    href: 'goi-san-pham/he-gia-dinh/hybrid/hybrid-1p-ja-110-solis-11-easyway-5',
+    price: '131.500.000',
     priceSuffix: 'đ',
-    hoiVon: 'Hoàn vốn: 5 năm',
-    hieuQua: 'Hiệu quả/tháng: 2.200.000đ',
-    description: 'Off-Grid | 1 pha | JA 11 | solis 80 | easyway 52',
+    hoiVon: 'Hoàn vốn: 35 tháng',
+    hieuQua: 'Hiệu quả/tháng: 3.840.000đ',
+    description: 'Off-Grid | 1 pha | JA 110 | solis 110 | easyway 50',
     features: [
       'Công suất: 11 kW',
       'Hệ điện: 1 pha',
       'Pin lưu trữ Lithium',
       'Sản lượng: 1100-1300 kwh/tháng',
-      'Diện tích lắp đặt: 49 m2'
+      'Diện tích lắp đặt: 49,5 m2'
     ],
     mostPopular: false,
   },
   {
     name: '11 kW - 3 pha áp thấp',
     id: 'tier-11-3p-low',
-    href: '#',
-    price: '155.900.000',
+    href: 'goi-san-pham/he-gia-dinh/hybrid/off-grid-3p-ja-110-deye-12-easyway-5-ap-thap',
+    price: '152.200.000',
     priceSuffix: 'đ',
-    hoiVon: 'Hoàn vốn: 5 năm',
-    hieuQua: 'Hiệu quả/tháng: 2.500.000đ',
-    description: 'Off-Grid | 3 pha | JA 110 | Solis 120 | easyway 52 - Áp thấp',
+    hoiVon: 'Hoàn vốn: 40 tháng',
+    hieuQua: 'Hiệu quả/tháng: 3.840.000đ',
+    description: 'Off-Grid | 3 pha | JA 110 | Solis 120 | easyway 50 - Áp thấp',
     features: [
       'Công suất: 11 kW',
       'Hệ điện: 3 pha áp thấp',
       'Pin lưu trữ Lithium',
       'Sản lượng: 1100-1300 kwh/tháng',
-      'Diện tích lắp đặt: 49 m2'
+      'Diện tích lắp đặt: 49,5 m2'
     ],
     mostPopular: true,
   },
   {
     name: '11 kW - 3 pha áp cao',
     id: 'tier-11-3p-high',
-    href: '#',
-    price: '189.900.000',
+    href: 'goi-san-pham/he-gia-dinh/hybrid/off-grid-3p-ja-110-solis-10-easyway-10-ap-cao',
+    price: '183.500.000',
     priceSuffix: 'đ',
-    hoiVon: 'Hoàn vốn: 5 năm',
-    hieuQua: 'Hiệu quả/tháng: 2.800.000đ',
-    description: 'Off-Grid | 3 pha | JA 110 | Solis 100 | easyway 10 - Áp cao',
+    hoiVon: 'Hoàn vốn: 48 tháng',
+    hieuQua: 'Hiệu quả/tháng: 3.840.000đ',
+    description: 'Off-Grid | 3 pha | JA 110 | Solis 100 | easyway 100 - Áp cao',
     features: [
       'Công suất: 11 kW',
       'Hệ điện: 3 pha áp cao',
       'Pin lưu trữ Lithium',
       'Sản lượng: 1100-1300 kwh/tháng',
-      'Diện tích lắp đặt: 49 m2'
+      'Diện tích lắp đặt: 49,5 m2'
     ],
     mostPopular: false,
   },
@@ -265,7 +265,7 @@ export default function Example() {
                     <div className="flex flex-col items-start">
                       <span className="text-xs text-gray-500">Hoàn vốn</span>
                       <p className={`text-sm font-semibold text-red-600`}>
-                        5 năm
+                        {tier.hoiVon.split(': ')[1]}
                       </p>
                     </div>
                   </button>
@@ -284,7 +284,7 @@ export default function Example() {
                     <div className="flex flex-col items-start">
                       <span className="text-xs text-gray-500">Hiệu quả/tháng</span>
                       <p className={`text-sm font-semibold text-red-600`}>
-                        800.000đ
+                        {tier.hieuQua.split(': ')[1]}
                       </p>
                     </div>
                   </button>
@@ -420,7 +420,7 @@ export default function Example() {
                     <div className="flex flex-col items-start">
                       <span className="text-xs text-gray-500">Hoàn vốn</span>
                       <p className={`text-sm font-semibold text-green-600`}>
-                        5 năm
+                        {tier.hoiVon.split(': ')[1]}
                       </p>
                     </div>
                   </button>
@@ -439,7 +439,7 @@ export default function Example() {
                     <div className="flex flex-col items-start">
                       <span className="text-xs text-gray-500">Hiệu quả/tháng</span>
                       <p className={`text-sm font-semibold text-green-600`}>
-                        1.400.000đ
+                        {tier.hieuQua.split(': ')[1]}
                       </p>
                     </div>
                   </button>

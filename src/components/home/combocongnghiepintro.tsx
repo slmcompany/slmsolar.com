@@ -35,14 +35,14 @@ const ongridTiers = [
     name: '22 kW',
     id: 'tier-22',
     href: '#',
-    price: '187.000.000',
-    hoiVon: 'Hoàn vốn: 32 tháng',
-    hieuQua: 'Hiệu quả/tháng: 5.750.000đ',
-    description: 'On-Grid | 3 pha | JA Solar 40 tấm | Sungrow 22kW',
+    price: '172.000.180',
+    hoiVon: 'Hoàn vốn: 36 tháng',
+    hieuQua: 'Hiệu quả/tháng: 4.830.000đ',
+    description: 'On-Grid | 3 pha | JA Solar 36 tấm | Sungrow 22kW',
     features: [
       'Công suất: 22 kWp',
-      'Số lượng tấm pin: 40 tấm',
-      'Sản lượng: 2.300-2.700 kWh/tháng'
+      'Số lượng tấm pin: 36 tấm',
+      'Sản lượng: 1.900-2.300 kWh/tháng'
     ],
     mostPopular: false,
   },
@@ -50,14 +50,14 @@ const ongridTiers = [
     name: '33 kW',
     id: 'tier-33',
     href: '#',
-    price: '264.000.000',
-    hoiVon: 'Hoàn vốn: 30 tháng',
-    hieuQua: 'Hiệu quả/tháng: 8.740.000đ',
-    description: 'On-Grid | 3 pha | JA Solar 60 tấm | Sungrow 33kW',
+    price: '246.000.700',
+    hoiVon: 'Hoàn vốn: 34 tháng',
+    hieuQua: 'Hiệu quả/tháng: 7.245.000đ',
+    description: 'On-Grid | 3 pha | JA Solar 54 tấm | Sungrow 33kW',
     features: [
       'Công suất: 33 kWp',
-      'Số lượng tấm pin: 60 tấm',
-      'Sản lượng: 3.500-4.100 kWh/tháng'
+      'Số lượng tấm pin: 54 tấm',
+      'Sản lượng: 2.900-3.400 kWh/tháng'
     ],
     mostPopular: false,
   },
@@ -65,29 +65,29 @@ const ongridTiers = [
     name: '45 kW',
     id: 'tier-45',
     href: '#',
-    price: '338.250.000',
-    hoiVon: 'Hoàn vốn: 29 tháng',
-    hieuQua: 'Hiệu quả/tháng: 11.615.000đ',
-    description: 'On-Grid | 3 pha | JA Solar 82 tấm | Sungrow 45kW',
+    price: '318.802.000',
+    hoiVon: 'Hoàn vốn: 32 tháng',
+    hieuQua: 'Hiệu quả/tháng: 10.005.000đ',
+    description: 'On-Grid | 3 pha | JA Solar 74 tấm | Sungrow 45kW',
     features: [
-      'Công suất: 45,1 kWp',
-      'Số lượng tấm pin: 82 tấm',
-      'Sản lượng: 4.700-5.400 kWh/tháng'
+      'Công suất: 45 kWp',
+      'Số lượng tấm pin: 74 tấm',
+      'Sản lượng: 4.000-4.700 kWh/tháng'
     ],
     mostPopular: true,
   },
   {
-    name: '65 kW',
-    id: 'tier-65',
+    name: '66 kW',
+    id: 'tier-66',
     href: '#',
-    price: '480.260.000',
-    hoiVon: 'Hoàn vốn: 28 tháng',
-    hieuQua: 'Hiệu quả/tháng: 17.135.000đ',
-    description: 'On-Grid | 3 pha | JA Solar 118 tấm | Sungrow 65kW',
+    price: '461.000.100',
+    hoiVon: 'Hoàn vốn: 32 tháng',
+    hieuQua: 'Hiệu quả/tháng: 14.720.000đ',
+    description: 'On-Grid | 3 pha | JA Solar 108 tấm | Sungrow 66kW',
     features: [
-      'Công suất: 64,9 kWp',
-      'Số lượng tấm pin: 118 tấm',
-      'Sản lượng: 6.800-8.100 kWh/tháng'
+      'Công suất: 66 kWp',
+      'Số lượng tấm pin: 108 tấm',
+      'Sản lượng: 5.900-6.900 kWh/tháng'
     ],
     mostPopular: false,
   },
@@ -98,15 +98,15 @@ const hybridTiers = [
     name: '22 kW',
     id: 'tier-22',
     href: '#',
-    price: '296.806.400',
-    hoiVon: 'Hoàn vốn: 48 tháng',
-    hieuQua: 'Hiệu quả/tháng: 6.185.000đ',
-    description: 'Hybrid | 3 pha | JA Solar 40 tấm | Sungrow 22kW | Pin EASYWAY',
+    price: '272.000.300',
+    hoiVon: 'Hoàn vốn: 49 tháng',
+    hieuQua: 'Hiệu quả/tháng: 5.635.000đ',
+    description: 'Hybrid | 3 pha | JA Solar 36 tấm | Sungrow 22kW | Pin EASYWAY',
     features: [
       'Công suất: 22 kWp',
-      'Số lượng tấm pin: 40 tấm',
-      'Sản lượng: 2.300-3.000 kWh/tháng',
-      'Pin lưu trữ: 10 kWh (2 tầng)'
+      'Số lượng tấm pin: 36 tấm',
+      'Sản lượng: 2.300-2.600 kWh/tháng',
+      'Pin lưu trữ: 10,65 kWh'
     ],
     mostPopular: false,
   },
@@ -114,15 +114,15 @@ const hybridTiers = [
     name: '33 kW',
     id: 'tier-33',
     href: '#',
-    price: '360.778.000',
-    hoiVon: 'Hoàn vốn: 39 tháng',
-    hieuQua: 'Hiệu quả/tháng: 9.200.000đ',
-    description: 'Hybrid | 3 pha | JA Solar 60 tấm | Sungrow 33kW | Pin EASYWAY',
+    price: '345.500.100',
+    hoiVon: 'Hoàn vốn: 42 tháng',
+    hieuQua: 'Hiệu quả/tháng: 8.395.000đ',
+    description: 'Hybrid | 3 pha | JA Solar 54 tấm | Sungrow 33kW | Pin EASYWAY',
     features: [
       'Công suất: 33 kWp',
-      'Số lượng tấm pin: 60 tấm',
-      'Sản lượng: 3.500-4.500 kWh/tháng',
-      'Pin lưu trữ: 10 kWh (2 tầng)'
+      'Số lượng tấm pin: 54 tấm',
+      'Sản lượng: 3.400-3.900 kWh/tháng',
+      'Pin lưu trữ: 10,65 kWh'
     ],
     mostPopular: false,
   },
@@ -130,31 +130,31 @@ const hybridTiers = [
     name: '45 kW',
     id: 'tier-45',
     href: '#',
-    price: '529.331.000',
-    hoiVon: 'Hoàn vốn: 42 tháng',
-    hieuQua: 'Hiệu quả/tháng: 12.428.000đ',
-    description: 'Hybrid | 3 pha | JA Solar 82 tấm | Sungrow 45kW | Pin EASYWAY',
+    price: '529.510.300',
+    hoiVon: 'Hoàn vốn: 46 tháng',
+    hieuQua: 'Hiệu quả/tháng: 11.615.000đ',
+    description: 'Hybrid | 3 pha | JA Solar 74 tấm | Sungrow 45kW | Pin EASYWAY',
     features: [
-      'Công suất: 45,1 kWp',
-      'Số lượng tấm pin: 82 tấm',
-      'Sản lượng: 4.700-5.800 kWh/tháng',
-      'Pin lưu trữ: 15,2 kWh (2 tầng)'
+      'Công suất: 45 kWp',
+      'Số lượng tấm pin: 74 tấm',
+      'Sản lượng: 4.700-5.400 kWh/tháng',
+      'Pin lưu trữ: 15,36 kWh'
     ],
     mostPopular: true,
   },
   {
-    name: '65 kW',
-    id: 'tier-65',
+    name: '66 kW',
+    id: 'tier-66',
     href: '#',
-    price: '690.560.200',
-    hoiVon: 'Hoàn vốn: 38 tháng',
-    hieuQua: 'Hiệu quả/tháng: 17.945.000đ',
-    description: 'Hybrid | 3 pha | JA Solar 118 tấm | Sungrow 65kW | Pin EASYWAY',
+    price: '681.208.000',
+    hoiVon: 'Hoàn vốn: 41 tháng',
+    hieuQua: 'Hiệu quả/tháng: 17.020.000đ',
+    description: 'Hybrid | 3 pha | JA Solar 108 tấm | Sungrow 66kW | Pin EASYWAY',
     features: [
-      'Công suất: 64,9 kWp',
-      'Số lượng tấm pin: 118 tấm',
-      'Sản lượng: 6.800-8.800 kWh/tháng',
-      'Pin lưu trữ: 22,8 kWh (3 tầng)'
+      'Công suất: 66 kWp',
+      'Số lượng tấm pin: 108 tấm',
+      'Sản lượng: 6.900-7.900 kWh/tháng',
+      'Pin lưu trữ: 20,48 kWh'
     ],
     mostPopular: false,
   },
@@ -349,7 +349,7 @@ export default function Example() {
                       <p className={`text-sm font-semibold ${
                         frequency.value === 'ongrid' ? 'text-red-600' : 'text-green-600'
                       }`}>
-                        4 năm
+                        {tier.hoiVon.replace('Hoàn vốn: ', '')}
                       </p>
                     </div>
                   </button>
@@ -374,7 +374,7 @@ export default function Example() {
                       <p className={`text-sm font-semibold ${
                         frequency.value === 'ongrid' ? 'text-red-600' : 'text-green-600'
                       }`}>
-                        18.000.000đ
+                        {tier.hieuQua.replace('Hiệu quả/tháng: ', '')}
                       </p>
                     </div>
                   </button>
@@ -529,7 +529,7 @@ export default function Example() {
                         <p className={`text-sm font-semibold ${
                           frequency.value === 'ongrid' ? 'text-red-600' : 'text-green-600'
                         }`}>
-                          4 năm
+                          {tier.hoiVon.replace('Hoàn vốn: ', '')}
                         </p>
                       </div>
                     </button>
@@ -554,7 +554,7 @@ export default function Example() {
                         <p className={`text-sm font-semibold ${
                           frequency.value === 'ongrid' ? 'text-red-600' : 'text-green-600'
                         }`}>
-                          18.000.000đ
+                          {tier.hieuQua.replace('Hiệu quả/tháng: ', '')}
                         </p>
                       </div>
                     </button>
