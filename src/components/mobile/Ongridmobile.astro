@@ -13,11 +13,109 @@ const formatCurrency = (amount: any) => {
 const { month, year } = getCurrentMonthYear();
 const combos = [
     {
-        heading: "Hệ bám tải on-grid",
-        background: "bg-slate-100",
-        hedien: "On-Grid",
-        hediencss: "bg-red-600",
+        id: 1,
+        attributes: {
+            nhom_combo: "On-Grid",
+            pha: "1 pha",
+            cong_suat: 5,
+            slug: "on-grid-1p-ja-55-invt-5",
+            tilte: "Combo On-Grid 5kW 1 pha",
+            gia_niem_yet: 47500000,
+            san_luong: "400-550",
+            hoan_von: "32 tháng",
+            dien_tich: 21.6,
+            feature: 1,
+            image: {
+                data: {
+                    attributes: {
+                        formats: {
+                            small: {
+                                url: "/images/on-grid-1p-ja-55-invt-5-1.png"
+                            }
+                        }
+                    }
+                }
+            }
+        }
     },
+    {
+        id: 2,
+        attributes: {
+            nhom_combo: "On-Grid", 
+            pha: "1 pha",
+            cong_suat: 8.5,
+            slug: "on-grid-1p-ja-87-invt-10",
+            tilte: "Combo On-Grid 8.5kW 1 pha",
+            gia_niem_yet: 75200000,
+            san_luong: "750-900",
+            hoan_von: "29 tháng",
+            dien_tich: 38.5,
+            feature: 1,
+            image: {
+                data: {
+                    attributes: {
+                        formats: {
+                            small: {
+                                url: "/images/on-grid-1p-ja-88-invt-10.png"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        id: 3,
+        attributes: {
+            nhom_combo: "On-Grid",
+            pha: "3 pha",
+            cong_suat: 8.5,
+            slug: "on-grid-3p-ja-87-invt-10",
+            tilte: "Combo On-Grid 8.5kW 3 pha",
+            gia_niem_yet: 79500000,
+            san_luong: "750-900",
+            hoan_von: "31 tháng", 
+            dien_tich: 38.5,
+            feature: 1,
+            image: {
+                data: {
+                    attributes: {
+                        formats: {
+                            small: {
+                                url: "/images/on-grid-3p-ja-88-invt-10.png"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        id: 4,
+        attributes: {
+            nhom_combo: "On-Grid",
+            pha: "3 pha",
+            cong_suat: 11,
+            slug: "on-grid-3p-ja-133-invt-15",
+            tilte: "Combo On-Grid 11kW 3 pha",
+            gia_niem_yet: 92500000,
+            san_luong: "950-1150",
+            hoan_von: "28 tháng",
+            dien_tich: 49.5,
+            feature: 1,
+            image: {
+                data: {
+                    attributes: {
+                        formats: {
+                            small: {
+                                url: "/images/on-grid-3p-ja-132-invt-15.png"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 ];
 
 const { zalo } = Astro.props;
@@ -92,60 +190,7 @@ const { zalo } = Astro.props;
                 class="mx-auto mt-6 grid max-w-2xl grid-cols-1 xl:gap-4 gap-8 md:max-w-2xl md:grid-cols-2 lg:max-w-4xl xl:mx-0 xl:max-w-none xl:grid-cols-4"
             >
             {
-                [
-                    {
-                        id: 1,
-                        attributes: {
-                            nhom_combo: "On-Grid",
-                            pha: "1 pha",
-                            cong_suat: 5,
-                            slug: "on-grid-5kw-1pha",
-                            tilte: "Combo On-Grid 5kW 1 pha",
-                            gia_niem_yet: 55000000,
-                            san_luong: "600-650",
-                            hoan_von: "5-6 năm",
-                            dien_tich: 25,
-                            feature: 1,
-                            image: {
-                                data: {
-                                    attributes: {
-                                        formats: {
-                                            small: {
-                                                url: "/images/combo-on-grid-5kw.jpg"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    {
-                        id: 2,
-                        attributes: {
-                            nhom_combo: "On-Grid",
-                            pha: "3 pha",
-                            cong_suat: 10,
-                            slug: "on-grid-10kw-3pha",
-                            tilte: "Combo On-Grid 10kW 3 pha",
-                            gia_niem_yet: 97000000,
-                            san_luong: "1200-1300",
-                            hoan_von: "5-6 năm",
-                            dien_tich: 50,
-                            feature: 1,
-                            image: {
-                                data: {
-                                    attributes: {
-                                        formats: {
-                                            small: {
-                                                url: "/images/combo-on-grid-10kw.jpg"
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                ].filter(combo => combo.attributes.nhom_combo === "On-Grid" && combo.attributes.feature === 1)
+                combos.filter(combo => combo.attributes.nhom_combo === "On-Grid" && combo.attributes.feature === 1)
                 .map((combo) => (
                 <div>
                     <li class="rounded-2xl bg-white xl:px-4 xl:py-4 sm:mx-6 mx-6 lg:mx-0  px-4 py-4">

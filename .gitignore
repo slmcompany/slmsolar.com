@@ -40,7 +40,7 @@ Thumbs.db
 .temp/
 
 # Distribution / packaging
-# dist/ # Cho phép theo dõi thư mục dist
+# dist/ đã được comment để cho phép theo dõi thư mục dist
 build/
 
 # Temporary files

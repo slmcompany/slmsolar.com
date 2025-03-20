@@ -32,7 +32,7 @@ const ongridTiers = [
   {
     name: '5 kW',
     id: 'tier-5',
-    href: '/goi-san-pham/he-gia-dinh/on-grid/on-grid-1p-ja-55-invt-5',
+    href: '#',
     price: '47.500.000',
     hoiVon: 'Hoàn vốn: 32 tháng',
     hieuQua: 'Hiệu quả/tháng: 1.520.000đ',
@@ -48,7 +48,7 @@ const ongridTiers = [
   {
     name: '8.5 kW - 1 pha',
     id: 'tier-8.5-1p',
-    href: 'goi-san-pham/he-gia-dinh/on-grid/on-grid-1p-ja-87-invt-10',
+    href: '#',
     price: '75.200.000',
     hoiVon: 'Hoàn vốn: 29 tháng',
     hieuQua: 'Hiệu quả/tháng: 2.640.000đ',
@@ -64,7 +64,7 @@ const ongridTiers = [
   {
     name: '8.5 kW - 3 pha',
     id: 'tier-8.5-3p',
-    href: 'goi-san-pham/he-gia-dinh/on-grid/on-grid-3p-ja-87-invt-10',
+    href: '#',
     price: '79.500.000',
     hoiVon: 'Hoàn vốn: 31 tháng',
     hieuQua: 'Hiệu quả/tháng: 2.640.000đ',
@@ -80,7 +80,7 @@ const ongridTiers = [
   {
     name: '11 kW - 3 pha',
     id: 'tier-11-3p',
-    href: 'goi-san-pham/he-gia-dinh/on-grid/on-grid-3p-ja-133-invt-15',
+    href: '#',
     price: '92.500.000',
     hoiVon: 'Hoàn vốn: 28 tháng',
     hieuQua: 'Hiệu quả/tháng: 3.360.000đ',
@@ -99,7 +99,7 @@ const hybridTiers = [
   {
     name: '5 kW',
     id: 'tier-5',
-    href: 'goi-san-pham/he-gia-dinh/hybrid/hybrid-1p-ja-52-solis-5-easyway-5',
+    href: '#',
     price: '83.300.000',
     hoiVon: 'Hoàn vốn: 48 tháng',
     hieuQua: 'Hiệu quả/tháng: 1.760.000đ',
@@ -116,7 +116,7 @@ const hybridTiers = [
   {
     name: '11 kW - 1 pha',
     id: 'tier-11-1p',
-    href: 'goi-san-pham/he-gia-dinh/hybrid/hybrid-1p-ja-110-solis-11-easyway-5',
+    href: '#',
     price: '131.500.000',
     hoiVon: 'Hoàn vốn: 35 tháng',
     hieuQua: 'Hiệu quả/tháng: 3.840.000đ',
@@ -133,7 +133,7 @@ const hybridTiers = [
   {
     name: '11 kW - 3 pha áp thấp',
     id: 'tier-11-3p-low',
-    href: 'goi-san-pham/he-gia-dinh/hybrid/off-grid-3p-ja-110-deye-12-easyway-5-ap-thap',
+    href: '#',
     price: '152.200.000',
     hoiVon: 'Hoàn vốn: 40 tháng',
     hieuQua: 'Hiệu quả/tháng: 3.840.000đ',
@@ -150,7 +150,7 @@ const hybridTiers = [
   {
     name: '11 kW - 3 pha áp cao',
     id: 'tier-11-3p-high',
-    href: 'goi-san-pham/he-gia-dinh/hybrid/off-grid-3p-ja-110-solis-10-easyway-10-ap-cao',
+    href: '#',
     price: '183.500.000',
     hoiVon: 'Hoàn vốn: 48 tháng',
     hieuQua: 'Hiệu quả/tháng: 3.840.000đ',

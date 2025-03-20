@@ -7,7 +7,127 @@ const getCurrentMonthYear = () => {
     return { month, year };
 };
 
+const formatCurrency = (amount: any) => {
+    return amount.toLocaleString("vi-VN");
+};
+
 const { month, year } = getCurrentMonthYear();
+
+const { zalo } = Astro.props;
+
+// Thay thế fetchApi bằng dữ liệu mẫu cố định
+const Combos = [
+    {
+        id: 1,
+        attributes: {
+            nhom_combo: "Off-Grid",
+            pha: "1 pha",
+            cong_suat: 5,
+            slug: "hybrid-1p-ja-52-solis-5-easyway-5",
+            tilte: "Combo Hybrid 5kW 1 pha",
+            gia_niem_yet: 83300000,
+            san_luong: "500-600",
+            hoan_von: "48 tháng",
+            dien_tich: 21.6,
+            feature: 1,
+            image: {
+                data: {
+                    attributes: {
+                        formats: {
+                            small: {
+                                url: "/images/off-grid-1p-ja-55-solis-5-easyway-5-1.png"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        id: 2,
+        attributes: {
+            nhom_combo: "Off-Grid",
+            pha: "1 pha",
+            cong_suat: 11,
+            slug: "hybrid-1p-ja-110-solis-11-easyway-5",
+            tilte: "Combo Hybrid 11kW 1 pha",
+            gia_niem_yet: 131500000,
+            san_luong: "1100-1300",
+            hoan_von: "35 tháng",
+            dien_tich: 49.5,
+            feature: 1,
+            image: {
+                data: {
+                    attributes: {
+                        formats: {
+                            small: {
+                                url: "/images/off-grid-1p-ja-88-solis-5-easyway-5-1.png"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        id: 3,
+        attributes: {
+            nhom_combo: "Off-Grid",
+            pha: "3 pha áp thấp",
+            cong_suat: 11,
+            slug: "off-grid-3p-ja-110-deye-12-easyway-5-ap-thap",
+            tilte: "Combo Hybrid 11kW 3 pha áp thấp",
+            gia_niem_yet: 152200000,
+            san_luong: "1100-1300",
+            hoan_von: "40 tháng",
+            dien_tich: 49.5,
+            feature: 1,
+            image: {
+                data: {
+                    attributes: {
+                        formats: {
+                            small: {
+                                url: "/images/combo-off-grid-11kw-3p.jpg"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    {
+        id: 4,
+        attributes: {
+            nhom_combo: "Off-Grid",
+            pha: "3 pha áp cao",
+            cong_suat: 11,
+            slug: "off-grid-3p-ja-110-solis-10-easyway-10-ap-cao",
+            tilte: "Combo Hybrid 11kW 3 pha áp cao",
+            gia_niem_yet: 183500000,
+            san_luong: "1100-1300",
+            hoan_von: "48 tháng",
+            dien_tich: 49.5,
+            feature: 1,
+            image: {
+                data: {
+                    attributes: {
+                        formats: {
+                            small: {
+                                url: "/images/combo-off-grid-11kw-3p-cao.jpg"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+];
+
+// Lọc dữ liệu dựa trên nhom_combo
+const filteredCombos = Combos.filter(combo => 
+  combo.attributes.nhom_combo === "Off-Grid" && combo.attributes.feature === 1
+);
+
 const combos = [
     {
         heading: "Hệ độc lập off-grid",
@@ -17,124 +137,6 @@ const combos = [
     },
 ];
 
-const { zalo } = Astro.props;
-
-// Thay thế fetchApi bằng dữ liệu mẫu cố định
-const Combos = [
-  {
-    id: 1,
-    attributes: {
-      nhom_combo: "On-Grid",
-      pha: "1 pha",
-      cong_suat: 5,
-      slug: "on-grid-5kw-1pha",
-      tilte: "Combo On-Grid 5kW 1 pha",
-      gia_niem_yet: 55000000,
-      san_luong: "600-650",
-      hoan_von: "5-6 năm",
-      dien_tich: 25,
-      feature: 1,
-      image: {
-        data: {
-          attributes: {
-            formats: {
-              small: {
-                url: "/images/combo-on-grid-5kw.jpg"
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  {
-    id: 2,
-    attributes: {
-      nhom_combo: "On-Grid",
-      pha: "3 pha",
-      cong_suat: 10,
-      slug: "on-grid-10kw-3pha",
-      tilte: "Combo On-Grid 10kW 3 pha",
-      gia_niem_yet: 97000000,
-      san_luong: "1200-1300",
-      hoan_von: "5-6 năm",
-      dien_tich: 50,
-      feature: 1,
-      image: {
-        data: {
-          attributes: {
-            formats: {
-              small: {
-                url: "/images/combo-on-grid-10kw.jpg"
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  {
-    id: 3,
-    attributes: {
-      nhom_combo: "Off-Grid",
-      pha: "1 pha",
-      cong_suat: 3,
-      slug: "off-grid-3kw-1pha",
-      tilte: "Combo Off-Grid 3kW 1 pha",
-      gia_niem_yet: 75000000,
-      san_luong: "350-400",
-      hoan_von: "6-7 năm",
-      dien_tich: 15,
-      feature: 1,
-      image: {
-        data: {
-          attributes: {
-            formats: {
-              small: {
-                url: "/images/combo-off-grid-3kw.jpg"
-              }
-            }
-          }
-        }
-      }
-    }
-  },
-  {
-    id: 4,
-    attributes: {
-      nhom_combo: "Off-Grid",
-      pha: "3 pha áp thấp",
-      cong_suat: 5,
-      slug: "off-grid-5kw-3pha",
-      tilte: "Combo Off-Grid 5kW 3 pha áp thấp",
-      gia_niem_yet: 120000000,
-      san_luong: "600-650",
-      hoan_von: "6-7 năm",
-      dien_tich: 25,
-      feature: 1,
-      image: {
-        data: {
-          attributes: {
-            formats: {
-              small: {
-                url: "/images/combo-off-grid-5kw.jpg"
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-];
-
-// Lọc dữ liệu dựa trên nhom_combo
-const filteredCombos = Combos.filter(combo => 
-  combo.attributes.nhom_combo === "Off-Grid" && combo.attributes.feature === 1
-);
-
-const formatCurrency = (amount: number) => {
-    return amount.toLocaleString("vi-VN");
-};
 ---
 
 <div class="bg-slate-10 block md:hidden">
