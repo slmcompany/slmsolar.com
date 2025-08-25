@@ -380,7 +380,6 @@ export default function Example() {
               />
             </div>
           </div>
-
           <div className="isolate mx-auto mt-8 grid max-w-md grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 md:max-w-2xl lg:max-w-4xl xl:mx-0 xl:max-w-none xl:grid-cols-4">
             {hybridTiers.map((tier) => (
               <div
@@ -498,7 +497,6 @@ export default function Example() {
                     } else if (feature.toLowerCase().includes('thiết bị')) {
                       Icon = WrenchScrewdriverIcon // 🔧 Thiết bị
                     }
-
                     return (
                       <li key={feature} className="flex gap-x-3 items-center">
                         <Icon 
