@@ -33,7 +33,6 @@ const ongridTiers = [
     name: '5 kW',
     id: 'tier-5',
     href: '#',
-<<<<<<< HEAD
     price: '49.900.000',
     hoiVon: 'Hoàn vốn: 34 tháng',
     hieuQua: 'Hiệu quả/tháng: 1.470.000đ',
@@ -43,22 +42,11 @@ const ongridTiers = [
       'Hệ điện: 1 pha',
       'Sản lượng: 350-450 kwh/tháng',
       'Diện tích lắp đặt: 21 m2'
-=======
-    price: '47.500.000',
-    hoiVon: 'Hoàn vốn: 32 tháng',
-    hieuQua: 'Hiệu quả/tháng: 1.520.000đ',
-    description: 'On-Grid | 1 pha | JA 50 | Invt 50',
-    features: [
-      'Công suất: 5 kW',
-      'Hệ điện: 1 pha',
-      'Sản lượng: 400-550 kwh/tháng',
-      'Diện tích lắp đặt: 21,6 m2'
->>>>>>> 94f4903c50de454ee0087b73a490b39336f369c5
+
     ],
     mostPopular: false,
   },
   {
-<<<<<<< HEAD
     name: '11 kW - 1 pha',
     id: 'tier-11-1p',
     href: '#',
@@ -71,25 +59,11 @@ const ongridTiers = [
       'Hệ điện: 1 pha',
       'Sản lượng: 800-1000 kwh/tháng',
       'Diện tích lắp đặt: 47 m2'
-=======
-    name: '8.5 kW - 1 pha',
-    id: 'tier-8.5-1p',
-    href: '#',
-    price: '75.200.000',
-    hoiVon: 'Hoàn vốn: 29 tháng',
-    hieuQua: 'Hiệu quả/tháng: 2.640.000đ',
-    description: 'On-Grid | 1 pha | JA 85 | Invt 85',
-    features: [
-      'Công suất: 8.5 kW',
-      'Hệ điện: 1 pha',
-      'Sản lượng: 750-900 kwh/tháng',
-      'Diện tích lắp đặt: 38,5 m2'
->>>>>>> 94f4903c50de454ee0087b73a490b39336f369c5
+
     ],
     mostPopular: false,
   },
   {
-<<<<<<< HEAD
     name: '11 kW - 3 pha',
     id: 'tier-11-3p',
     href: '#',
@@ -102,25 +76,11 @@ const ongridTiers = [
       'Hệ điện: 3 pha',
       'Sản lượng: 800-1000 kwh/tháng',
       'Diện tích lắp đặt: 47 m2'
-=======
-    name: '8.5 kW - 3 pha',
-    id: 'tier-8.5-3p',
-    href: '#',
-    price: '79.500.000',
-    hoiVon: 'Hoàn vốn: 31 tháng',
-    hieuQua: 'Hiệu quả/tháng: 2.640.000đ',
-    description: 'On-Grid | 3 pha | JA 85 | Invt 85',
-    features: [
-      'Công suất: 8.5 kW',
-      'Hệ điện: 3 pha',
-      'Sản lượng: 750-900 kwh/tháng',
-      'Diện tích lắp đặt: 38,5 m2'
->>>>>>> 94f4903c50de454ee0087b73a490b39336f369c5
+
     ],
     mostPopular: true,
   },
   {
-<<<<<<< HEAD
     name: '15 kW - 3 pha',
     id: 'tier-15-3p',
     href: '#',
@@ -133,20 +93,6 @@ const ongridTiers = [
       'Hệ điện: 3 pha',
       'Sản lượng: 1100-1300  kwh/tháng',
       'Diện tích lắp đặt: 65 m2'
-=======
-    name: '11 kW - 3 pha',
-    id: 'tier-11-3p',
-    href: '#',
-    price: '92.500.000',
-    hoiVon: 'Hoàn vốn: 28 tháng',
-    hieuQua: 'Hiệu quả/tháng: 3.360.000đ',
-    description: 'On-Grid | 3 pha | JA 110 | Invt 110',
-    features: [
-      'Công suất: 11 kW',
-      'Hệ điện: 3 pha',
-      'Sản lượng: 950-1150 kwh/tháng',
-      'Diện tích lắp đặt: 49,5 m2'
->>>>>>> 94f4903c50de454ee0087b73a490b39336f369c5
     ],
     mostPopular: false,
   },
@@ -157,31 +103,22 @@ const hybridTiers = [
     name: '5 kW',
     id: 'tier-5',
     href: '#',
-<<<<<<< HEAD
     price: '84.000.000',
     hoiVon: 'Hoàn vốn: 50 tháng',
     hieuQua: 'Hiệu quả/tháng: 1.680.000đ',
-=======
-    price: '83.300.000',
-    hoiVon: 'Hoàn vốn: 48 tháng',
-    hieuQua: 'Hiệu quả/tháng: 1.760.000đ',
->>>>>>> 94f4903c50de454ee0087b73a490b39336f369c5
+
     description: 'Off-Grid | 1 pha | JA 50 | solis 50 | easyway 50',
     features: [
       'Công suất: 5 kW',
       'Hệ điện: 1 pha',
       'Pin lưu trữ Lithium',
       'Sản lượng: 400-600 kwh/tháng',
-<<<<<<< HEAD
       'Diện tích lắp đặt: 21 m2'
-=======
-      'Diện tích lắp đặt: 21,6 m2'
->>>>>>> 94f4903c50de454ee0087b73a490b39336f369c5
+
     ],
     mostPopular: false,
   },
   {
-<<<<<<< HEAD
     name: '11 kW - 1 pha',
     id: 'tier-11-1p',
     href: '#',
@@ -195,26 +132,10 @@ const hybridTiers = [
       'Pin lưu trữ Lithium',
       'Sản lượng: 900-1200 kwh/tháng',
       'Diện tích lắp đặt: 47 m2'
-=======
-    name: '11 kW - 1 pha',
-    id: 'tier-11-1p',
-    href: '#',
-    price: '131.500.000',
-    hoiVon: 'Hoàn vốn: 35 tháng',
-    hieuQua: 'Hiệu quả/tháng: 3.840.000đ',
-    description: 'Off-Grid | 1 pha | JA 110 | solis 110 | easyway 50',
-    features: [
-      'Công suất: 11 kW',
-      'Hệ điện: 1 pha',
-      'Pin lưu trữ Lithium',
-      'Sản lượng: 1100-1300 kwh/tháng',
-      'Diện tích lắp đặt: 49,5 m2'
->>>>>>> 94f4903c50de454ee0087b73a490b39336f369c5
     ],
     mostPopular: false,
   },
   {
-<<<<<<< HEAD
     name: '15 kW - 3 pha áp thấp',
     id: 'tier-15-3p-low',
     href: '#',
@@ -248,41 +169,6 @@ const hybridTiers = [
     ],
     mostPopular: true,
   },
-=======
-    name: '11 kW - 3 pha áp thấp',
-    id: 'tier-11-3p-low',
-    href: '#',
-    price: '152.200.000',
-    hoiVon: 'Hoàn vốn: 40 tháng',
-    hieuQua: 'Hiệu quả/tháng: 3.840.000đ',
-    description: 'Off-Grid | 3 pha | JA 110 | Solis 120 | easyway 50 - Áp thấp',
-    features: [
-      'Công suất: 11 kW',
-      'Hệ điện: 3 pha áp thấp',
-      'Pin lưu trữ Lithium',
-      'Sản lượng: 1100-1300 kwh/tháng',
-      'Diện tích lắp đặt: 49,5 m2'
-    ],
-    mostPopular: true,
-  },
-  {
-    name: '11 kW - 3 pha áp cao',
-    id: 'tier-11-3p-high',
-    href: '#',
-    price: '183.500.000',
-    hoiVon: 'Hoàn vốn: 48 tháng',
-    hieuQua: 'Hiệu quả/tháng: 3.840.000đ',
-    description: 'Off-Grid | 3 pha | JA 110 | Solis 100 | easyway 100 - Áp cao',
-    features: [
-      'Công suất: 11 kW',
-      'Hệ điện: 3 pha áp cao',
-      'Pin lưu trữ Lithium',
-      'Sản lượng: 1100-1300 kwh/tháng',
-      'Diện tích lắp đặt: 49,5 m2'
-    ],
-    mostPopular: false,
-  },
->>>>>>> 94f4903c50de454ee0087b73a490b39336f369c5
 ]
 
 
